@@ -1,0 +1,19 @@
+{
+  "name": "move-it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katiegoines/move-it.git"
+  },
+  "author": "Katie Goines",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katiegoines/move-it/issues"
+  },
+  "homepage": "https://github.com/katiegoines/move-it#readme"
+}
