@@ -11,7 +11,9 @@ module.exports = {
 
     show: (req, res) => {
         console.log(`Current user: ${req.user}`)
-        User.findById(req.params.id, (err, user) => {
+        // console.log(req.user._id)
+        User.findById(req.user._id, (err, user) => {
+            // console.log(user._id)
             res.json(user)
         })
     },
@@ -20,7 +22,7 @@ module.exports = {
         User.create(req.body, (err, user) => {
             if(err) return res.json({success: false, code: err.code})
             const token = signToken(user)
-            res.json({success: true, message: "User created. Token attached."})
+            res.json({success: true, message: "User created. Token attached.", token})
         })
     },
 

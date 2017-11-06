@@ -13,7 +13,7 @@ function setToken(token) {
     return token
 }
 
-function getCurretnUser() {
+function getCurrentUser() {
     const token = getToken()
     if(token) return jwtDecode(token)
     return null
@@ -35,6 +35,7 @@ function logIn(credentials) {
 function signUp(userInfo) {
     return clientAuth({method: 'post', url: '/api/users', data: userInfo})
     .then(res => {
+        // console.log(res.data)
         const token = res.data.token
         if(token) {
             clientAuth.defaults.headers.common.token = setToken(token)
