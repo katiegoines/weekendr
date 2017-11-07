@@ -6,7 +6,17 @@ class Search extends React.Component {
         address: '',
         yelpRestaurants: {head: "", list: []},
         yelpNailSalons: {head: "", list: []},
-        walkScore: {head: "", list:[]}
+        lng: '',
+        lat: '',
+        // codeAddress: {lng:'', lat:''},
+        walkscore: {
+            head: '',
+            walkscore: null,
+            description: '',
+            logo_url: '',
+            moreinfo: ''
+        }
+        // walkScore: ''
 	}
 
 	onInputChange(evt) {
@@ -14,7 +24,6 @@ class Search extends React.Component {
 			address: evt.target.value
 		})
 	}
-
 
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
@@ -27,25 +36,55 @@ class Search extends React.Component {
     yelpNailSalonSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=nail salon&location=${this.state.address}`})
         .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({yelpNailSalons: {list: res.data, head: "Nail Salons"}})
         })
     }
 
+    codeAddress() {
+        var addr = this.state.address
+        // var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${addr}&key=AIzaSyDX9-d__TDQQqujpUvaujcbXY9OIFkjNDg`
+        // console.log(googleKey)
+        axios({method: 'get', url: `api/search/google?address=${addr}`})
+        .then((res) => {
+            // console.log(res.data.results[0].geometry.location.lat)
+            this.setState({
+                    lng: res.data.results[0].geometry.location.lng, 
+                    lat: res.data.results[0].geometry.location.lat
+            })
+        })
+        .then((res) => {
+            this.walkScoreSearch()
+        })
+    }
+
     walkScoreSearch() {
-        axios({method: 'get', url: `http://api.walkscore.com/score?format=json&address=${this.state.address}&transit=1&bike=1&wsapikey=`})
+        var addr = this.state.address
+        var lat = this.state.lat
+        var lng = this.state.lng
+        axios({method: 'get', url: `api/search/walkscore?address=${addr}&lat=${lat}&lon=${lng}`})
         .then((res) => {
             console.log(res.data)
-            this.setState({walkScore: {list: res.data, head: "WalkScore"}})
+            this.setState({walkscore:
+                {
+                    head: "Walkability by ",
+                    walkscore: res.data.walkscore,
+                    description: res.data.description,
+                    logo_url: res.data.logo_url,
+                    moreinfo: res.data.ws_link
+                }
+            })
         })
     }
 
 	onFormSubmit(evt) {
         evt.preventDefault()
-        console.log(this.state.address)
+        // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
-        this.walkScoreSearch()
+        this.codeAddress()
+        this.setState({address:""})
+        // this.walkScoreSearch()
     }
     
 	
@@ -79,9 +118,11 @@ class Search extends React.Component {
                 </div>
 
                 <div className="walk-score">
-                    <h2>{this.state.walkScore.head}</h2>
-                    {this.state.walkScore.list
-                    })}
+                    <h2><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img src={this.state.walkscore.logo_url} alt=""/></h2>
+                    <div>
+                        {this.state.walkscore.walkscore}
+                        <div><small>{this.state.walkscore.description}</small></div>
+                    </div>
                 </div>
                 
 			</div>
