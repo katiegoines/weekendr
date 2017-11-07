@@ -6,6 +6,7 @@ class Search extends React.Component {
         address: '',
         yelpRestaurants: {head: "", list: []},
         yelpNailSalons: {head: "", list: []},
+        walkScore: {head: "", list:[]}
 	}
 
 	onInputChange(evt) {
@@ -16,7 +17,7 @@ class Search extends React.Component {
 
 
     yelpRestaurantSearch() {
-        axios({method: 'get', url: `/api/search?term=restaurants&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
             // console.log(res.data)
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
@@ -24,10 +25,18 @@ class Search extends React.Component {
     }
 
     yelpNailSalonSearch() {
-        axios({method: 'get', url: `/api/search?term=nail salon&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=nail salon&location=${this.state.address}`})
         .then((res) => {
             console.log(res.data)
             this.setState({yelpNailSalons: {list: res.data, head: "Nail Salons"}})
+        })
+    }
+
+    walkScoreSearch() {
+        axios({method: 'get', url: `http://api.walkscore.com/score?format=json&address=${this.state.address}&transit=1&bike=1&wsapikey=`})
+        .then((res) => {
+            console.log(res.data)
+            this.setState({walkScore: {list: res.data, head: "WalkScore"}})
         })
     }
 
@@ -36,6 +45,7 @@ class Search extends React.Component {
         console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
+        this.walkScoreSearch()
     }
     
 	
@@ -43,7 +53,7 @@ class Search extends React.Component {
 		const { address } = this.state
 		return (
 			<div className='Search'>
-				<h1>Search an Address</h1>
+				<h1>Search Address</h1>
 
 				<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
 					<input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
@@ -65,6 +75,12 @@ class Search extends React.Component {
                         return (
                         <div key={el.id}>{el.name}</div>
                         )
+                    })}
+                </div>
+
+                <div className="walk-score">
+                    <h2>{this.state.walkScore.head}</h2>
+                    {this.state.walkScore.list
                     })}
                 </div>
                 

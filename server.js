@@ -15,6 +15,9 @@ const
     yelpID = process.env.YELP_ID,
     yelpSecret = process.env.YELP_SECRET
 
+const 
+    walkScoreID = process.env.WALK_SCORE_ID
+
 mongoose.connect(MONGODB_URI, (err) => {
     console.log(err || "Connected to MongoDB.")
 })
@@ -32,7 +35,7 @@ app.get('/api', (req, res) => {
 // app.use('/api/search', thirdPartyAPIRoutes)
 
 
-app.get('/api/search', (req, res) => {
+app.get('/api/search/yelp', (req, res) => {
     console.log(req.params)
     yelp.accessToken(yelpID, yelpSecret)
     .then(response => {
@@ -48,6 +51,10 @@ app.get('/api/search', (req, res) => {
             res.json(results)
         })
     });
+})
+
+app.get('/api/search/walkscore', (req, res) => {
+    console.log(req.params)
 })
 
 
