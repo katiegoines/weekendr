@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import './App.css'
+// import './App.css'
 import clientAuth from './clientAuth'
 
 import NavBar from './NavBar'

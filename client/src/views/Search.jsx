@@ -8,7 +8,6 @@ class Search extends React.Component {
         yelpNailSalons: {head: "", list: []},
         lng: '',
         lat: '',
-        // codeAddress: {lng:'', lat:''},
         walkscore: {
             head: '',
             walkscore: null,
@@ -16,7 +15,6 @@ class Search extends React.Component {
             logo_url: '',
             moreinfo: ''
         }
-        // walkScore: ''
 	}
 
 	onInputChange(evt) {
@@ -28,7 +26,7 @@ class Search extends React.Component {
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
         })
     }
@@ -43,8 +41,6 @@ class Search extends React.Component {
 
     codeAddress() {
         var addr = this.state.address
-        // var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${addr}&key=AIzaSyDX9-d__TDQQqujpUvaujcbXY9OIFkjNDg`
-        // console.log(googleKey)
         axios({method: 'get', url: `api/search/google?address=${addr}`})
         .then((res) => {
             // console.log(res.data.results[0].geometry.location.lat)
@@ -64,7 +60,7 @@ class Search extends React.Component {
         var lng = this.state.lng
         axios({method: 'get', url: `api/search/walkscore?address=${addr}&lat=${lat}&lon=${lng}`})
         .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({walkscore:
                 {
                     head: "Walkability by ",
@@ -84,7 +80,6 @@ class Search extends React.Component {
         this.yelpNailSalonSearch()
         this.codeAddress()
         this.setState({address:""})
-        // this.walkScoreSearch()
     }
     
 	
@@ -103,7 +98,10 @@ class Search extends React.Component {
                     <h2>{this.state.yelpRestaurants.head}</h2>
                     {this.state.yelpRestaurants.list.map(el => {
                         return (
-                        <div key={el.id}>{el.name}</div>
+                            <div key={el.id}>
+                                {/* <div className="card-image" alt=""><img src={el.image_url} /></div> */}
+                                <div className="card-header">{el.name}</div>
+                            </div>
                         )
                     })}
                 </div>
@@ -118,7 +116,7 @@ class Search extends React.Component {
                 </div>
 
                 <div className="walk-score">
-                    <h2><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img src={this.state.walkscore.logo_url} alt=""/></h2>
+                    <h2><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img className="c-im" src={this.state.walkscore.logo_url} alt=""/></h2>
                     <div>
                         {this.state.walkscore.walkscore}
                         <div><small>{this.state.walkscore.description}</small></div>
