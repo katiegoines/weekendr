@@ -17,6 +17,7 @@ class Search extends React.Component {
             moreinfo: ''
         },
         photoref:'',
+        photo: '',
         town: ''
     }
     
@@ -65,7 +66,7 @@ class Search extends React.Component {
         })
     }
 
-    /*
+    
     codeAddress() {
         var addr = this.state.address
         axios({method: 'get', url: `api/search/google?address=${addr}`})
@@ -110,7 +111,7 @@ class Search extends React.Component {
         .then((res) => {
             // console.log(res.data)
             this.setState({town: res.data})
-            this.town = res.data
+            // this.town = res.data
             this.placesSearch()
         })
     }
@@ -118,15 +119,14 @@ class Search extends React.Component {
     placesSearch() {
         var lat = this.state.lat
         var lng = this.state.lng
-        axios({method: 'get', url: `api/search/places?query=${this.town}&lat=${lat}&lon=${lng}`})
+        axios({method: 'get', url: `api/search/places?query=${this.state.town}&lat=${lat}&lon=${lng}`})
         .then((res) => {
-            // this.setState({photoref: res.data.photoref})
             // console.log(res.data.photoref)
             this.reference = res.data.photoref
-            this.photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=${this.reference}&key=${res.data.apiKey}`
+            this.setState({photoref: res.data.photoref, photo: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=${this.reference}&key=${res.data.apiKey}`})            
         })
     }
-    */
+    
 
     saveButton() {
         console.log("Clicked save.")
@@ -154,6 +154,7 @@ class Search extends React.Component {
                 moreinfo: ''
             },
             photoref:'',
+            photo: '',
             town: ''
         })
     }
@@ -165,7 +166,7 @@ class Search extends React.Component {
         // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
-        // this.codeAddress()
+        this.codeAddress()
         // this.setState({address:""})
         this.reference = ''
     }
@@ -197,10 +198,10 @@ class Search extends React.Component {
 
                 
 
-                {/* <div className="background" >
-                    <img className="background-img" src={this.photo} alt="" />
-                    <h2><span className="town">{this.town}</span></h2>
-                </div> */}
+                <div className="background" >
+                    <img className="background-img" src={this.state.photo} alt="" />
+                    <h2><span className="town">{this.state.town}</span></h2>
+                </div>
                 
                 <div className="yelp-restaurants">
                     <h3>{this.state.yelpRestaurants.head}</h3>
@@ -243,13 +244,13 @@ class Search extends React.Component {
                     })}
                 </div>
 
-                {/* <div className="walk-score">
+                <div className="walk-score">
                     <h3><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img className="c-im" src={this.state.walkscore.logo_url} alt=""/></h3>
                     <div>
                         {this.state.walkscore.walkscore}
                         <div><small>{this.state.walkscore.description}</small></div>
                     </div>
-                </div> */}
+                </div>
                 
 			</div>
 		)
