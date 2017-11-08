@@ -9,6 +9,7 @@ import Search from './views/Search'
 import SignUp from './views/SignUp'
 import LogIn from './views/LogIn'
 import Profile from './views/Profile'
+import EditProfile from './views/EditProfile'
 import LogOut from './views/LogOut'
 
 class App extends Component {
@@ -44,8 +45,16 @@ class App extends Component {
             return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
           }} />
 
-          <Route path="/profile" render={(props) => {
+          <Route path="/profile/edit" component={EditProfile} />  
+
+          {/* <Route path="/profile" render={(props) => {
             return <Profile {...props} currentUser={currentUser} />
+          }} /> */}
+
+          <Route path="/profile" render={(props) => {
+            return currentUser
+              ? <Profile {...props} />
+              : <Redirect to="/search" />
           }} />
 
           <Route path="/logout" render={(props) => {
@@ -59,6 +68,8 @@ class App extends Component {
           <Route path="/search" component={Search} />
 
           <Route path="/" component={Home} />
+
+          
 
         </Switch>
       </div>
