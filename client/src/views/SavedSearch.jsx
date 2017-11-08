@@ -3,31 +3,33 @@ import axios from 'axios'
 import clientAuth from '../clientAuth'
 
 class Search extends React.Component {
-	state = {
-        address: '',
-        yelpRestaurants: {head: "", list: []},
-        yelpNailSalons: {head: "", list: []},
-        lng: '',
-        lat: '',
-        walkscore: {
-            head: '',
-            walkscore: null,
-            description: '',
-            logo_url: '',
-            moreinfo: ''
-        },
-        photoref:'',
-        town: ''
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            address: localStorage.search,
+            yelpRestaurants: {head: "", list: []},
+            yelpNailSalons: {head: "", list: []},
+            lng: '',
+            lat: '',
+            walkscore: {
+                head: '',
+                walkscore: null,
+                description: '',
+                logo_url: '',
+                moreinfo: ''
+            },
+            photoref:'',
+            town: localStorage.town
+        }
     }
     
-
-
-
-	onInputChange(evt) {
-		this.setState({
-			address: evt.target.value
-		})
-	}
+    
+    
+    componentDidMount() {
+        this.onFormSubmit()
+        console.log(this.state.town)
+    }
 
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
@@ -118,7 +120,7 @@ class Search extends React.Component {
     }
 
 	onFormSubmit(evt) {
-        evt.preventDefault()
+        // evt.preventDefault()
         // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
@@ -132,12 +134,9 @@ class Search extends React.Component {
 		const { address } = this.state
 		return (
 			<div className='Search'>
-				<h1>Search Address</h1>
+				<h1>{this.state.town}</h1>
 
-				<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-					<input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
-					<button>Search</button>
-				</form>
+
 
                 {clientAuth.getCurrentUser() ? <button onClick={this.saveButton.bind(this)}>Save</button> : null }
 

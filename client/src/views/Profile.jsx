@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import clientAuth from '../clientAuth'
 
+
 class Profile extends React.Component {
     constructor(props) {
         super(props)
@@ -31,9 +32,23 @@ class Profile extends React.Component {
     //     this.props.history.push(`/profile/edit`)
     // }
 
-    deleteSearch(id) {
-        // const id = evt.target.parent()
+    onRemoveClick(id) {
+        // const id = evt
         console.log(id)
+        const userID = this.state.currentUser._id
+        axios({method: 'delete', url: `/api/users/${userID}/searches/${id}`})
+        .then((res) => {
+            this.setState({searches: this.state.searches.filter((search) => {
+                return search._id !== id
+            })})
+        })
+    }
+
+    savedSearch(search) {
+        localStorage.setItem('search', search.search)
+        localStorage.setItem('town', search.town)
+        this.props.history.push(`/searches`)
+        console.log(localStorage)
     }
 
     render() {
@@ -42,11 +57,21 @@ class Profile extends React.Component {
                 
                 <h1>{this.state.currentUser.name}'s Profile</h1>
                 {/* <button onClick={this.editButton.bind(this)}>Edit Profile</button> */}
+                <ul>
                 {this.state.searches.map((search, i) => {
                     return (
-                        <li key={i}>{search.search} <button key={search._id} onClick={this.deleteSearch.bind(this)}>x</button></li>
+                        <li key={search._id}>
+                            <span onClick={this.savedSearch.bind(this, search)}>{search.search}</span>
+                            <button 
+                                onClick={this.onRemoveClick.bind(this, search._id)}
+                            >
+                                x
+                            </button>
+                        </li>
                     )
                 })}
+                </ul>
+                
 
             </div>
         )
