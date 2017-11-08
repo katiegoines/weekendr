@@ -24,8 +24,8 @@ apiRoutes.route('/yelp')
             })
             .then((response) => {
                 var results = response.jsonBody.businesses
-                console.log(results)
-                // res.json(results)
+                // console.log(results)
+                res.json(results)
             })
         });
     })

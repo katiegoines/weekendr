@@ -96,7 +96,7 @@ class Search extends React.Component {
             // this.setState({photoref: res.data.photoref})
             // console.log(res.data.photoref)
             this.reference = res.data.photoref
-            this.photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1920&photoreference=${this.reference}&key=${res.data.apiKey}`
+            this.photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=${this.reference}&key=${res.data.apiKey}`
         })
     }
 
@@ -122,9 +122,9 @@ class Search extends React.Component {
 					<button>Search</button>
 				</form>
 
-                <div>
-                    {<img src={this.photo} alt="" />}
-                    <h2>{this.town}</h2>
+                <div className="background" >
+                    <img className="background-img" src={this.photo} alt="" />
+                    <h2><span className="town">{this.town}</span></h2>
                 </div>
                 
                 <div className="yelp-restaurants">
@@ -136,7 +136,20 @@ class Search extends React.Component {
                                 <div className="card-img-box">
                                     <img className="card-img" src={el.image_url} alt="" />
                                 </div>
-                                <div className="card-title">{el.name}</div>
+                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                <div className="card-info">
+                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                        return (
+                                            <span key={i}>{` - ${cat.title} - `}</span>
+                                        )
+                                    })}</div>
+                                    <div>{el.location.address1}</div>
+                                    <div>{el.location.city}</div>
+                                    <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                    <div>{`Price: ${el.price}`}</div>
+                                    <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                    
+                                </div>
 
                             </div>
                        
