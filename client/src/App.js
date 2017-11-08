@@ -10,7 +10,6 @@ import SignUp from './views/SignUp'
 import LogIn from './views/LogIn'
 import Profile from './views/Profile'
 import EditProfile from './views/EditProfile'
-import SavedSearch from './views/SavedSearch'
 import LogOut from './views/LogOut'
 
 class App extends Component {
@@ -64,12 +63,7 @@ class App extends Component {
 
           <Route path="/search" component={Search} />
 
-          <Route path="/searches" component={SavedSearch} /> 
-
           <Route path="/" component={Home} />
-
-          
-          
 
         </Switch>
 
