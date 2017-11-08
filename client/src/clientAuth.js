@@ -49,6 +49,8 @@ function signUp(userInfo) {
 
 function logOut() {
     localStorage.removeItem('token')
+    localStorage.removeItem('search')
+    localStorage.removeItem('town')
     delete clientAuth.defaults.headers.common.token
     return true
 }

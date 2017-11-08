@@ -45,6 +45,7 @@ class Profile extends React.Component {
     }
 
     savedSearch(search) {
+        // console.log(search)
         localStorage.setItem('search', search.search)
         localStorage.setItem('town', search.town)
         this.props.history.push(`/searches`)

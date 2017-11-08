@@ -3,8 +3,8 @@ const
 
 module.exports = {
     index: (req, res) => {
-        // console.log(req)
-        Search.find({}, (err, searches) => {
+        console.log(req.user)
+        Search.find({user: req.user._id}, (err, searches) => {
             res.json(searches)
         })
     },
