@@ -40,6 +40,7 @@ class Search extends React.Component {
         })
     }
 
+    /*
     codeAddress() {
         var addr = this.state.address
         axios({method: 'get', url: `api/search/google?address=${addr}`})
@@ -99,13 +100,14 @@ class Search extends React.Component {
             this.photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=${this.reference}&key=${res.data.apiKey}`
         })
     }
+    */
 
 	onFormSubmit(evt) {
         evt.preventDefault()
         // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
-        this.codeAddress()
+        // this.codeAddress()
         // this.setState({address:""})
         this.reference = ''
     }
@@ -122,13 +124,13 @@ class Search extends React.Component {
 					<button>Search</button>
 				</form>
 
-                <div className="background" >
+                {/* <div className="background" >
                     <img className="background-img" src={this.photo} alt="" />
                     <h2><span className="town">{this.town}</span></h2>
-                </div>
+                </div> */}
                 
                 <div className="yelp-restaurants">
-                    <h2>{this.state.yelpRestaurants.head}</h2>
+                    <h3>{this.state.yelpRestaurants.head}</h3>
                     {this.state.yelpRestaurants.list.map(el => {
                         return (
 
@@ -160,7 +162,7 @@ class Search extends React.Component {
                 </div>
 
                 <div className="yelp-nail-salons">
-                    <h2>{this.state.yelpNailSalons.head}</h2>
+                    <h3>{this.state.yelpNailSalons.head}</h3>
                     {this.state.yelpNailSalons.list.map(el => {
                         return (
                         <div key={el.id}>{el.name}</div>
@@ -168,13 +170,13 @@ class Search extends React.Component {
                     })}
                 </div>
 
-                <div className="walk-score">
-                    <h2><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img className="c-im" src={this.state.walkscore.logo_url} alt=""/></h2>
+                {/* <div className="walk-score">
+                    <h3><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img className="c-im" src={this.state.walkscore.logo_url} alt=""/></h3>
                     <div>
                         {this.state.walkscore.walkscore}
                         <div><small>{this.state.walkscore.description}</small></div>
                     </div>
-                </div>
+                </div> */}
                 
 			</div>
 		)

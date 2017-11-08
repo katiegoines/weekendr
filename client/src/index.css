@@ -10,6 +10,10 @@ body {
   overflow: hidden;
   margin: 15px auto;
   position: relative;
+
+  /* for h2 over top */
+  /* position: relative; 
+  width: 100%; */
 }
 
 .background-img {
@@ -34,11 +38,23 @@ h2 {
   margin: 100px;
   font-weight: bold;
   width:100%;
+
+  /* for h2 over top */
+  /* position: absolute; 
+  top: 100px; 
+  left: 300px; 
+  width: 100%;  */
 }
 
-.town {
-
-}
+/* for h2 over top */
+/* h2 span {
+  color: black; 
+  font: bold 24px/45px Helvetica, Sans-Serif; 
+  letter-spacing: -1px;  
+  background: rgb(255, 255, 255); 
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px; 
+} */
 
 .yelp-restaurants {
   width: 50%;
