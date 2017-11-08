@@ -53,6 +53,27 @@ apiRoutes.route('/walkscore')
         })
     })
 
+apiRoutes.route('/reversegeo')
+    .get((req, res) => {
+        var apiUrl = `http://maps.googleapis.com/maps/api/geocode/json?latlng=${req.query.lat},${req.query.lon}&sensor=false`
+        httpClient.get(apiUrl, (err, response, body) => {
+            var results = JSON.parse(response.body)
+            var city = results.results[0].address_components[2].long_name
+            var state = results.results[0].address_components[4].short_name
+            res.json(city + ', ' + state)
+        })
+    })
+
+apiRoutes.route('/places')
+    .get((req, res) => {
+        var apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${req.query.query}l&location=${req.query.lat},${req.query.lon}&radius=8000&key=${googleID}`
+        httpClient.get(apiUrl, (err, response, body) => {
+            var results = JSON.parse(response.body)
+            // console.log(results.results[0].photos[0].photo_reference)
+            var photoref = results.results[0].photos[0].photo_reference
+            res.json({photoref: photoref, apiKey: googleID})
+        })
+    })
 
 
 module.exports = apiRoutes

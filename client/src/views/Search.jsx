@@ -14,7 +14,8 @@ class Search extends React.Component {
             description: '',
             logo_url: '',
             moreinfo: ''
-        }
+        },
+        photoref:''
 	}
 
 	onInputChange(evt) {
@@ -52,6 +53,9 @@ class Search extends React.Component {
         .then((res) => {
             this.walkScoreSearch()
         })
+        .then((res) => {
+            this.reverseGeo()
+        })
     }
 
     walkScoreSearch() {
@@ -73,13 +77,37 @@ class Search extends React.Component {
         })
     }
 
+    reverseGeo() {
+        var lat = this.state.lat
+        var lng = this.state.lng
+        axios({method: 'get', url: `api/search/reversegeo?lat=${lat}&lon=${lng}`})
+        .then((res) => {
+            // console.log(res.data)
+            this.town = res.data
+            this.placesSearch()
+        })
+    }
+
+    placesSearch() {
+        var lat = this.state.lat
+        var lng = this.state.lng
+        axios({method: 'get', url: `api/search/places?query=${this.town}&lat=${lat}&lon=${lng}`})
+        .then((res) => {
+            // this.setState({photoref: res.data.photoref})
+            // console.log(res.data.photoref)
+            this.reference = res.data.photoref
+            this.photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1920&photoreference=${this.reference}&key=${res.data.apiKey}`
+        })
+    }
+
 	onFormSubmit(evt) {
         evt.preventDefault()
         // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
         this.codeAddress()
-        this.setState({address:""})
+        // this.setState({address:""})
+        this.reference = ''
     }
     
 	
@@ -93,6 +121,11 @@ class Search extends React.Component {
 					<input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
 					<button>Search</button>
 				</form>
+
+                <div>
+                    {<img src={this.photo} alt="" />}
+                    <h2>{this.town}</h2>
+                </div>
                 
                 <div className="yelp-restaurants">
                     <h2>{this.state.yelpRestaurants.head}</h2>
