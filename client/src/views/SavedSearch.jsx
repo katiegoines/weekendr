@@ -7,7 +7,7 @@ class Search extends React.Component {
         super(props)
 
         this.state = {
-            address: localStorage.search,
+            address: '',
             yelpRestaurants: {head: "", list: []},
             yelpNailSalons: {head: "", list: []},
             lng: '',
@@ -20,15 +20,22 @@ class Search extends React.Component {
                 moreinfo: ''
             },
             photoref:'',
-            town: localStorage.town
+            town: ''
         }
     }
     
-    
+    componentWillMount() {
+        this.setState({
+            address: localStorage.search,
+            town: localStorage.town
+        })
+    }
     
     componentDidMount() {
         this.onFormSubmit()
         console.log(this.state.town)
+        localStorage.removeItem('search')
+        localStorage.removeItem('town')
     }
 
     yelpRestaurantSearch() {

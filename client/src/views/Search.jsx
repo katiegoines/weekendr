@@ -20,7 +20,27 @@ class Search extends React.Component {
         town: ''
     }
     
+    componentWillMount() {
+        console.log(!!localStorage)
+        if(!!localStorage.search) {
+            this.setState({
+                address: localStorage.search,
+                town: localStorage.town
+            })
+        }
+    }
 
+    componentDidMount() {
+        if(!!localStorage.search) {
+            this.onFormSubmit()
+            
+        }
+    }
+    
+    componentWillUnmount() {
+        localStorage.removeItem('search')
+        localStorage.removeItem('town')
+    }
 
 
 	onInputChange(evt) {
@@ -117,8 +137,31 @@ class Search extends React.Component {
         })
     }
 
+    newSearch() {
+        localStorage.removeItem('search')
+        localStorage.removeItem('town')
+        this.setState({
+            address: '',
+            yelpRestaurants: {head: "", list: []},
+            yelpNailSalons: {head: "", list: []},
+            lng: '',
+            lat: '',
+            walkscore: {
+                head: '',
+                walkscore: null,
+                description: '',
+                logo_url: '',
+                moreinfo: ''
+            },
+            photoref:'',
+            town: ''
+        })
+    }
+
 	onFormSubmit(evt) {
-        evt.preventDefault()
+        if(!localStorage.search) {
+            evt.preventDefault()
+        }
         // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
@@ -134,12 +177,25 @@ class Search extends React.Component {
 			<div className='Search'>
 				<h1>Search Address</h1>
 
-				<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-					<input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
-					<button>Search</button>
-				</form>
 
-                {clientAuth.getCurrentUser() ? <button onClick={this.saveButton.bind(this)}>Save</button> : null }
+                {!localStorage.search
+                ? (
+                    <div>
+                    <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+					    <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
+					    <button>Search</button>
+				    </form>
+                    <div>{clientAuth.getCurrentUser() ? <button onClick={this.saveButton.bind(this)}>Save</button> : null }</div>
+                    </div>
+                )
+                : null
+                }
+
+                <button onClick={this.newSearch.bind(this)}>New Search</button>
+
+				
+
+                
 
                 {/* <div className="background" >
                     <img className="background-img" src={this.photo} alt="" />
