@@ -6,7 +6,7 @@ import 'milligram'
 // import 'bulma'
 // import 'foundation'
 // import 'bootstrap'
-// import './index.css';
+import './index.css';
 
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';

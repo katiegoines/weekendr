@@ -131,10 +131,17 @@ class Search extends React.Component {
                     <h2>{this.state.yelpRestaurants.head}</h2>
                     {this.state.yelpRestaurants.list.map(el => {
                         return (
-                            <div key={el.id}>
-                                {/* <div className="card-image" alt=""><img src={el.image_url} /></div> */}
-                                <div className="card-header">{el.name}</div>
+
+                            <div key={el.id} className="card"> 
+                                <div className="card-img-box">
+                                    <img className="card-img" src={el.image_url} alt="" />
+                                </div>
+                                <div className="card-title">{el.name}</div>
+
                             </div>
+                       
+                    
+                    
                         )
                     })}
                 </div>

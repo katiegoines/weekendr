@@ -3,3 +3,42 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.card {
+  width: 300px;
+  height: 400px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px;
+  display: inline-block;
+}
+
+/* .card-img {
+  height: 250px;  
+  max-width: 250px;
+  overflow: hidden;
+  margin: 5px auto;
+} */
+
+.card-img-box {
+  width: 270px;
+  height: 270px;
+  overflow: hidden;
+  margin: 15px auto;
+  position: relative;
+}
+
+.card-img {
+  position: absolute;
+  left: -1000%;
+  right: -1000%;
+  top: -1000%;
+  bottom: -1000%;
+  margin: auto;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.card-title {
+  text-align: center;
+}
