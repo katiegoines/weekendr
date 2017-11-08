@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import clientAuth from '../clientAuth'
 
-// sign up form behaves almost identically to log in form. We could create a flexible Form component to use for both actions, but for now we'll separate the two:
 class EditProfile extends React.Component {
 	state = {
         currentUser: clientAuth.getCurrentUser(),
@@ -29,7 +28,25 @@ class EditProfile extends React.Component {
 				[evt.target.name]: evt.target.value
 			}
 		})
-	}
+    }
+    
+    deleteButton() {
+        console.log("Clicked delete.")
+        const id = this.state.currentUser._id
+        if(window.confirm("Are you sure?") === true) {
+            axios({method: "delete", url:`/api/users/${id}`})
+            .then((res) => {
+                clientAuth.getCurrentUser()
+            })
+            .then(() => {
+                this.props.history.push(`/logout`)
+            })
+         }
+    }
+
+    cancelButton() {
+        this.props.history.push(`/profile`)
+    }
 
 	onFormSubmit(evt) {
         evt.preventDefault()
@@ -37,15 +54,13 @@ class EditProfile extends React.Component {
         axios({method: 'patch', url: `/api/users/${id}`, data: this.state.fields})
         .then((res) => {
             console.log(res)
+            this.setState({fields: {
+                name: res.data.user.name,
+                email: res.data.user.email,
+                password: res.data.user.password
+            }})
+            this.props.history.push(`/profile`)
         })
-        // clientAuth.signUp(this.state.fields)
-        // .then(user => {
-        //     console.log(user)
-		// 	this.setState({ fields: { name: '', email: '', password: '' } })
-		// 	if(user) {
-		// 		this.props.history.push('/profile')
-		// 	}
-		//})
 	}
 	
 	render() {
@@ -57,8 +72,12 @@ class EditProfile extends React.Component {
 					<input onChange={this.onInputChange.bind(this)} type="text" placeholder="Name" name="name" value={name} />
 					<input onChange={this.onInputChange.bind(this)} type="text" placeholder="Email" name="email" value={email} />
 					<input onChange={this.onInputChange.bind(this)} type="password" placeholder="Password" name="password" value={password} />
-					<button>Save Changes</button>
+					<button>Save Changes</button> 
+                    <button onClick={this.cancelButton.bind(this)}>Cancel</button>
+                    
 				</form>
+                <button onClick={this.deleteButton.bind(this)} >Delete Account</button>
+                
 			</div>
 		)
 	}

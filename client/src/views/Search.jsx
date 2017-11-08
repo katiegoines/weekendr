@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import clientAuth from '../clientAuth'
 
 class Search extends React.Component {
 	state = {
@@ -15,7 +16,8 @@ class Search extends React.Component {
             logo_url: '',
             moreinfo: ''
         },
-        photoref:''
+        photoref:'',
+        town: ''
 	}
 
 	onInputChange(evt) {
@@ -84,6 +86,7 @@ class Search extends React.Component {
         axios({method: 'get', url: `api/search/reversegeo?lat=${lat}&lon=${lng}`})
         .then((res) => {
             // console.log(res.data)
+            this.setState({town: res.data})
             this.town = res.data
             this.placesSearch()
         })
@@ -101,6 +104,15 @@ class Search extends React.Component {
         })
     }
     */
+
+    saveButton() {
+        console.log("Clicked save.")
+        const id = clientAuth.getCurrentUser()._id
+        axios({method: 'post', url: `/api/users/${id}/searches`, data: {address: this.state.address, town: this.state.town}})
+        .then((res) => {
+            console.log(res)
+        })
+    }
 
 	onFormSubmit(evt) {
         evt.preventDefault()
@@ -123,6 +135,8 @@ class Search extends React.Component {
 					<input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
 					<button>Search</button>
 				</form>
+
+                {clientAuth.getCurrentUser() ? <button onClick={this.saveButton.bind(this)}>Save</button> : null }
 
                 {/* <div className="background" >
                     <img className="background-img" src={this.photo} alt="" />

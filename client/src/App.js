@@ -45,11 +45,7 @@ class App extends Component {
             return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
           }} />
 
-          <Route path="/profile/edit" component={EditProfile} />  
-
-          {/* <Route path="/profile" render={(props) => {
-            return <Profile {...props} currentUser={currentUser} />
-          }} /> */}
+          <Route path="/profile/edit" component={EditProfile} /> 
 
           <Route path="/profile" render={(props) => {
             return currentUser
@@ -72,6 +68,8 @@ class App extends Component {
           
 
         </Switch>
+
+        
       </div>
     );
   }

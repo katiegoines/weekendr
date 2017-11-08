@@ -41,7 +41,8 @@ function signUp(userInfo) {
             clientAuth.defaults.headers.common.token = setToken(token)
             return jwtDecode(token)
         } else {
-            return false
+            // return false
+            alert("Email already taken. Please try again.")
         }
     })
 }
@@ -56,5 +57,6 @@ export default {
     getCurrentUser,
     logIn,
     signUp,
-    logOut
+    logOut, 
+    setToken
 }
