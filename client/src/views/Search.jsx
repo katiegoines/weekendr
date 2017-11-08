@@ -111,7 +111,6 @@ class Search extends React.Component {
         .then((res) => {
             // console.log(res.data)
             this.setState({town: res.data})
-            // this.town = res.data
             this.placesSearch()
         })
     }
@@ -184,15 +183,15 @@ class Search extends React.Component {
                     <div>
                     <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
 					    <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
-					    <button>Search</button>
+					    <button className="button button-clear">Search</button>
 				    </form>
-                    <div>{clientAuth.getCurrentUser() ? <button onClick={this.saveButton.bind(this)}>Save</button> : null }</div>
+                    <div>{clientAuth.getCurrentUser() ? <button className="button button-clear" onClick={this.saveButton.bind(this)}>Save</button> : null }</div>
                     </div>
                 )
                 : null
                 }
 
-                <button onClick={this.newSearch.bind(this)}>New Search</button>
+                <button className="button button-clear" onClick={this.newSearch.bind(this)}>New Search</button>
 
 				
 

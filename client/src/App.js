@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     const {currentUser} = this.state
     return (
-      <div className="App">
+      <div className="App container">
         <NavBar currentUser={currentUser} />
 
         <Switch>
