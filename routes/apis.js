@@ -11,7 +11,6 @@ const
     googleID = process.env.GOOGLE_API_KEY
 
 
-
 apiRoutes.route('/yelp')
     .get((req, res) => {
         // console.log(req.params)

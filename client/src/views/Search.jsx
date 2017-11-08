@@ -73,15 +73,6 @@ class Search extends React.Component {
         })
     }
 
-    imageSearch() {
-        var lat = this.state.lat
-        var lng = this.state.lng
-        axios({method: 'get', url: `api/search/flickr?lat=${lat}&lon=${lng}`})
-        .then((res) => {
-            console.log(res)
-        })
-    }
-
 	onFormSubmit(evt) {
         evt.preventDefault()
         // console.log(this.state.address)
