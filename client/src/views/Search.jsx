@@ -51,7 +51,7 @@ class Search extends React.Component {
 	}
 
     yelpRestaurantSearch() {
-        axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=restaurants&limit=4&location=${this.state.address}`})
         .then((res) => {
             console.log(res.data)
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
@@ -59,10 +59,10 @@ class Search extends React.Component {
     }
 
     yelpNailSalonSearch() {
-        axios({method: 'get', url: `/api/search/yelp?term=nail salon&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=shopping&limit=4&location=${this.state.address}`})
         .then((res) => {
             // console.log(res.data)
-            this.setState({yelpNailSalons: {list: res.data, head: "Nail Salons"}})
+            this.setState({yelpNailSalons: {list: res.data, head: "Shopping"}})
         })
     }
 
@@ -238,7 +238,27 @@ class Search extends React.Component {
                     <h3>{this.state.yelpNailSalons.head}</h3>
                     {this.state.yelpNailSalons.list.map(el => {
                         return (
-                        <div key={el.id}>{el.name}</div>
+                        
+                            <div key={el.id} className="card"> 
+                                <div className="card-img-box">
+                                    <img className="card-img" src={el.image_url} alt="" />
+                                </div>
+                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                <div className="card-info">
+                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                        return (
+                                            <span key={i}>{` - ${cat.title} - `}</span>
+                                        )
+                                    })}</div>
+                                    <div>{el.location.address1}</div>
+                                    <div>{el.location.city}</div>
+                                    <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                    <div>{`Price: ${el.price}`}</div>
+                                    <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                    
+                                </div>
+
+                            </div>
                         )
                     })}
                 </div>
