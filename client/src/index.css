@@ -2,144 +2,217 @@ body {
   margin: 0 auto;
   padding: 0;
   font-family: 'Roboto Slab', serif;
-  ;
+  /* background: #fefefe; */
 }
 
 /* Navbar */
 
-.NavBar {
-  margin-top: 10px;
-  margin-bottom: 50px;
-  /* background: lightgray; */
-  /* border-bottom: 1px solid gray; */
-}
+    .NavBar {
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
 
-.NavBar a {
-  color: gray;
-  margin: 15px;
-  /* background: lightcoral; */
-  /* border-radius: 5px; */
-  padding: 5px;
-}
+    .NavBar a {
+      color: gray;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 5px;
+    }
 
-.NavBar a .logo {
-  color:purple;
-}
+    .NavBar a:hover {
+      color: #048BA8;
+    }
 
-.account {
-  float:right;
-}
+    .account {
+      float:right;
+    }
 
-.logo {
-  width: 70px;
-}
+    .account a {
+      margin-left: 30px;
+    }
+
+    .standard a {
+      margin-right: 30px;
+    }
+
+    .logo {
+      width: 90px;
+    }
 
 /* Home Page */
 
-.home-background-box{
-  width: 900px;
-  height: 600px;
-  overflow: hidden;
-  margin: 0px auto;
-  position: relative;
-  
-}
+    .home-background-box{
+      width: 900px;
+      height: 600px;
+      overflow: hidden;
+      margin: 0px auto;
+      position: relative;  
+    }
 
-.home-background {
-  position: absolute;
-  left: -1000%;
-  right: -1000%;
-  top: -1000%;
-  bottom: -1000%;
-  margin: auto;
-  min-height: 100%;
-  min-width: 100%;
-  max-height: 100%;
-  border-radius: 20px;
-  z-index: 0;
-}
+    .home-background {
+      position: absolute;
+      left: -1000%;
+      right: -1000%;
+      top: -1000%;
+      bottom: -1000%;
+      margin: auto;
+      min-height: 100%;
+      min-width: 100%;
+      max-height: 100%;
+      border-radius: 20px;
+      z-index: 0;
+    }
 
-.home-title-box {
-  width: 60%;
-  height: 60%;
-  margin: 125px auto;
-  z-index: 1;
-  position: relative;
-  background: rgba(255,255,255,0.7);
-  border-radius: 20px;
-  color: #2F2D2E;
-}
+    .home-title-box {
+      width: 60%;
+      height: 60%;
+      margin: 125px auto;
+      z-index: 1;
+      position: relative;
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      color: #2F2D2E;
+    }
 
-.home-title {
-  padding: 30px 30px 0 30px;
-  text-align: center;
-}
+    .home-title {
+      padding: 30px 30px 0 30px;
+      text-align: center;
+      font-weight: bold;
+    }
 
-.home-body {
-  text-align: justify;
-  padding: 15px 30px 15px 30px;
-}
+    .home-body {
+      text-align: justify;
+      padding: 15px 30px 15px 30px;
+    }
 
-.home-body li {
-  padding-left: 20px;
-  text-indent: -15px;
-}
+    .home-body li {
+      padding-left: 20px;
+      text-indent: -15px;
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      .home-background-box{
+        width: 600px;
+        height: 600px;
+      }
+      
+      .home-background {
+        position: absolute;
+        left: -1000%;
+        right: -1000%;
+        top: -1000%;
+        bottom: -1000%;
+        margin: auto;
+        min-height: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        border-radius: 20px;
+        z-index: 0;
+      }
+      
+      .home-title-box {
+        width: 80%;
+        height: 80%;
+        margin: 60px auto;
+      }
+      
+      .home-title {
+        padding: 70px 30px 0 30px;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    @media (min-width: 576px) and (max-width: 767px) {
+      .home-background-box{
+        width: 525px;
+        height: 525px;
+      }
+      
+      .home-title-box {
+        width: 80%;
+        height: 80%;
+        margin: 50px auto;
+      }
+      
+      .home-title {
+        padding: 70px 30px 0 30px;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .home-background-box{
+        width: 350px;
+        height: 350px;
+      }
+      
+      .home-title-box {
+        width: 80%;
+        height: 80%;
+        margin: 35px auto;
+      }
+
+      .home-title {
+        padding: 30px 30px 0 30px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .home-body li {
+        display: none;
+      }
+    }
+
+/* Search View */
+    .search-heading {
+      text-align: center;
+    }  
+
+    .search-form {
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    .search-form button {
+      color: #04aba8 !important;
+      border-color: #04aba8;
+      font-family: 'Roboto Slab', serif;
+      text-transform: inherit;
+    }
+
+    .search-form button:hover {
+      color: gray !important;
+    }
+
+    input {
+      font-family: 'Roboto Slab', serif;
+      text-align: center;
+    }
+    
 
 
-.background {
+/* OTHER */
+
+/* .background {
   width: 900px;
   height: 400px;
   overflow: hidden;
   margin: 15px auto;
   position: relative;
+} */
 
-  /* for h2 over top */
-  /* position: relative; 
-  width: 100%; */
-}
-
-.background-img {
-  /* position: relative; */
-  /* opacity: 0.5; */
+/* .background-img {
   margin: 0 auto;
+} */
 
-  /* position: absolute;
-  left: -1000%;
-  right: -1000%;
-  top: -1000%;
-  bottom: -1000%;
-  margin: auto;
-  min-height: 100%;
-  min-width: 100%;
-  opacity: 0.5; */
-}
-
-h2 {
+/* h2 {
   position: absolute;
   text-align: center;
   margin: 100px;
   font-weight: bold;
   width:100%;
-
-  /* for h2 over top */
-  /* position: absolute; 
-  top: 100px; 
-  left: 300px; 
-  width: 100%;  */
-}
-
-/* for h2 over top */
-/* h2 span {
-  color: black; 
-  font: bold 24px/45px Helvetica, Sans-Serif; 
-  letter-spacing: -1px;  
-  background: rgb(255, 255, 255); 
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px; 
-} */
-
-/* .yelp-restaurants {
-  width: 50%;
 } */
 
 .card {

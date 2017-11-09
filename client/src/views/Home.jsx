@@ -9,7 +9,12 @@ class Home extends React.Component {
 			"http://cdn.pcwallart.com/images/city-street-wallpaper-4.jpg", 
 			"http://clv.h-cdn.co/assets/16/31/980x490/landscape-1470243304-gettyimages-513055773.jpg", 
 			"https://snowbrains.com/wp-content/uploads/2014/02/beautiful-town-in-the-shadow-of-mountain-hdr-hd-wallpaper-35489.jpg",
-			"http://ee24.com/media/articles/uploads/2013/10/17/schiltach-black-forest.jpg"
+			"http://ee24.com/media/articles/uploads/2013/10/17/schiltach-black-forest.jpg",
+			"https://www.quickenloans.com/blog/wp-content/uploads/2015/03/iStock_000010342358Small.jpg",
+			"https://i.pinimg.com/originals/99/7b/8e/997b8e0857cc47d79d214ff1848d481a.jpg",
+			"http://4.bp.blogspot.com/-zuaJsxrmy1o/UF4CKn8k1JI/AAAAAAAAJ1k/J77LKRWrVKw/s1600/IMG_1748.jpg",
+			"https://saintpaul.s3.amazonaws.com/CMS/1753/st._paul_skyline__large-slideshow.jpg"
+			
 		],
 		currentPhoto: ''
 	}
@@ -45,7 +50,8 @@ class Home extends React.Component {
 				<div className="home-background-box">
 					<img className="home-background" src={this.state.currentPhoto} alt="" />
 					<div className="home-title-box">
-						<h1 className="home-title">MOVE IT</h1>
+						<div><h2 className="home-title">move it!</h2></div>
+						{/* <div className="home-title"><img src={require('../images/logo-bg.png')} /></div> */}
 						<div className="home-body">
 							<p>Thinking about starting fresh in a brand new city? Before you pack your boxes, set your sights on the right fit. <strong>Let's explore!</strong></p>
 							<ol>

@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom'
 const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
-			<span><Link to="/"><img className='logo' src={require('./images/moveitlogo-blue.png')} /></Link></span>
-			<Link to="/search">Search</Link>
+			<span className="standard">
+				<span><Link to="/"><img className='logo' src={require('./images/logo.png')} /></Link></span>
+				<Link to="/search">Search</Link>
+			</span>
+			
 			{props.currentUser
 				? (
 					<span>

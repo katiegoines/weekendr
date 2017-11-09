@@ -175,23 +175,29 @@ class Search extends React.Component {
 		const { address } = this.state
 		return (
 			<div className='Search'>
-				<h1>Search Address</h1>
+                <div className="search-heading">
+                    <h2>Where Do You Wanna Go?</h2>
+                </div>
+                <div className="search-form">
+                    {!localStorage.search
+                    ? (
+                        <div>
+                        <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                            <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
+                            <button className="button button-outline">Search</button>
+                        </form>
+                        <div>{clientAuth.getCurrentUser() ? <button className="button button-outline" onClick={this.saveButton.bind(this)}>Save Search</button> : null }</div>
+                        </div>
+                    )
+                    : null
+                    }
+
+                    <button className="button button-outline" onClick={this.newSearch.bind(this)}>New Search</button>
+                </div>
+				
 
 
-                {!localStorage.search
-                ? (
-                    <div>
-                    <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-					    <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
-					    <button className="button button-clear">Search</button>
-				    </form>
-                    <div>{clientAuth.getCurrentUser() ? <button className="button button-clear" onClick={this.saveButton.bind(this)}>Save</button> : null }</div>
-                    </div>
-                )
-                : null
-                }
-
-                <button className="button button-clear" onClick={this.newSearch.bind(this)}>New Search</button>
+                
 
 				
 
