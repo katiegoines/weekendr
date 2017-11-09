@@ -193,7 +193,7 @@ body {
 
 /* Search View */
     .search-heading {
-      margin-top: 10%;
+      /* margin-top: 10%; */
       text-align: center;
     }  
 
@@ -241,12 +241,12 @@ body {
     }
 
     .search-results {
-      width: 100%;
+      /* width: 100%; */
       height: auto;
-      background: green;
+      /* background: green; */
       position: absolute;
       z-index: 0;
-      margin-top: -150px;
+      margin: 0 auto;
       /* width: 100%;
       padding-top: 56.25%;
       overflow: hidden;
@@ -268,17 +268,42 @@ body {
       bottom: 0;
       right: 0; */
       margin: 0 auto;
-      width: 415px;
+      width: 450px;
       height: 250px;
       z-index: 1;
     }
 
     .middle-section {
       position: absolute;
-      background: white;
-      margin-top: 150px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 20px;      
+      margin-top: 200px;
+      padding: 10px;
     }
 
+    .search-category {
+      width: 250px;
+      height: 250px;
+      overflow: hidden;
+      border-radius: 5px;
+      margin: 10px;
+      padding-top: 100px;
+      display: inline-block;
+      text-align: center;
+      /* background: purple; */
+    }
+
+    .card-img-2 {
+      width: 250px;
+      height: 250px;  
+      max-width: 250px;
+      max-width: 250px;
+      overflow: hidden;
+      /* border: 1px solid gray; */
+      border-radius: 5px;
+      margin: 10px;
+      display: inline-block;
+    }
   
    
     

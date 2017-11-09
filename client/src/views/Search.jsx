@@ -8,7 +8,8 @@ class Search extends React.Component {
         this.state = {
             address: '',
             yelpRestaurants: {head: "", list: []},
-            yelpNailSalons: {head: "", list: []},
+            yelpRetail: {head: "", list: []},
+            yelpGyms: {head: "", list: []},
             lng: '',
             lat: '',
             walkscore: {
@@ -54,7 +55,13 @@ class Search extends React.Component {
 		this.setState({
 			address: evt.target.value
 		})
-	}
+    }
+    
+    yelpSearch() {
+        this.yelpRestaurantSearch()
+        this.yelpRetailSearch()
+        this.yelpGymSearch()
+    }
 
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
@@ -67,11 +74,22 @@ class Search extends React.Component {
         })
     }
 
-    yelpNailSalonSearch() {
+    yelpRetailSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=shopping&limit=4&location=${this.state.address}`})
         .then((res) => {
             // console.log(res.data)
-            this.setState({yelpNailSalons: {list: res.data, head: "Shopping"}})
+            this.setState({yelpRetail: {list: res.data, head: "Shopping"}})
+        })
+        .catch(e => {
+            console.log(e);
+        })
+    }
+
+    yelpGymSearch() {
+        axios({method: 'get', url: `/api/search/yelp?term=fitness&limit=4&location=${this.state.address}`})
+        .then((res) => {
+            // console.log(res.data)
+            this.setState({yelpGyms: {list: res.data, head: "Fitness"}})
         })
         .catch(e => {
             console.log(e);
@@ -154,7 +172,7 @@ class Search extends React.Component {
         this.setState({
             address: '',
             yelpRestaurants: {head: "", list: []},
-            yelpNailSalons: {head: "", list: []},
+            yelpRetail: {head: "", list: []},
             lng: '',
             lat: '',
             walkscore: {
@@ -173,8 +191,7 @@ class Search extends React.Component {
 	onFormSubmit(evt) {
         if(!localStorage.search) evt.preventDefault()
         // console.log(this.state.address)
-        this.yelpRestaurantSearch()
-        this.yelpNailSalonSearch()
+        this.yelpSearch()
         // this.codeAddress()
         // this.setState({address:""})
         this.reference = ''
@@ -189,7 +206,29 @@ class Search extends React.Component {
                     <img className="background-img" src={this.state.photo} alt="" />
                     <h2><span className="town">{this.state.town}</span></h2>
                 </div> */}
-                <div className="search-results"></div>
+                <div className="search-results">
+                    <div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>
+                    {this.state.yelpRestaurants.list.slice(0, 7).map(el => {
+                        return (
+                                <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
+                        )
+                    })}
+
+                    <div className="search-category"><h3>{this.state.yelpRetail.head}</h3></div>
+                    {this.state.yelpRetail.list.slice(0, 7).map(el => {
+                        return (
+                                <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
+                        )
+                    })}
+
+                    <div className="search-category"><h3>{this.state.yelpGyms.head}</h3></div>
+                    {this.state.yelpGyms.list.slice(0, 7).map(el => {
+                        return (
+                                <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
+                        )
+                    })}
+                </div>
+                
                 <div className="middle-section-box">
                     <div className="middle-section">
                         <div className="search-heading">
@@ -221,7 +260,7 @@ class Search extends React.Component {
 
                
                 
-                <div className="yelp-restaurants">
+                {/* <div className="yelp-restaurants">
                     <h3>{this.state.yelpRestaurants.head}</h3>
                     {this.state.yelpRestaurants.list.slice(0, 5).map(el => {
                         return (
@@ -255,8 +294,8 @@ class Search extends React.Component {
                 
 
                 <div className="yelp-nail-salons">
-                    <h3>{this.state.yelpNailSalons.head}</h3>
-                    {this.state.yelpNailSalons.list.slice(0, 5).map(el => {
+                    <h3>{this.state.yelpRetail.head}</h3>
+                    {this.state.yelpRetail.list.slice(0, 5).map(el => {
                         return (
                         
                             <div key={el.id} className="card"> 
@@ -281,7 +320,7 @@ class Search extends React.Component {
                             </div>
                         )
                     })}
-                </div>
+                </div> */}
 
                 <div className="walk-score">
                     <h3><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img className="c-im" src={this.state.walkscore.logo_url} alt=""/></h3>
