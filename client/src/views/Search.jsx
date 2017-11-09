@@ -51,7 +51,7 @@ class Search extends React.Component {
 	}
 
     yelpRestaurantSearch() {
-        axios({method: 'get', url: `/api/search/yelp?term=restaurants&limit=4&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
             console.log(res.data)
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
@@ -204,7 +204,7 @@ class Search extends React.Component {
                 
                 <div className="yelp-restaurants">
                     <h3>{this.state.yelpRestaurants.head}</h3>
-                    {this.state.yelpRestaurants.list.map(el => {
+                    {this.state.yelpRestaurants.list.slice(0, 5).map(el => {
                         return (
 
                             <div key={el.id} className="card"> 
@@ -233,10 +233,11 @@ class Search extends React.Component {
                         )
                     })}
                 </div>
+                
 
                 <div className="yelp-nail-salons">
                     <h3>{this.state.yelpNailSalons.head}</h3>
-                    {this.state.yelpNailSalons.list.map(el => {
+                    {this.state.yelpNailSalons.list.slice(0, 5).map(el => {
                         return (
                         
                             <div key={el.id} className="card"> 
