@@ -13,16 +13,16 @@ module.exports = {
         // console.log(req.body)
         var newSearch = new Search({search: req.body.address, town: req.body.town})
         newSearch.user = req.params.id
-        newSearch.save((er, search) => {
+        newSearch.save((err, search) => {
             res.json({success: true, message: "Search saved.", search})
         })
     },
 
     show: (req, res) => {
-        console.log(req)
+        // console.log(req)
         // Search.findById(req.search._id, (err, search) => {
         //     console.log(search)
-            // res.json(user)
+        //     res.json(user)
         // })
     },
 

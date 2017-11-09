@@ -66,7 +66,7 @@ class Search extends React.Component {
         })
     }
 
-    
+    /*
     codeAddress() {
         var addr = this.state.address
         axios({method: 'get', url: `api/search/google?address=${addr}`})
@@ -125,7 +125,7 @@ class Search extends React.Component {
             this.setState({photoref: res.data.photoref, photo: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=${this.reference}&key=${res.data.apiKey}`})            
         })
     }
-    
+    */
 
     saveButton() {
         console.log("Clicked save.")
@@ -165,7 +165,7 @@ class Search extends React.Component {
         // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
-        this.codeAddress()
+        // this.codeAddress()
         // this.setState({address:""})
         this.reference = ''
     }

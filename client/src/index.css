@@ -1,7 +1,37 @@
 body {
   margin: 0 auto;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto Slab', serif;
+  ;
+}
+
+/* Navbar */
+
+.NavBar {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  /* background: lightgray; */
+  /* border-bottom: 1px solid gray; */
+}
+
+.NavBar a {
+  color: gray;
+  margin: 15px;
+  /* background: lightcoral; */
+  /* border-radius: 5px; */
+  padding: 5px;
+}
+
+.NavBar a .logo {
+  color:purple;
+}
+
+.account {
+  float:right;
+}
+
+.logo {
+  width: 70px;
 }
 
 /* Home Page */
@@ -12,6 +42,7 @@ body {
   overflow: hidden;
   margin: 0px auto;
   position: relative;
+  
 }
 
 .home-background {
@@ -23,8 +54,37 @@ body {
   margin: auto;
   min-height: 100%;
   min-width: 100%;
-  max-height: 100%  
+  max-height: 100%;
+  border-radius: 20px;
+  z-index: 0;
 }
+
+.home-title-box {
+  width: 60%;
+  height: 60%;
+  margin: 125px auto;
+  z-index: 1;
+  position: relative;
+  background: rgba(255,255,255,0.7);
+  border-radius: 20px;
+  color: #2F2D2E;
+}
+
+.home-title {
+  padding: 30px 30px 0 30px;
+  text-align: center;
+}
+
+.home-body {
+  text-align: justify;
+  padding: 15px 30px 15px 30px;
+}
+
+.home-body li {
+  padding-left: 20px;
+  text-indent: -15px;
+}
+
 
 .background {
   width: 900px;

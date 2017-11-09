@@ -1,23 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+// import logo from './images/moveitlogo.png'
+
 const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
-			<Link to="/">Home | </Link>
-			<Link to="/search">Search | </Link>
+			<span><Link to="/"><img className='logo' src={require('./images/moveitlogo-blue.png')} /></Link></span>
+			<Link to="/search">Search</Link>
 			{props.currentUser
 				? (
 					<span>
-						<Link to="/profile">My Searches | </Link>
-						<Link to="/profile/edit">Edit Account Settings | </Link>
-						<Link to="/logout">Log Out</Link>
+						<span className="account">
+							<Link to="/profile">My Searches</Link>
+							<Link to="/profile/edit">Account Settings</Link>
+							<Link to="/logout">Log Out</Link>
+						</span>
+						
 					</span>
 				)
 				: (
 					<span>
-						<Link to="/login">Log In | </Link>
-						<Link to="/signup">Sign Up</Link>
+						<span className="account">
+							<Link to="/login">Log In</Link>
+							<Link to="/signup">Sign Up</Link>
+						</span>
 					</span>
 				)
 			}
