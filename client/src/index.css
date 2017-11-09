@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-family: 'Roboto Slab', serif;
   /* background: #fefefe; */
+  color: #2F2D2E;
 }
 
 .non-nav {
@@ -37,11 +38,11 @@ body {
 
     .account a {
       margin-left: 30px;
-      margin-right: 10px;
+      margin-right: 20px;
     }
 
     .standard a {
-      margin-left: 10px;
+      margin-left: 20px;
       margin-right: 30px;
     }
 
@@ -85,7 +86,6 @@ body {
       margin: 10% auto;
       background: rgba(255,255,255,0.8);
       border-radius: 20px;
-      color: #2F2D2E;
     }
 
     .home-title {
@@ -193,7 +193,7 @@ body {
 
 /* Search View */
     .search-heading {
-      margin: 10px;
+      margin-top: 10%;
       text-align: center;
     }  
 
@@ -232,6 +232,54 @@ body {
       color: gray !important;
     }
 
+    .display-none {
+      visibility: hidden;
+    }
+
+    .white-text {
+      color: gray;
+    }
+
+    .search-results {
+      width: 100%;
+      height: auto;
+      background: green;
+      position: absolute;
+      z-index: 0;
+      margin-top: -150px;
+      /* width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+      margin: 0px auto;
+      position: absolute;  
+      background: green; */
+    }
+
+    .middle-section-box {
+      /* width: 415px;
+      height: 250px;
+      margin: 150px auto;
+      background: salmon;
+      position: relative;
+      z-index: 1; */
+      position: relative;
+      /* top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; */
+      margin: 0 auto;
+      width: 415px;
+      height: 250px;
+      z-index: 1;
+    }
+
+    .middle-section {
+      position: absolute;
+      background: white;
+      margin-top: 150px;
+    }
+
+  
    
     
 

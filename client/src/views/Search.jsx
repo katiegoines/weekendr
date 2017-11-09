@@ -1,28 +1,34 @@
 import React from 'react'
 import axios from 'axios'
-import clientAuth from '../clientAuth'
 
 class Search extends React.Component {
-	state = {
-        address: '',
-        yelpRestaurants: {head: "", list: []},
-        yelpNailSalons: {head: "", list: []},
-        lng: '',
-        lat: '',
-        walkscore: {
-            head: '',
-            walkscore: null,
-            description: '',
-            logo_url: '',
-            moreinfo: ''
-        },
-        photoref:'',
-        photo: '',
-        town: ''
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            address: '',
+            yelpRestaurants: {head: "", list: []},
+            yelpNailSalons: {head: "", list: []},
+            lng: '',
+            lat: '',
+            walkscore: {
+                head: '',
+                walkscore: null,
+                description: '',
+                logo_url: '',
+                moreinfo: ''
+            },
+            photoref:'',
+            photo: '',
+            town: ''
+        }
     }
+
+	
     
     componentWillMount() {
-        console.log(!!localStorage)
+        // console.log(this.props.currentUser)
+        // console.log(!!localStorage)
         if(!!localStorage.search) {
             this.setState({
                 address: localStorage.search,
@@ -53,8 +59,11 @@ class Search extends React.Component {
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
+        })
+        .catch(e => {
+            console.log(e);
         })
     }
 
@@ -63,6 +72,9 @@ class Search extends React.Component {
         .then((res) => {
             // console.log(res.data)
             this.setState({yelpNailSalons: {list: res.data, head: "Shopping"}})
+        })
+        .catch(e => {
+            console.log(e);
         })
     }
 
@@ -128,11 +140,11 @@ class Search extends React.Component {
     */
 
     saveButton() {
-        console.log("Clicked save.")
-        const id = clientAuth.getCurrentUser()._id
+        // console.log("Clicked save.")
+        const id = this.props.currentUser._id
         axios({method: 'post', url: `/api/users/${id}/searches`, data: {address: this.state.address, town: this.state.town}})
         .then((res) => {
-            console.log(res)
+            this.props.history.push(`/profile`)
         })
     }
 
@@ -159,9 +171,7 @@ class Search extends React.Component {
     }
 
 	onFormSubmit(evt) {
-        if(!localStorage.search) {
-            evt.preventDefault()
-        }
+        if(!localStorage.search) evt.preventDefault()
         // console.log(this.state.address)
         this.yelpRestaurantSearch()
         this.yelpNailSalonSearch()
@@ -175,45 +185,41 @@ class Search extends React.Component {
 		const { address } = this.state
 		return (
 			<div className='Search'>
-                <div className="search-heading">
-                    <h2>Where Do You Wanna Go?</h2>
-                </div>
-                <div className="search-form">
-                    {!localStorage.search
-                    ? (
-                        <div>
-                            <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                                <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
-                                <div className="search-buttons">
-                                    <button className="button button-outline left-button">Search</button>
-                                    {clientAuth.getCurrentUser() 
-                                        ? <button className="button button-outline middle-button" onClick={this.saveButton.bind(this)}>Save Search</button> 
-                                        : null 
-                                    }
-                                    <button className="button button-outline right-button" onClick={this.newSearch.bind(this)}>New Search</button>
-                                </div>
-                            </form>
-                            
-                        </div>
-                    )
-                    : null
-                    }
-
-                    
-                </div>
-				
-
-
-                
-
-				
-
-                
-
-                <div className="background" >
+                 {/* <div className="background" >
                     <img className="background-img" src={this.state.photo} alt="" />
                     <h2><span className="town">{this.state.town}</span></h2>
+                </div> */}
+                <div className="search-results"></div>
+                <div className="middle-section-box">
+                    <div className="middle-section">
+                        <div className="search-heading">
+                            {!this.state.town
+                                ? <h2>Where Do You Wanna Go?</h2>
+                                : <h2 className="white-text">Where Do You Wanna Go?</h2>}
+                        </div>
+                        <div className="search-form">
+                            {!localStorage.search && !this.state.town
+                            ? (<div>
+                                    <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                                        <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
+                                    </form>
+                                    
+                                </div>)
+                            : <div><h3>{this.state.town}</h3></div>}
+                            {!localStorage.search
+                                ? <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button>
+                                : <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button display-none" >Go</button>}
+                            {/* <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button> */}
+                            {this.props.currentUser
+                                ? <button className="button button-outline middle-button" onClick={this.saveButton.bind(this)}>Save Search</button> 
+                                : null}
+                            <button className="button button-outline right-button" onClick={this.newSearch.bind(this)}>New Search</button>
+                            
+                        </div>
+                    </div>
                 </div>
+
+               
                 
                 <div className="yelp-restaurants">
                     <h3>{this.state.yelpRestaurants.head}</h3>

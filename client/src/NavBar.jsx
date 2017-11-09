@@ -8,7 +8,7 @@ const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
 			<span className="standard">
-				<span><Link to="/"><img className='logo' src={Logo} /></Link></span>
+				<span><Link to="/"><img className='logo' src={Logo} alt="logo" /></Link></span>
 				<Link to="/search">Search</Link>
 			</span>
 			

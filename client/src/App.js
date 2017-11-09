@@ -62,7 +62,9 @@ class App extends Component {
               return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
             }} />
 
-            <Route path="/search" component={Search} />
+            <Route path="/search" render={(props) => {
+              return <Search {...props} currentUser={clientAuth.getCurrentUser()} />
+            }} />
 
             <Route path="/" component={Home} />
 
