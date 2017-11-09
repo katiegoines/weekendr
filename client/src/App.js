@@ -37,35 +37,37 @@ class App extends Component {
   render() {
     const {currentUser} = this.state
     return (
-      <div className="App container">
+      <div className="App">
         <NavBar currentUser={currentUser} />
 
-        <Switch>
-          <Route path="/login" render={(props) => {
-            return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
-          }} />
+        <div className="non-nav">
+          <Switch>
+            <Route path="/login" render={(props) => {
+              return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
+            }} />
 
-          <Route path="/profile/edit" component={EditProfile} /> 
+            <Route path="/profile/edit" component={EditProfile} /> 
 
-          <Route path="/profile" render={(props) => {
-            return currentUser
-              ? <Profile {...props} />
-              : <Redirect to="/search" />
-          }} />
+            <Route path="/profile" render={(props) => {
+              return currentUser
+                ? <Profile {...props} />
+                : <Redirect to="/search" />
+            }} />
 
-          <Route path="/logout" render={(props) => {
-						return <LogOut onLogOut={this.logOut.bind(this)} />
-					}} />
+            <Route path="/logout" render={(props) => {
+              return <LogOut onLogOut={this.logOut.bind(this)} />
+            }} />
 
-          <Route path="/signup" render={(props) => {
-						return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
-					}} />
+            <Route path="/signup" render={(props) => {
+              return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
+            }} />
 
-          <Route path="/search" component={Search} />
+            <Route path="/search" component={Search} />
 
-          <Route path="/" component={Home} />
+            <Route path="/" component={Home} />
 
-        </Switch>
+          </Switch>
+        </div>
 
         
       </div>

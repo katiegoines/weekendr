@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logo from './images/logo.png'
 
 // import logo from './images/moveitlogo.png'
 
@@ -7,7 +8,7 @@ const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
 			<span className="standard">
-				<span><Link to="/"><img className='logo' src={require('./images/logo.png')} /></Link></span>
+				<span><Link to="/"><img className='logo' src={Logo} /></Link></span>
 				<Link to="/search">Search</Link>
 			</span>
 			

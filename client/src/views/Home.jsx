@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Slide } from 'react-slideshow-image'
 
 var i = 0
 
@@ -27,7 +26,7 @@ class Home extends React.Component {
 	}
 
 	changeIndex() {
-		if(i < this.state.slides.length -1) {
+		if(i < this.state.slides.length - 1) {
 			++i
 		} else {
 			i = 0
