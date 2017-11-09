@@ -182,17 +182,24 @@ class Search extends React.Component {
                     {!localStorage.search
                     ? (
                         <div>
-                        <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                            <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
-                            <button className="button button-outline">Search</button>
-                        </form>
-                        <div>{clientAuth.getCurrentUser() ? <button className="button button-outline" onClick={this.saveButton.bind(this)}>Save Search</button> : null }</div>
+                            <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                                <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
+                                <div className="search-buttons">
+                                    <button className="button button-outline left-button">Search</button>
+                                    {clientAuth.getCurrentUser() 
+                                        ? <button className="button button-outline middle-button" onClick={this.saveButton.bind(this)}>Save Search</button> 
+                                        : null 
+                                    }
+                                    <button className="button button-outline right-button" onClick={this.newSearch.bind(this)}>New Search</button>
+                                </div>
+                            </form>
+                            
                         </div>
                     )
                     : null
                     }
 
-                    <button className="button button-outline" onClick={this.newSearch.bind(this)}>New Search</button>
+                    
                 </div>
 				
 

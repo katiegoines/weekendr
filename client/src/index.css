@@ -175,6 +175,11 @@ body {
       margin: 0 auto;
     }
 
+    .search-form input {
+      font-family: 'Roboto Slab', serif;
+      text-align: center;
+    }
+
     .search-form button {
       color: #04aba8 !important;
       border-color: #04aba8;
@@ -182,14 +187,25 @@ body {
       text-transform: inherit;
     }
 
+    .left-button {
+      margin-right: 10px;
+      width: 126px;
+    }
+
+    .middle-button {
+      width: 128px;
+    }
+
+    .right-button {
+      margin-left: 10px;
+      width: 126px;
+    }
+
     .search-form button:hover {
       color: gray !important;
     }
 
-    input {
-      font-family: 'Roboto Slab', serif;
-      text-align: center;
-    }
+   
     
 
 
