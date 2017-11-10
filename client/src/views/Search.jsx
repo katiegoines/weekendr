@@ -70,6 +70,7 @@ class Search extends React.Component {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
             console.log(res.data)
+            this.codeAddress()            
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
         })
         .catch(e => {
@@ -243,7 +244,7 @@ class Search extends React.Component {
         if(!localStorage.search) evt.preventDefault()
         // console.log(this.state.address)
         this.yelpSearch()
-        this.codeAddress()
+        // this.codeAddress()
         // this.setState({address:""})
         this.reference = ''
     }
