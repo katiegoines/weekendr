@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import clientAuth from '../clientAuth'
 
 class EditProfile extends React.Component {
     constructor(props) {

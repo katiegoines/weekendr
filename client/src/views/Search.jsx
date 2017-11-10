@@ -114,6 +114,7 @@ class Search extends React.Component {
         var addr = this.state.address
         axios({method: 'get', url: `api/search/google?address=${addr}`})
         .then((res) => {
+            // console.log(res.data)
             this.setState({
                     lng: res.data.results[0].geometry.location.lng, 
                     lat: res.data.results[0].geometry.location.lat

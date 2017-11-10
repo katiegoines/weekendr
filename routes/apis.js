@@ -15,6 +15,7 @@ apiRoutes.route('/yelp')
     .get((req, res) => {
         yelp.accessToken(yelpID, yelpSecret)
         .then(response => {
+            console.log(response)
             const client = yelp.client(response.jsonBody.access_token)
             client.search({
                 term: req.query.term,
