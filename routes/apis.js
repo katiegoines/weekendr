@@ -72,7 +72,7 @@ apiRoutes.route('/places')
         // var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json&location=${req.query.lat},${req.query.lon}&radius=8000&key=${googleID}`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
-            if(!!results.results[0]) {
+            if(!!results.results && !!results.results[0] && !!results.results[0].photos) {
                 var photoref = results.results[0].photos[0].photo_reference
             res.json({photoref: photoref, apiKey: googleID})
             } else {
