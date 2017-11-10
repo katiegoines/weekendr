@@ -22,6 +22,7 @@ class Search extends React.Component {
             },
             photoref:'',
             photo: '',
+            map: '',
             town: ''
         }
     }
@@ -68,7 +69,7 @@ class Search extends React.Component {
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
         })
         .catch(e => {
@@ -109,7 +110,7 @@ class Search extends React.Component {
         })
     }
 
-    /*
+    
     codeAddress() {
         var addr = this.state.address
         axios({method: 'get', url: `api/search/google?address=${addr}`})
@@ -165,10 +166,44 @@ class Search extends React.Component {
         .then((res) => {
             // console.log(res.data.photoref)
             this.reference = res.data.photoref
-            this.setState({photoref: res.data.photoref, photo: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=900&photoreference=${this.reference}&key=${res.data.apiKey}`})            
+            this.setState({
+                photoref: res.data.photoref, 
+                photo: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photoreference=${this.reference}&key=${res.data.apiKey}`, 
+                map: `https://maps.googleapis.com/maps/api/staticmap?
+                center=${this.state.lat},${this.state.lng}
+                &size=700x500&scale=2&maptype=roadmap
+                &markers=size:mid%7Ccolor:0x048BA8%7Clabel:R%7C${this.state.yelpRestaurants.list[0].coordinates.latitude},${this.state.yelpRestaurants.list[0].coordinates.longitude}
+                    |${this.state.yelpRestaurants.list[1].coordinates.latitude},${this.state.yelpRestaurants.list[1].coordinates.longitude}
+                    |${this.state.yelpRestaurants.list[2].coordinates.latitude},${this.state.yelpRestaurants.list[2].coordinates.longitude}
+                    |${this.state.yelpRestaurants.list[3].coordinates.latitude},${this.state.yelpRestaurants.list[3].coordinates.longitude}
+                    |${this.state.yelpRestaurants.list[4].coordinates.latitude},${this.state.yelpRestaurants.list[4].coordinates.longitude}
+                    |${this.state.yelpRestaurants.list[5].coordinates.latitude},${this.state.yelpRestaurants.list[5].coordinates.longitude}
+                    |${this.state.yelpRestaurants.list[6].coordinates.latitude},${this.state.yelpRestaurants.list[6].coordinates.longitude}
+                &markers=size:mid%7Ccolor:0x99C24D%7Clabel:S%7C${this.state.yelpRetail.list[0].coordinates.latitude},${this.state.yelpRetail.list[0].coordinates.longitude}
+                    |${this.state.yelpRetail.list[1].coordinates.latitude},${this.state.yelpRetail.list[1].coordinates.longitude}
+                    |${this.state.yelpRetail.list[2].coordinates.latitude},${this.state.yelpRetail.list[2].coordinates.longitude}
+                    |${this.state.yelpRetail.list[3].coordinates.latitude},${this.state.yelpRetail.list[3].coordinates.longitude}
+                    |${this.state.yelpRetail.list[4].coordinates.latitude},${this.state.yelpRetail.list[4].coordinates.longitude}
+                    |${this.state.yelpRetail.list[5].coordinates.latitude},${this.state.yelpRetail.list[5].coordinates.longitude}
+                    |${this.state.yelpRetail.list[6].coordinates.latitude},${this.state.yelpRetail.list[6].coordinates.longitude}
+                &markers=size:mid%7Ccolor:0x2E4057%7Clabel:F%7C${this.state.yelpGyms.list[0].coordinates.latitude},${this.state.yelpGyms.list[0].coordinates.longitude}
+                    |${this.state.yelpGyms.list[1].coordinates.latitude},${this.state.yelpGyms.list[1].coordinates.longitude}
+                    |${this.state.yelpGyms.list[2].coordinates.latitude},${this.state.yelpGyms.list[2].coordinates.longitude}
+                    |${this.state.yelpGyms.list[3].coordinates.latitude},${this.state.yelpGyms.list[3].coordinates.longitude}
+                    |${this.state.yelpGyms.list[4].coordinates.latitude},${this.state.yelpGyms.list[4].coordinates.longitude}
+                    |${this.state.yelpGyms.list[5].coordinates.latitude},${this.state.yelpGyms.list[5].coordinates.longitude}
+                    |${this.state.yelpGyms.list[6].coordinates.latitude},${this.state.yelpGyms.list[6].coordinates.longitude}
+                &markers=size:mid%7Ccolor:0xF18F01%7Clabel:A%7C${this.state.yelpActivities.list[0].coordinates.latitude},${this.state.yelpActivities.list[0].coordinates.longitude}
+                    |${this.state.yelpActivities.list[1].coordinates.latitude},${this.state.yelpActivities.list[1].coordinates.longitude} 
+                    |${this.state.yelpActivities.list[2].coordinates.latitude},${this.state.yelpActivities.list[2].coordinates.longitude}
+                    |${this.state.yelpActivities.list[3].coordinates.latitude},${this.state.yelpActivities.list[3].coordinates.longitude}
+                    |${this.state.yelpActivities.list[4].coordinates.latitude},${this.state.yelpActivities.list[4].coordinates.longitude}
+                    |${this.state.yelpActivities.list[5].coordinates.latitude},${this.state.yelpActivities.list[5].coordinates.longitude}
+                    |${this.state.yelpActivities.list[6].coordinates.latitude},${this.state.yelpActivities.list[6].coordinates.longitude}               
+                &key=${res.data.apiKey}`})            
         })
     }
-    */
+    
 
     saveButton() {
         // console.log("Clicked save.")
@@ -199,6 +234,7 @@ class Search extends React.Component {
             },
             photoref:'',
             photo: '',
+            map: '',
             town: ''
         })
     }
@@ -207,7 +243,7 @@ class Search extends React.Component {
         if(!localStorage.search) evt.preventDefault()
         // console.log(this.state.address)
         this.yelpSearch()
-        // this.codeAddress()
+        this.codeAddress()
         // this.setState({address:""})
         this.reference = ''
     }
@@ -218,37 +254,49 @@ class Search extends React.Component {
 		const { address } = this.state
 		return (
 			<div className='Search'>
-                 {/* <div className="background" >
+                <div className="search-heading">
+                    {!this.state.town
+                        ? <h2>Where Do You Wanna Go?</h2>
+                        : <h2 className="white-text">Where Do You Wanna Go?</h2>}
+                </div>
+                <div className="background-img">
                     <img className="background-img" src={this.state.photo} alt="" />
-                    <h2><span className="town">{this.state.town}</span></h2>
-                </div> */}
-
-
-              
-                        <div className="search-heading">
-                            {!this.state.town
-                                ? <h2>Where Do You Wanna Go?</h2>
-                                : <h2 className="white-text">Where Do You Wanna Go?</h2>}
-                        </div>
-                        <div className="search-form">
-                            {!localStorage.search && !this.state.town
-                            ? (<div>
-                                    <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-                                        <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
-                                    </form>
-                                    
-                                </div>)
-                            : <div><h3>{this.state.town}</h3></div>}
-                            {!localStorage.search
-                                ? <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button>
-                                : <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button" >Back</button>}
-                            {/* <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button> */}
-                            {this.props.currentUser
-                                ? <button className="button button-outline middle-button" onClick={this.saveButton.bind(this)}>Save Search</button> 
-                                : null}
-                            <button className="button button-outline right-button" onClick={this.newSearch.bind(this)}>New Search</button>
+                </div>
+                <div className="search-form">
+                    
+                    {!localStorage.search && !this.state.town
+                    ? (<div>
+                            <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                                <input type="text" placeholder="Address or City, State, Zip" name="address" value={address} />
+                            </form>
                             
-                        </div>
+                        </div>)
+                    : <div><h3>{this.state.town}</h3></div>}
+                    <div className="search-buttons">
+                    {!localStorage.search
+                        ? <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button>
+                        : <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button" >Back</button>}
+                    {/* <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button> */}
+                    {this.props.currentUser
+                        ? <button className="button button-outline middle-button" onClick={this.saveButton.bind(this)}>Save Search</button> 
+                        : null}
+                    <button className="button button-outline right-button" onClick={this.newSearch.bind(this)}>New Search</button>
+                    </div>
+                </div>
+
+               
+                    
+                <div className="walk-score">
+                    <h3><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img className="c-im" src={this.state.walkscore.logo_url} alt=""/></h3>
+                    <div>
+                        {this.state.walkscore.walkscore}
+                        <div><small>{this.state.walkscore.description}</small></div>
+                    </div>
+                </div>
+
+                <div className="map">
+                    <img src={this.state.map} alt="" />
+                </div>
    
                 <div className="search-results">
                     {<div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>}
@@ -363,80 +411,8 @@ class Search extends React.Component {
                         )
                     })}
                 </div>
-                
-                
 
                
-                
-                {/* <div className="yelp-restaurants">
-                    <h3>{this.state.yelpRestaurants.head}</h3>
-                    {this.state.yelpRestaurants.list.slice(0, 5).map(el => {
-                        return (
-
-                            <div key={el.id} className="card"> 
-                                <div className="card-img-box">
-                                    <img className="card-img" src={el.image_url} alt="" />
-                                </div>
-                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
-                                <div className="card-info">
-                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
-                                        return (
-                                            <span key={i}>{` - ${cat.title} - `}</span>
-                                        )
-                                    })}</div>
-                                    <div>{el.location.address1}</div>
-                                    <div>{el.location.city}</div>
-                                    <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                    <div>{`Price: ${el.price}`}</div>
-                                    <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
-                                    
-                                </div>
-
-                            </div>
-                       
-                    
-                    
-                        )
-                    })}
-                </div>
-                
-
-                <div className="yelp-nail-salons">
-                    <h3>{this.state.yelpRetail.head}</h3>
-                    {this.state.yelpRetail.list.slice(0, 5).map(el => {
-                        return (
-                        
-                            <div key={el.id} className="card"> 
-                                <div className="card-img-box">
-                                    <img className="card-img" src={el.image_url} alt="" />
-                                </div>
-                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
-                                <div className="card-info">
-                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
-                                        return (
-                                            <span key={i}>{` - ${cat.title} - `}</span>
-                                        )
-                                    })}</div>
-                                    <div>{el.location.address1}</div>
-                                    <div>{el.location.city}</div>
-                                    <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                    <div>{`Price: ${el.price}`}</div>
-                                    <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
-                                    
-                                </div>
-
-                            </div>
-                        )
-                    })}
-                </div> */}
-
-                <div className="walk-score">
-                    <h3><a href={this.state.walkscore.moreinfo} target="_blank" rel="noopener noreferrer">{this.state.walkscore.head} </a><img className="c-im" src={this.state.walkscore.logo_url} alt=""/></h3>
-                    <div>
-                        {this.state.walkscore.walkscore}
-                        <div><small>{this.state.walkscore.description}</small></div>
-                    </div>
-                </div>
                 
 			</div>
 		)

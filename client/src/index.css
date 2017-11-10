@@ -11,6 +11,10 @@ body {
   color: #2F2D2E;
 }
 
+a {
+  color: #04aba8 !important;
+}
+
 .non-nav {
   padding-top: 50px;
 }
@@ -31,7 +35,7 @@ input {
     }
 
     .NavBar a {
-      color: gray;
+      color: gray !important;
       margin-top: 15px;
       margin-bottom: 15px;
       padding: 5px;
@@ -207,8 +211,34 @@ input {
       color: gray !important;
     }
 
+    .white-text {
+      color: lightgray;
+    }
+
+    .background-img {
+      max-width: 700px;
+      /* max-height: 400px; */
+      margin: 0 auto;
+    }
+
+    .map {
+      margin: 0 auto;
+      width: 700px;
+      /* height: 400px; */
+    }
+
+    h3 {
+      text-align:center;
+    }
+
     .display-none {
       visibility: hidden;
+    }
+
+    .walk-score {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      text-align: center;
     }
 
     .search-results {
