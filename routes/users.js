@@ -23,7 +23,7 @@ usersRouter.route('/:id/searches')
     .post(searchesCtrl.create)
 
 usersRouter.route('/:id/searches/:searchid')
-    .get(searchesCtrl.show)
+    // .get(searchesCtrl.show)
     .delete(searchesCtrl.destroy)
 
 module.exports = usersRouter
