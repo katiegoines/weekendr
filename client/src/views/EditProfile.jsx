@@ -68,6 +68,8 @@ class EditProfile extends React.Component {
 		return (
 			<div className='SignUp'>
                 <div className="container">
+                <div className="profile-container">
+
 				<h1>Edit Profile</h1>
 				<form  onSubmit={this.onFormSubmit.bind(this)}>
 					<input onChange={this.onInputChange.bind(this)} type="text" placeholder="Name" name="name" value={name} />
@@ -81,6 +83,7 @@ class EditProfile extends React.Component {
                 <button className="button button-outline right-button" onClick={this.deleteButton.bind(this)} >Delete Account</button>
                 
 			</div>
+            </div>
             </div>
 		)
 	}

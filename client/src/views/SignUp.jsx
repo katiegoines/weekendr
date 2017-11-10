@@ -33,14 +33,19 @@ class SignUp extends React.Component {
 		const { name, email, password } = this.state.fields
 		return (
 			<div className='SignUp'>
+				<div className="container">
+                <div className="profile-container">
 				<h1>Sign Up</h1>
 				<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
 					<input type="text" placeholder="Name" name="name" value={name} />
 					<input type="text" placeholder="Email" name="email" value={email} />
 					<input type="password" placeholder="Password" name="password" value={password} />
-					<button>Log In</button>
+					<button className="button button-outline">Sign Up</button>
 				</form>
 			</div>
+			</div>
+			</div>
+
 		)
 	}
 }

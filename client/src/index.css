@@ -23,6 +23,15 @@ input {
   font-family: 'Roboto Slab', serif;
 }
 
+button {
+  color: #04aba8 !important;
+  border-color: #04aba8 !important;
+  font-family: 'Roboto Slab', serif;
+  text-transform: inherit;
+  padding: 0;
+  min-width: 100px;
+}
+
 /* Navbar */
 
     .NavBar {
@@ -41,7 +50,7 @@ input {
     }
 
     .NavBar a:hover {
-      color: #048BA8;
+      color: #048BA8 !important;
     }
 
     .standard {
@@ -52,7 +61,7 @@ input {
       float:right;
     }
 
-    .account a {
+    .account a, .account span {
       margin-left: 30px;
       margin-right: 20px;
     }
@@ -149,6 +158,16 @@ input {
     .home-body li {
       padding-left: 20px;
       text-indent: -15px;
+    }
+
+    .home-buttons {
+      width: 250px;
+      margin: 0 auto;
+      margin-top: -20px;
+    }
+
+    .home-buttons button {
+      margin: 5px;
     }
 
     @media (min-width: 768px) and (max-width: 991px) {      

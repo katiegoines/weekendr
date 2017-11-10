@@ -74,7 +74,7 @@ class Profile extends React.Component {
                     )
                 })}
                 </div>
-                {<button onClick={this.editButton.bind(this)}>Edit Profile</button>}
+                {<button className="button button-outline" onClick={this.editButton.bind(this)}>Edit Profile</button>}
 
                 </div>
             </div>

@@ -40,6 +40,14 @@ class Home extends React.Component {
 		this.setState({currentPhoto: this.state.slides[i]})
 	}
 
+	search() {
+		this.props.history.push(`/search`)
+	}
+
+	signUp() {
+		this.props.history.push(`/signup`)
+	}
+
 	componentWillUnmount() {
 		clearInterval(this.interval)
 	}
@@ -59,6 +67,10 @@ class Home extends React.Component {
 								<li><em><strong>Search</strong></em> for cities that pique your interest and checkout an overview of what you might find when you get there.</li>
 								<li><em><strong>Sign Up</strong></em> for an account so you can save your searches to revisit later.</li>
 							</ol>
+							<div className="home-buttons">
+								<button onClick={this.search.bind(this)}className="button button-outline">Search</button>
+								<button onClick={this.signUp.bind(this)}className="button button-outline">Sign Up</button>
+							</div>
 						</div>
 						
 					</div>
