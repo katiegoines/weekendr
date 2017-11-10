@@ -48,7 +48,7 @@ apiRoutes.route('/walkscore')
 
 apiRoutes.route('/reversegeo')
     .get((req, res) => {
-        var apiUrl = `http://maps.googleapis.com/maps/api/geocode/json?latlng=${req.query.lat},${req.query.lon}&sensor=false`
+        var apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${req.query.lat},${req.query.lon}&sensor=false`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
             var ac2 = results.results[0].address_components[2].long_name
