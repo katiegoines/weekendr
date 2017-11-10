@@ -67,18 +67,21 @@ class EditProfile extends React.Component {
 		const { name, email, password } = this.state.fields
 		return (
 			<div className='SignUp'>
+                <div className="container">
 				<h1>Edit Profile</h1>
 				<form  onSubmit={this.onFormSubmit.bind(this)}>
 					<input onChange={this.onInputChange.bind(this)} type="text" placeholder="Name" name="name" value={name} />
 					<input onChange={this.onInputChange.bind(this)} type="text" placeholder="Email" name="email" value={email} />
 					<input onChange={this.onInputChange.bind(this)} type="password" placeholder="Password" name="password" value={password} />
-					<button>Save Changes</button> 
-                    <button onClick={this.cancelButton.bind(this)}>Cancel</button>
+					
                     
 				</form>
-                <button onClick={this.deleteButton.bind(this)} >Delete Account</button>
+                <button className="button button-outline left-button" onClick={this.onFormSubmit.bind(this)}>Save Changes</button> 
+                <button className="button button-outline middle-button" onClick={this.cancelButton.bind(this)}>Cancel</button>
+                <button className="button button-outline right-button" onClick={this.deleteButton.bind(this)} >Delete Account</button>
                 
 			</div>
+            </div>
 		)
 	}
 }

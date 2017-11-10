@@ -15,6 +15,10 @@ body {
   padding-top: 50px;
 }
 
+input {
+  font-family: 'Roboto Slab', serif;
+}
+
 /* Navbar */
 
     .NavBar {
@@ -174,7 +178,6 @@ body {
     }
 
     .search-form input {
-      font-family: 'Roboto Slab', serif;
       text-align: center;
     }
 
@@ -183,6 +186,7 @@ body {
       border-color: #04aba8;
       font-family: 'Roboto Slab', serif;
       text-transform: inherit;
+      padding: 0;
     }
 
     .left-button {
@@ -308,4 +312,40 @@ body {
     }
   }
 
+  /* Profile */
 
+  .profile-container {
+    width: 255px;
+    margin: 100px auto;
+  }
+
+  .searches {
+    height: 50px;
+    width: 400px;
+  }
+
+  .searches button {
+    float: right;
+    margin-left: 10px;
+  }
+
+  /* Edit Profile */
+
+  .SignUp button {
+    /* margin: 15px; */
+    color: #04aba8 !important;
+    padding: 0;
+    border-color: #04aba8;
+    font-family: 'Roboto Slab', serif;
+    text-transform: inherit;
+  }
+  
+  .SignUp .left-button, middle-button {
+    color: #04aba8 !important;
+    
+  }
+
+  .SignUp .right-button {
+    color: white !important;    
+    background: gray;
+  }

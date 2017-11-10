@@ -55,25 +55,27 @@ class Profile extends React.Component {
     render() {
         return (
             <div className="profile">
-                
-                <h1>{this.state.currentUser.name}'s Profile</h1>
+                <div className="container">
+                <div className="profile-container">
+                <h2>Saved Searches</h2>
                 {/* <button onClick={this.editButton.bind(this)}>Edit Profile</button> */}
-                <ul>
                 {this.state.searches.map((search, i) => {
                     return (
-                        <li key={search._id}>
-                            <span onClick={this.savedSearch.bind(this, search)}>{search.search}</span>
+                        <div className="searches" key={search._id}>
+                            <span>{search.search}</span>
                             <button 
+                                className="button button-outline searches-button"
                                 onClick={this.onRemoveClick.bind(this, search._id)}
                             >
                                 x
                             </button>
-                        </li>
+                            <button className="button button-outline"  onClick={this.savedSearch.bind(this, search)}>Load Search</button>
+
+                        </div>
                     )
                 })}
-                </ul>
-                
-
+                </div>
+                </div>
             </div>
         )
     }
