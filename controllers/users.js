@@ -10,10 +10,7 @@ module.exports = {
     },
 
     show: (req, res) => {
-        // console.log(`Current user: ${req.user}`)
-        // console.log(req.user._id)
         User.findById(req.user._id, (err, user) => {
-            // console.log(user._id)
             res.json(user)
         })
     },
@@ -27,17 +24,12 @@ module.exports = {
     },
 
     update: (req, res) => {
-        console.log(req.body)
         User.findById(req.params.id, (err, user) => {
             Object.assign(user, req.body)
             user.save((err, updatedUser) => {
                 res.json({success: true, message: "User updated.", user: updatedUser})
             })
         })
-
-        // User.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
-        //     res.json({success: true, message: "User updated.", user})
-        // })
     },
 
     destroy: (req, res) => {

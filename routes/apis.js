@@ -13,10 +13,8 @@ const
 
 apiRoutes.route('/yelp')
     .get((req, res) => {
-        // console.log(req.params)
         yelp.accessToken(yelpID, yelpSecret)
         .then(response => {
-            // console.log(response)
             const client = yelp.client(response.jsonBody.access_token)
             client.search({
                 term: req.query.term,
@@ -24,7 +22,6 @@ apiRoutes.route('/yelp')
             })
             .then((response) => {
                 var results = response.jsonBody.businesses
-                // console.log(results)
                 res.json(results)
             })
         });
@@ -32,23 +29,18 @@ apiRoutes.route('/yelp')
 
 apiRoutes.route('/google')
     .get((req, res) => {
-        // console.log(req.query.address)
         var apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.query.address}&key=${googleID}`
         httpClient.get(apiUrl, (err, response, body) => {
-            // console.log(response.body)
             var results = JSON.parse(response.body)
             res.json(results)
         })
-        // console.log(req)
     })
 
 apiRoutes.route('/walkscore')
     .get((req, res) => {
-        // console.log(req.query.lon)
         var apiUrl = `http://api.walkscore.com/score?format=json&address=${req.query.address}&lat=${req.query.lat}&lon=${req.query.lon}&transit=1&bike=1&wsapikey=${walkScoreID}`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
-            // console.log(results)
             res.json(results)
         })
     })
@@ -69,7 +61,6 @@ apiRoutes.route('/reversegeo')
 apiRoutes.route('/places')
     .get((req, res) => {
         var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.lat},${req.query.lon}&radius=500&key=${googleID}`
-        // var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json&location=${req.query.lat},${req.query.lon}&radius=8000&key=${googleID}`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
             if(!!results.results && !!results.results[0] && !!results.results[0].photos) {

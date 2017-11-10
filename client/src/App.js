@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-// import './App.css'
 import clientAuth from './clientAuth'
 
 import NavBar from './NavBar'
@@ -46,11 +45,13 @@ class App extends Component {
               return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
             }} />
 
-            <Route path="/profile/edit" component={EditProfile} /> 
+            <Route path="/profile/edit" render={(props) => {
+              return <EditProfile {...props} currentUser={clientAuth.getCurrentUser()} />
+            }} />
 
             <Route path="/profile" render={(props) => {
               return currentUser
-                ? <Profile {...props} />
+                ? <Profile {...props} currentUser={clientAuth.getCurrentUser()} />
                 : <Redirect to="/search" />
             }} />
 

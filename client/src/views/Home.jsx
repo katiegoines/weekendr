@@ -55,7 +55,6 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className='Home'>
-				{/* <h1> Move It! </h1> */}
 				<div className="home-background-box">
 					<img className="home-background .object-fit_cover" src={this.state.currentPhoto} alt="" />
 					<div className="home-title-box">
@@ -79,16 +78,5 @@ class Home extends React.Component {
 		)
 	}
 }
-
-
-
-// const Home = (props) => {
-// 	return (
-// 		<div className='Home'>
-// 			<h1>Move It</h1>
-// 		</div>
-// 	)
-// }
-
 
 export default Home

@@ -3,16 +3,19 @@ import axios from 'axios'
 import clientAuth from '../clientAuth'
 
 class EditProfile extends React.Component {
-	state = {
-        currentUser: clientAuth.getCurrentUser(),
-		fields: { name: clientAuth.getCurrentUser().name, email: clientAuth.getCurrentUser().email, password: ''}
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            currentUser: this.props.currentUser,
+            fields: { name: this.props.currentUser.name, email: this.props.currentUser.email, password: ''}
+        }
     }
     
     componentDidMount() {
         const id = this.state.currentUser._id
         axios({method: 'get', url: `/api/users/${id}`})
         .then((res) => {
-            // console.log(res.data.password)
             this.setState({fields: {
                 name: res.data.name, 
                 email: res.data.email, 
@@ -31,13 +34,9 @@ class EditProfile extends React.Component {
     }
     
     deleteButton() {
-        console.log("Clicked delete.")
         const id = this.state.currentUser._id
         if(window.confirm("Are you sure?") === true) {
             axios({method: "delete", url:`/api/users/${id}`})
-            .then((res) => {
-                clientAuth.getCurrentUser()
-            })
             .then(() => {
                 this.props.history.push(`/logout`)
             })
@@ -53,7 +52,6 @@ class EditProfile extends React.Component {
         const id = this.state.currentUser._id
         axios({method: 'patch', url: `/api/users/${id}`, data: this.state.fields})
         .then((res) => {
-            console.log(res)
             this.setState({fields: {
                 name: res.data.user.name,
                 email: res.data.user.email,

@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from './images/logo.png'
 
-// import logo from './images/moveitlogo.png'
-
 const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
@@ -16,7 +14,7 @@ const NavBar = (props) => {
 				? (
 					<span>
 						<span className="account">
-							<span className="name">Hi, {props.currentUser.name}:</span>
+							{/* <span className="name">Hi, {props.currentUser.name}:</span> */}
 							<Link to="/profile">Account</Link>
 							<Link to="/logout">Log Out</Link>
 						</span>
