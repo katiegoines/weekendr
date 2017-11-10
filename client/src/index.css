@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0 auto;
   padding: 0;
@@ -104,49 +109,7 @@ body {
       text-indent: -15px;
     }
 
-    @media (min-width: 768px) and (max-width: 991px) {
-      .home-background-box{
-        width: 600px;
-        height: 600px;
-      }
-      
-      .home-background {
-        position: absolute;
-        left: -1000%;
-        right: -1000%;
-        top: -1000%;
-        bottom: -1000%;
-        margin: auto;
-        min-height: 100%;
-        min-width: 100%;
-        max-height: 100%;
-        border-radius: 20px;
-        z-index: 0;
-      }
-      
-      .home-title-box {
-        width: 80%;
-        height: 80%;
-        margin: 60px auto;
-      }
-      
-      .home-title {
-        padding: 70px 30px 0 30px;
-        text-align: center;
-        font-weight: bold;
-      }
-    }
-
-    @media (min-width: 576px) and (max-width: 767px) {
-      .home-background-box{
-        width: 525px;
-        height: 525px;
-      }
-
-      .home-background {
-        border-radius: 20px;
-      }
-      
+    @media (min-width: 768px) and (max-width: 991px) {      
       .home-title-box {
         width: 80%;
         height: 80%;
@@ -154,9 +117,19 @@ body {
       }
       
       .home-title {
-        padding: 70px 30px 0 30px;
-        text-align: center;
-        font-weight: bold;
+        padding: 50px 30px 0 30px;
+      }
+    }
+
+    @media (min-width: 576px) and (max-width: 767px) {      
+      .home-title-box {
+        width: 80%;
+        height: 80%;
+        margin: 50px auto;
+      }
+      
+      .home-title {
+        padding: 40px 30px 0 30px;
       }
     }
 
@@ -178,8 +151,6 @@ body {
 
       .home-title {
         padding: 30px 30px 0 30px;
-        text-align: center;
-        font-weight: bold;
       }
 
       .home-body {
@@ -193,7 +164,7 @@ body {
 
 /* Search View */
     .search-heading {
-      /* margin-top: 10%; */
+      margin-top: 10%;
       text-align: center;
     }  
 
@@ -236,66 +207,29 @@ body {
       visibility: hidden;
     }
 
-    .white-text {
-      color: gray;
-    }
-
     .search-results {
-      /* width: 100%; */
-      height: auto;
-      /* background: green; */
-      position: absolute;
-      z-index: 0;
-      margin: 0 auto;
-      /* width: 100%;
-      padding-top: 56.25%;
-      overflow: hidden;
-      margin: 0px auto;
-      position: absolute;  
-      background: green; */
-    }
-
-    .middle-section-box {
-      /* width: 415px;
-      height: 250px;
-      margin: 150px auto;
-      background: salmon;
-      position: relative;
-      z-index: 1; */
-      position: relative;
-      /* top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0; */
-      margin: 0 auto;
-      width: 450px;
-      height: 250px;
-      z-index: 1;
-    }
-
-    .middle-section {
-      position: absolute;
-      background: rgba(255,255,255,0.8);
-      border-radius: 20px;      
-      margin-top: 200px;
-      padding: 10px;
+      width: 1350px;
+      margin: 30px auto;
     }
 
     .search-category {
       width: 250px;
       height: 250px;
-      /* overflow: hidden; */
-      /* border-radius: 5px; */
       margin: 10px;
       padding-top: 100px;
       display: inline-block;
       text-align: center;
-      /* background: purple; */
       vertical-align: top;
     }
 
     .card-2 {
       display: inline-block;  
+      overflow:hidden;
+    }
+
+    .card-2:hover>img {
+      opacity: .5;
+      z-index: 0
     }
 
     .card-img-2 {
@@ -303,28 +237,56 @@ body {
       height: 250px;  
       max-width: 250px;
       max-width: 250px;
-      overflow: hidden;
       border-radius: 5px;
       margin: 10px;
       position: absolute;
-      z-index: 0;
+      z-index: 2;
     }
   
    .card-overlay {
      background: rgba(255,255,255,0.7);
-     /* border: 3px solid red; */
+     padding: 30px;
      width: 250px; 
      height: 250px;
      margin: 10px;
      position: relative;
      z-index: 1;
-     /* visibility:hidden; */
    }
 
-   div.card-2:hover > .card-overlay {
-     visibility: visible;
-   }
-    
+   .yelp-categories {
+    font-size: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .body-text {
+    font-size: 14px;
+  }
+
+
+  @media (min-width: 1080px) and (max-width: 1349px) {      
+    .search-results {
+      width: 1080px;
+    }
+  }
+
+  @media (min-width: 815px) and (max-width: 1079px) {      
+    .search-results {
+      width: 815px;
+    }
+  }
+
+  @media (min-width: 543px) and (max-width: 815px) {      
+    .search-results {
+      width: 543px;
+    }
+  }
+
+  @media (max-width: 543px) {
+    .search-results {
+      width: 250px;
+    }
+  }
 
 
 /* OTHER */
@@ -395,7 +357,3 @@ body {
   margin: 0 auto;
 }
 
-.yelp-categories {
-  font-size: 10px;
-  margin-bottom: 5px;
-}

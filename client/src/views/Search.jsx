@@ -8,6 +8,7 @@ class Search extends React.Component {
         this.state = {
             address: '',
             yelpRestaurants: {head: "", list: []},
+            yelpActivities: {head: "", list: []},            
             yelpRetail: {head: "", list: []},
             yelpGyms: {head: "", list: []},
             lng: '',
@@ -59,6 +60,7 @@ class Search extends React.Component {
     
     yelpSearch() {
         this.yelpRestaurantSearch()
+        this.yelpActivitySearch()
         this.yelpRetailSearch()
         this.yelpGymSearch()
     }
@@ -68,6 +70,17 @@ class Search extends React.Component {
         .then((res) => {
             // console.log(res.data)
             this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
+        })
+        .catch(e => {
+            console.log(e);
+        })
+    }
+
+    yelpActivitySearch() {
+        axios({method: 'get', url: `/api/search/yelp?term=activity&location=${this.state.address}`})
+        .then((res) => {
+            // console.log(res.data)
+            this.setState({yelpActivities: {list: res.data, head: "Activities"}})
         })
         .catch(e => {
             console.log(e);
@@ -172,7 +185,9 @@ class Search extends React.Component {
         this.setState({
             address: '',
             yelpRestaurants: {head: "", list: []},
+            yelpActivities: {head: "", list: []},            
             yelpRetail: {head: "", list: []},
+            yelpGyms: {head: "", list: []},
             lng: '',
             lat: '',
             walkscore: {
@@ -207,37 +222,9 @@ class Search extends React.Component {
                     <img className="background-img" src={this.state.photo} alt="" />
                     <h2><span className="town">{this.state.town}</span></h2>
                 </div> */}
-                
-                <div className="search-results">
-                    {<div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>}
-                    {this.state.yelpRestaurants.list.slice(0, 7).map(el => {
-                        return (
-                                <div key={el.id} className="card-2">
-                                    <img className="card-img-2" src={el.image_url} alt="" />
-                                    <div className="card-overlay"> 
-                                        <p>{el.name}</p>
-                                    </div>
-                                </div>
-                        )
-                    })}
 
-                    {/* <div className="search-category"><h3>{this.state.yelpRetail.head}</h3></div>
-                    {this.state.yelpRetail.list.slice(0, 7).map(el => {
-                        return (
-                                <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
-                        )
-                    })}
 
-                    <div className="search-category"><h3>{this.state.yelpGyms.head}</h3></div>
-                    {this.state.yelpGyms.list.slice(0, 7).map(el => {
-                        return (
-                                <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
-                        )
-                    })} */}
-                </div>
-                
-                <div className="middle-section-box">
-                    <div className="middle-section">
+              
                         <div className="search-heading">
                             {!this.state.town
                                 ? <h2>Where Do You Wanna Go?</h2>
@@ -262,8 +249,122 @@ class Search extends React.Component {
                             <button className="button button-outline right-button" onClick={this.newSearch.bind(this)}>New Search</button>
                             
                         </div>
-                    </div>
+   
+                <div className="search-results">
+                    {<div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>}
+                    {this.state.yelpRestaurants.list.slice(0, 7).map(el => {
+                        return (
+                            // <img key={el.id} className="card-img-2" src={el.image_url} alt="" />
+                                <div key={el.id} className="card-2">
+                                    <img className="card-img-2" src={el.image_url} alt="" />
+                                    <div className="card-overlay"> 
+                                        <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                        <div className="card-info">
+                                            <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                                return (
+                                                    <span key={i}>{` - ${cat.title} - `}</span>
+                                                )
+                                            })}</div>
+                                            <div className="body-text">
+                                                <div>{el.location.address1}</div>
+                                                <div>{el.location.city}</div>
+                                                <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                                <div>{`Price: ${el.price}`}</div>
+                                                <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                        )
+                    })}
+
+                    {<div className="search-category"><h3>{this.state.yelpActivities.head}</h3></div>}
+                    {this.state.yelpActivities.list.slice(0, 7).map(el => {
+                        return (
+                            // <img key={el.id} className="card-img-2" src={el.image_url} alt="" />
+                                <div key={el.id} className="card-2">
+                                    <img className="card-img-2" src={el.image_url} alt="" />
+                                    <div className="card-overlay"> 
+                                        <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                        <div className="card-info">
+                                            <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                                return (
+                                                    <span key={i}>{` - ${cat.title} - `}</span>
+                                                )
+                                            })}</div>
+                                            <div className="body-text">
+                                                <div>{el.location.address1}</div>
+                                                <div>{el.location.city}</div>
+                                                <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                                <div>{`Price: ${el.price}`}</div>
+                                                <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                        )
+                    })}
+
+                    {<div className="search-category"><h3>{this.state.yelpRetail.head}</h3></div>}
+                    {this.state.yelpRetail.list.slice(0, 7).map(el => {
+                        return (
+                            // <img key={el.id} className="card-img-2" src={el.image_url} alt="" />
+                                <div key={el.id} className="card-2">
+                                    <img className="card-img-2" src={el.image_url} alt="" />
+                                    <div className="card-overlay"> 
+                                        <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                        <div className="card-info">
+                                            <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                                return (
+                                                    <span key={i}>{` - ${cat.title} - `}</span>
+                                                )
+                                            })}</div>
+                                            <div className="body-text">
+                                                <div>{el.location.address1}</div>
+                                                <div>{el.location.city}</div>
+                                                <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                                <div>{`Price: ${el.price}`}</div>
+                                                <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                        )
+                    })}
+
+                    {<div className="search-category"><h3>{this.state.yelpGyms.head}</h3></div>}
+                    {this.state.yelpGyms.list.slice(0, 7).map(el => {
+                        return (
+                            // <img key={el.id} className="card-img-2" src={el.image_url} alt="" />
+                                <div key={el.id} className="card-2">
+                                    <img className="card-img-2" src={el.image_url} alt="" />
+                                    <div className="card-overlay"> 
+                                        <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                        <div className="card-info">
+                                            <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                                return (
+                                                    <span key={i}>{` - ${cat.title} - `}</span>
+                                                )
+                                            })}</div>
+                                            <div className="body-text">
+                                                <div>{el.location.address1}</div>
+                                                <div>{el.location.city}</div>
+                                                <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                                <div>{`Price: ${el.price}`}</div>
+                                                <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                        )
+                    })}
                 </div>
+                
+                
 
                
                 
