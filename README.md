@@ -76,7 +76,7 @@ The design isn't fully responsive. It's kinda-sorta, but it needs work for sure.
 
 Additional features and functionality that are intended to be built into this app in the future are:
 
-- Additonal APIs to provide information on: 1) crime data, 2) cost of living data, 3) events, 4) public transportation options.
+- Additonal APIs to provide information on: 1) crime data, 2) cost of living data, 3) events, 4) public transportation options, 5) job listings, 6) apartment listings.
 
 - I'd like registered users to be able to do more when they're logged in, maybe: 1) save a packing to do list, 2) search for movers in the area they currently live in, 3) get moving tips
 
