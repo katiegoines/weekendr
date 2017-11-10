@@ -284,13 +284,18 @@ body {
     .search-category {
       width: 250px;
       height: 250px;
-      overflow: hidden;
-      border-radius: 5px;
+      /* overflow: hidden; */
+      /* border-radius: 5px; */
       margin: 10px;
       padding-top: 100px;
       display: inline-block;
       text-align: center;
       /* background: purple; */
+      vertical-align: top;
+    }
+
+    .card-2 {
+      display: inline-block;  
     }
 
     .card-img-2 {
@@ -299,13 +304,26 @@ body {
       max-width: 250px;
       max-width: 250px;
       overflow: hidden;
-      /* border: 1px solid gray; */
       border-radius: 5px;
       margin: 10px;
-      display: inline-block;
+      position: absolute;
+      z-index: 0;
     }
   
-   
+   .card-overlay {
+     background: rgba(255,255,255,1);
+     /* border: 3px solid red; */
+     width: 250px; 
+     height: 250px;
+     margin: 10px;
+     position: relative;
+     z-index: 1;
+     /* visibility:hidden; */
+   }
+
+   div.card-2:hover > .card-overlay {
+     visibility: visible;
+   }
     
 
 

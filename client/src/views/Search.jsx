@@ -196,6 +196,7 @@ class Search extends React.Component {
         // this.setState({address:""})
         this.reference = ''
     }
+
     
 	
 	render() {
@@ -207,14 +208,19 @@ class Search extends React.Component {
                     <h2><span className="town">{this.state.town}</span></h2>
                 </div> */}
                 <div className="search-results">
-                    <div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>
+                    {<div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>}
                     {this.state.yelpRestaurants.list.slice(0, 7).map(el => {
                         return (
-                                <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
+                                <div key={el.id} className="card-2">
+                                    <img className="card-img-2" src={el.image_url} alt="" />
+                                    <div className="card-overlay"> 
+                                        <p>{el.name}</p>
+                                    </div>
+                                </div>
                         )
                     })}
 
-                    <div className="search-category"><h3>{this.state.yelpRetail.head}</h3></div>
+                    {/* <div className="search-category"><h3>{this.state.yelpRetail.head}</h3></div>
                     {this.state.yelpRetail.list.slice(0, 7).map(el => {
                         return (
                                 <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
@@ -226,7 +232,7 @@ class Search extends React.Component {
                         return (
                                 <img className="card-img-2" key={el.id} src={el.image_url} alt="" />
                         )
-                    })}
+                    })} */}
                 </div>
                 
                 <div className="middle-section-box">
