@@ -66,6 +66,37 @@ input {
       width: 90px;
     }
 
+    @media (min-width: 576px) and (max-width: 767px) {      
+      .account a {
+        margin-left: 15px;
+        margin-right: 10px;
+      }
+  
+      .standard a {
+        margin-left: 10px;
+        margin-right: 15px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      /* .account {
+        float:left;
+      } */
+      .account a {
+        margin-left: 10px;
+        margin-right: 5px;
+      }
+  
+      .standard a {
+        margin-left: 5px;
+        margin-right: 10px;
+      }
+
+      .NavBar .name {
+        display: none;
+      }
+    }
+
 /* Home Page */
 
     .home-background-box{

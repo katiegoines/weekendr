@@ -8,7 +8,7 @@ const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
 			<span className="standard">
-				<span><Link to="/"><img className='logo' src={Logo} alt="logo" /></Link></span>
+				<Link to="/"><img className='logo' src={Logo} alt="logo" /></Link>
 				<Link to="/search">Search</Link>
 			</span>
 			
@@ -16,7 +16,7 @@ const NavBar = (props) => {
 				? (
 					<span>
 						<span className="account">
-							<span>Hi, {props.currentUser.name}</span>
+							<span className="name">Hi, {props.currentUser.name}</span>
 							<Link to="/profile">Account</Link>
 							<Link to="/logout">Log Out</Link>
 						</span>
