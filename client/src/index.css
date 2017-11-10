@@ -34,15 +34,18 @@ input {
       width: 100%;
     }
 
-    .NavBar a {
+    .NavBar a, .NavBar span {
       color: gray !important;
-      margin-top: 15px;
       margin-bottom: 15px;
       padding: 5px;
     }
 
     .NavBar a:hover {
       color: #048BA8;
+    }
+
+    .standard {
+      float: left;
     }
 
     .account {

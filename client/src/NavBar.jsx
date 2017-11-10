@@ -16,9 +16,9 @@ const NavBar = (props) => {
 				? (
 					<span>
 						<span className="account">
-							<Link to="/profile">My Searches</Link>
-							<Link to="/profile/edit">Account Settings</Link>
-							<Link to="/logout">Log Out, {props.currentUser.name}</Link>
+							<span>Hi, {props.currentUser.name}</span>
+							<Link to="/profile">Account</Link>
+							<Link to="/logout">Log Out</Link>
 						</span>
 						
 					</span>
