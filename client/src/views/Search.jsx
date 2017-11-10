@@ -212,10 +212,6 @@ class Search extends React.Component {
         this.reference = ''
     }
 
-    goBack() {
-        this.props.history.push(`/profile`)
-    }
-
     
 	
 	render() {
@@ -245,7 +241,7 @@ class Search extends React.Component {
                             : <div><h3>{this.state.town}</h3></div>}
                             {!localStorage.search
                                 ? <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button>
-                                : <button onClick={this.goBack.bind(this)} className="button button-outline left-button">Saved Searches</button>}
+                                : <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button" >Back</button>}
                             {/* <button onClick={this.onFormSubmit.bind(this)} className="button button-outline left-button">Go</button> */}
                             {this.props.currentUser
                                 ? <button className="button button-outline middle-button" onClick={this.saveButton.bind(this)}>Save Search</button> 
