@@ -47,7 +47,7 @@ class Home extends React.Component {
 			<div className='Home'>
 				{/* <h1> Move It! </h1> */}
 				<div className="home-background-box">
-					<img className="home-background" src={this.state.currentPhoto} alt="" />
+					<img className="home-background .object-fit_cover" src={this.state.currentPhoto} alt="" />
 					<div className="home-title-box">
 						<div><h2 className="home-title">move it!</h2></div>
 						{/* <div className="home-title"><img src={require('../images/logo-bg.png')} /></div> */}

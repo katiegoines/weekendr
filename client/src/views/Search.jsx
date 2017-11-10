@@ -256,7 +256,7 @@ class Search extends React.Component {
                         return (
                             // <img key={el.id} className="card-img-2" src={el.image_url} alt="" />
                                 <div key={el.id} className="card-2">
-                                    <img className="card-img-2" src={el.image_url} alt="" />
+                                    <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
                                     <div className="card-overlay"> 
                                         <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
                                         <div className="card-info">

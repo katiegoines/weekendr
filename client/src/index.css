@@ -235,12 +235,17 @@ body {
     .card-img-2 {
       width: 250px;
       height: 250px;  
-      max-width: 250px;
-      max-width: 250px;
-      border-radius: 5px;
+      /* max-width: 250px;
+      max-height: 250px; */
+      border-radius: 10px;
+      overflow:hidden;
       margin: 10px;
       position: absolute;
       z-index: 2;
+    }
+
+    .object-fit_cover {
+      object-fit: cover
     }
   
    .card-overlay {
@@ -261,6 +266,21 @@ body {
 
   .body-text {
     font-size: 14px;
+  }
+
+  .card-title {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .card-title a {
+    color: #048BA8;
+  }
+  
+  .card-info {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
   }
 
 
@@ -288,72 +308,4 @@ body {
     }
   }
 
-
-/* OTHER */
-
-/* .background {
-  width: 900px;
-  height: 400px;
-  overflow: hidden;
-  margin: 15px auto;
-  position: relative;
-} */
-
-/* .background-img {
-  margin: 0 auto;
-} */
-
-/* h2 {
-  position: absolute;
-  text-align: center;
-  margin: 100px;
-  font-weight: bold;
-  width:100%;
-} */
-
-.card {
-  width: 300px;
-  height: 410px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  margin: 10px;
-  display: inline-block;
-}
-
-/* .card-img {
-  height: 250px;  
-  max-width: 250px;
-  overflow: hidden;
-  margin: 5px auto;
-} */
-
-.card-img-box {
-  width: 270px;
-  height: 200px;
-  overflow: hidden;
-  margin: 15px auto;
-  position: relative;
-}
-
-.card-img {
-  position: absolute;
-  left: -1000%;
-  right: -1000%;
-  top: -1000%;
-  bottom: -1000%;
-  margin: auto;
-  min-height: 100%;
-  min-width: 100%;
-}
-
-.card-title {
-  text-align: center;
-  font-weight: bold;
-}
-
-.card-info {
-  width: 90%;
-  text-align: center;
-  margin: 0 auto;
-}
 
