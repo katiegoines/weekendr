@@ -24,6 +24,10 @@ Move It! is an app designed to assist people ready for a change of scenery. Want
 
 - React
 
+- React Router
+
+- Axios
+
 - [Milligram CSS framework](https://milligram.io/)
 
 - [Yelp Fusion API](https://www.yelp.com/fusion)
