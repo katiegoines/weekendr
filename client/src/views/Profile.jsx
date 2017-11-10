@@ -27,10 +27,10 @@ class Profile extends React.Component {
         })
     }
 
-    // editButton() {
-    //     console.log(this.state.currentUser)
-    //     this.props.history.push(`/profile/edit`)
-    // }
+    editButton() {
+        console.log(this.state.currentUser)
+        this.props.history.push(`/profile/edit`)
+    }
 
     onRemoveClick(id) {
         // const id = evt
@@ -58,11 +58,10 @@ class Profile extends React.Component {
                 <div className="container">
                 <div className="profile-container">
                 <h2>Saved Searches</h2>
-                {/* <button onClick={this.editButton.bind(this)}>Edit Profile</button> */}
                 {this.state.searches.map((search, i) => {
                     return (
                         <div className="searches" key={search._id}>
-                            <span>{search.search}</span>
+                            <span>{search.town}</span>
                             <button 
                                 className="button button-outline searches-button"
                                 onClick={this.onRemoveClick.bind(this, search._id)}
@@ -75,6 +74,8 @@ class Profile extends React.Component {
                     )
                 })}
                 </div>
+                {<button onClick={this.editButton.bind(this)}>Edit Profile</button>}
+
                 </div>
             </div>
         )

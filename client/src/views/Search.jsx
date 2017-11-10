@@ -288,8 +288,6 @@ class Search extends React.Component {
         if(!localStorage.search) evt.preventDefault()
         this.setState({loading: "true"})
         setTimeout(this.yelpRestaurantSearch.bind(this), 500)
-        // this.yelpSearch()
-        // this.codeAddress()
         this.reference = ''
     }
 

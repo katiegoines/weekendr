@@ -355,13 +355,19 @@ input {
   /* Profile */
 
   .profile-container {
-    width: 255px;
+    width: 700px;
     margin: 100px auto;
+  }
+
+  .profile-container h2 {
+    width: 255px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
 
   .searches {
     height: 50px;
-    width: 400px;
+    width: 600px;
   }
 
   .searches button {
