@@ -207,6 +207,7 @@ class Search extends React.Component {
                     <img className="background-img" src={this.state.photo} alt="" />
                     <h2><span className="town">{this.state.town}</span></h2>
                 </div> */}
+                
                 <div className="search-results">
                     {<div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>}
                     {this.state.yelpRestaurants.list.slice(0, 7).map(el => {

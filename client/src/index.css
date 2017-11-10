@@ -311,7 +311,7 @@ body {
     }
   
    .card-overlay {
-     background: rgba(255,255,255,1);
+     background: rgba(255,255,255,0.7);
      /* border: 3px solid red; */
      width: 250px; 
      height: 250px;
