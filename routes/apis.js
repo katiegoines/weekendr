@@ -58,20 +58,27 @@ apiRoutes.route('/reversegeo')
         var apiUrl = `http://maps.googleapis.com/maps/api/geocode/json?latlng=${req.query.lat},${req.query.lon}&sensor=false`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
-            var city = results.results[0].address_components[2].long_name
-            var state = results.results[0].address_components[4].short_name
-            res.json(city + ', ' + state)
+            var ac2 = results.results[0].address_components[2].long_name
+            var ac3 = results.results[0].address_components[3].short_name
+            var ac4 = results.results[0].address_components[4].short_name
+            var ac5 = results.results[0].address_components[5].short_name
+            res.json(`${ac2}, ${ac3}, ${ac4}, ${ac5}`)
         })
     })
 
 apiRoutes.route('/places')
     .get((req, res) => {
-        var apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${req.query.query}l&location=${req.query.lat},${req.query.lon}&radius=8000&key=${googleID}`
+        var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.lat},${req.query.lon}&radius=500&key=${googleID}`
+        // var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json&location=${req.query.lat},${req.query.lon}&radius=8000&key=${googleID}`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
-            // console.log(results.results[0].photos[0].photo_reference)
-            var photoref = results.results[0].photos[0].photo_reference
+            if(!!results.results[0]) {
+                var photoref = results.results[0].photos[0].photo_reference
             res.json({photoref: photoref, apiKey: googleID})
+            } else {
+                res.json({apiKey: googleID})
+            }
+            
         })
     })
 
