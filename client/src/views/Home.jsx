@@ -63,7 +63,7 @@ class Home extends React.Component {
 						<div className="home-body">
 							<p>Thinking about starting fresh in a brand new city? Before you pack your boxes, set your sights on the right fit. <strong>Let's explore!</strong></p>
 							<ol>
-								<li><em><strong>Search</strong></em> for cities that pique your interest and checkout an overview of what you might find when you get there.</li>
+								<li><em><strong>Search</strong></em> for cities that pique your interest and check out an overview of what you might find when you get there.</li>
 								<li><em><strong>Sign Up</strong></em> for an account so you can save your searches to revisit later.</li>
 							</ol>
 							<div className="home-buttons">
