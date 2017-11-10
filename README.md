@@ -46,11 +46,11 @@ So my approach on this was a little backwards. By the time I settled in an accep
 
 After a day of initial setup, I built out wireframes (see below) and preliminary user stories. These are, admittedly, not my best work, but can be found on [Trello](https://trello.com/b/HsUq1csv/project-4). As I work to improve this project, I will begin by building out comprehensive user stories.
 
-![Homepage Wireframe](https://i.imgur.com/gmr2MXO.png | width=200)
+![Homepage Wireframe](https://i.imgur.com/gmr2MXO.png)
 
-![Search Results Wireframe](https://i.imgur.com/a1cfZLs.png | width: 200)
+![Search Results Wireframe](https://i.imgur.com/a1cfZLs.png)
 
-![Profile Page Wireframe](https://i.imgur.com/IF8IQvs.png | width= 200)
+![Profile Page Wireframe](https://i.imgur.com/IF8IQvs.png)
 
 
 
