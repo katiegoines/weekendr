@@ -7,6 +7,7 @@ class Search extends React.Component {
 
         this.state = {
             loading: false,
+            error: false,
             ready: false,
             address: '',
             yelpRestaurants: {head: "", list: []},
@@ -60,13 +61,18 @@ class Search extends React.Component {
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
-            this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
+            console.log(res.data)
+            if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
+                throw new Error("error")
+            } else {
+                this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
+            }
         })
         .then(() => {
             this.yelpActivitySearch()
         })
         .catch(e => {
-            console.log(e);
+            this.setState({error: true});
         })
     }
 
@@ -236,6 +242,8 @@ class Search extends React.Component {
         localStorage.removeItem('search')
         localStorage.removeItem('town')
         this.setState({
+            error: false,
+            loading: false,
             address: '',
             yelpRestaurants: {head: "", list: []},
             yelpActivities: {head: "", list: []},            
@@ -259,7 +267,7 @@ class Search extends React.Component {
 
 	onFormSubmit(evt) {
         if(!localStorage.search) evt.preventDefault()
-        this.setState({loading: "true"})
+        this.setState({loading: true})
         setTimeout(this.yelpRestaurantSearch.bind(this), 500)
         this.reference = ''
     }
@@ -299,6 +307,12 @@ class Search extends React.Component {
                     ? <div><h3 className="exploring">Exploring...</h3></div>
                     : null
                 }
+
+                {!!this.state.error
+                    ? <div><h3>Coming soon. Please try another location!</h3></div>
+                    : null
+                }
+
                 
                 {!this.state.ready
                 ? null
@@ -323,8 +337,6 @@ class Search extends React.Component {
                             {/* </div> */}
                         </div>
 
-                        
-        
                         <div className="search-results">
                             {<div className="search-category"><h3>{this.state.yelpRestaurants.head}</h3></div>}
                             {this.state.yelpRestaurants.list.slice(0, 7).map(el => {

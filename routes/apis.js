@@ -15,15 +15,23 @@ apiRoutes.route('/yelp')
     .get((req, res) => {
         yelp.accessToken(yelpID, yelpSecret)
         .then(response => {
-            console.log(response)
             const client = yelp.client(response.jsonBody.access_token)
             client.search({
                 term: req.query.term,
                 location: req.query.location
             })
             .then((response) => {
+                // console.log(response.body)
                 var results = response.jsonBody.businesses
                 res.json(results)
+            })
+            .catch(e => {
+                // console.log(e)
+                if(e.name == "RestCallResponseFiltersUnhandledStatusError") {
+                    res.json(e)
+                }
+                
+                // NEED TO FIGURE OUT HOW TO RETURN SOMETHING ELSE IF CAN'T BE FOUND
             })
         });
     })
@@ -51,10 +59,15 @@ apiRoutes.route('/reversegeo')
         var apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${req.query.lat},${req.query.lon}&sensor=false`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
+            // console.log(results.results[0].address_components)
             var ac2 = results.results[0].address_components[2].long_name
             var ac3 = results.results[0].address_components[3].short_name
             var ac4 = results.results[0].address_components[4].short_name
-            var ac5 = results.results[0].address_components[5].short_name
+            if(!!results.results[0].address_components[5]) {
+                var ac5 = results.results[0].address_components[5].short_name
+            } else {
+                var ac5 = ""
+            }
             res.json(`${ac2}, ${ac3}, ${ac4}, ${ac5}`)
         })
     })
