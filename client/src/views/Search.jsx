@@ -267,7 +267,7 @@ class Search extends React.Component {
 
 	onFormSubmit(evt) {
         if(!localStorage.search) evt.preventDefault()
-        this.setState({loading: true})
+        this.setState({loading: true, error: false})
         setTimeout(this.yelpRestaurantSearch.bind(this), 500)
         this.reference = ''
     }
