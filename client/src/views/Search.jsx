@@ -61,7 +61,7 @@ class Search extends React.Component {
     yelpRestaurantSearch() {
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
         .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
