@@ -30,8 +30,6 @@ apiRoutes.route('/yelp')
                 if(e.name == "RestCallResponseFiltersUnhandledStatusError") {
                     res.json(e)
                 }
-                
-                // NEED TO FIGURE OUT HOW TO RETURN SOMETHING ELSE IF CAN'T BE FOUND
             })
         });
     })
