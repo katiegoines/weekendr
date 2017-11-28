@@ -195,12 +195,7 @@ class Search extends React.Component {
                     photo: 'https://tctechcrunch2011.files.wordpress.com/2015/08/clouds.jpg'                                                            // If no photo exists, use this photo of clouds.
                 })
             }
-            console.log(yR.length >= 7)
-            console.log(yS.length >= 7)
-            console.log(yF.length >= 7)
-            console.log(yA.length >= 7)
             if(yR.length >= 7 && yS.length >= 7 && yF.length >= 7 && yA.length >= 7) {                                                                      // Also, if the Yelp searches provided 7 or more results, plot these places on the Google Map
-                console.log("OKAY")
                 this.setState({
                     map: `https://maps.googleapis.com/maps/api/staticmap?
                     center=${this.state.lat},${this.state.lng}
