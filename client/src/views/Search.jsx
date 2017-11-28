@@ -6,30 +6,31 @@ class Search extends React.Component {
         super(props)
 
         this.state = {
-            loading: false,
-            error: false,
-            ready: false,
-            address: '',
-            yelpRestaurants: {head: "", list: []},
-            yelpActivities: {head: "", list: []},            
-            yelpRetail: {head: "", list: []},
-            yelpGyms: {head: "", list: []},
-            lng: '',
-            lat: '',
+            loading: false,                                     // For implementing a "Exploring..." note while data APIs are accessed
+            error: false,                                       // If data from Yelp is unavailable, let user know the location is not available on Move It!
+            ready: false,                                       // If all data has been gathered, populate page
+            address: '',                                        // Query entered into search field
+            yelpRestaurants: {head: "", list: []},              // List populated from yelpRestaurantSearch() - NOTE: will provide 20 listings, changing limit had no effect
+            yelpActivities: {head: "", list: []},               // List populated from yelpActivitySearch() - NOTE: will provide 20 listings, changing limit had no effect       
+            yelpRetail: {head: "", list: []},                   // List populated from yelpRetailSearch() - NOTE: will provide 20 listings, changing limit had no effect
+            yelpGyms: {head: "", list: []},                     // List populated from yelpGymSearch() - NOTE: will provide 20 listings, changing limit had no effect
+            lng: '',                                            // Longitude from Google Geocode request
+            lat: '',                                            // Latitude from Google Geocode request
             walkscore: {
-                head: '',
-                walkscore: null,
-                description: '',
+                head: '',                                       // Heading to be populated once request is made so that it doesn't show on page until the query has been made
+                walkscore: null, 
+                description: '', 
                 logo_url: '',
                 moreinfo: ''
             },
-            photoref:'',
-            photo: '',
-            map: '',
-            town: ''
+            photoref:'',                                        // From Google Places request
+            photo: '',                                          // URL
+            map: '',                                            // From Google Static Maps request 
+            town: ''                                            // From Google Reverse Geo
         }
     }
 
+    // When the component mounts, 
     componentWillMount() {
         if(!!localStorage.search) {
             this.setState({
