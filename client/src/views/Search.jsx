@@ -30,108 +30,122 @@ class Search extends React.Component {
         }
     }
 
-    // When the component mounts, 
-    componentWillMount() {
-        if(!!localStorage.search) {
+    // Before the component mounts:
+    componentWillMount() {                                       
+        if(!!localStorage.search) {                             // If there is something set to localStorage.search (if you clicked a saved search within your account), set the address and town to the data saved in localStorage
             this.setState({
                 address: localStorage.search,
                 town: localStorage.town
             })
         }
     }
-
-    componentDidMount() {
-        if(!!localStorage.search) {
+    
+    // When the component mounts:
+    componentDidMount() {                                       
+        if(!!localStorage.search) {                             // If there is something set to localStorage.search, run onFormSubmit()
             this.onFormSubmit()
-            
         }
     }
-    
-    componentWillUnmount() {
-        localStorage.removeItem('search')
-        localStorage.removeItem('town')
-    }
 
-
-	onInputChange(evt) {
-		this.setState({
+    // When text is typed into the search bar:
+    onInputChange(evt) {                                         
+		this.setState({                                         // Set the state to the text in the search bar
 			address: evt.target.value
 		})
     }
 
+    // When the search form is submitted:
+    onFormSubmit(evt) {
+        if(!localStorage.search) evt.preventDefault()           // If localStorage.search is empty, don't reload the page
+        this.setState({loading: true, error: false})            // Set the this.state.loading to true so that the "Exploring" message appears, and set the this.state.error to false so the "Coming soon..." message does not appear
+        this.yelpRestaurantSearch()                             // Run yelpRestaurantSearch()
+        // setTimeout(this.yelpRestaurantSearch.bind(this), 500) 
+        // this.reference = ''  DONT THINK I NEED THIS                                           
+    }
+    
+    // Get Yelp results for a query
     yelpRestaurantSearch() {
-        axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})
-        .then((res) => {
+        axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.state.address}`})     // Run an axios request to the Yelp API for "restaurants" with the location set to whatever was typed in the search bar
+        .then((res) => { 
             // console.log(res.data)
-            if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
+            if(res.data.fullType === "rest-call.response-filters.unhandled-status") {                       // Then, if there is an error, throw an error
                 throw new Error("error")
             } else {
-                this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})
+                this.setState({yelpRestaurants: {list: res.data, head: "Restaurants"}})                     // If there is not an error, store the restaurant data in the state to be rendered
             }
         })
         .then(() => {
-            this.yelpActivitySearch()
+            this.yelpActivitySearch()                                                                       // Then, run yelpActivitySearch(), yelpRetailSearch(), and yelpGymSearch(), this.codeAddress() - these run after yelpRestaurantSearch() so that if the error is caught, the process ends.
+            this.yelpRetailSearch()
+            this.yelpGymSearch()
+            this.codeAddress()
         })
         .catch(e => {
-            this.setState({error: true});
+            this.setState({error: true});                                                                   // If there's an error, set this.state.error to true, so the "Coming soon..." message appears
         })
     }
 
+    // Get Yelp results for a query
     yelpActivitySearch() {
-        axios({method: 'get', url: `/api/search/yelp?term=activity&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=activity&location=${this.state.address}`})        // Run an axios request to the Yelp API for "activity" with the location set to whatever was typed in the search bar
         .then((res) => {
             this.setState({yelpActivities: {list: res.data, head: "Activities"}})
         })
-        .then(() => {
-            this.yelpRetailSearch()
-        })
+        // .then(() => {
+        //     this.yelpRetailSearch()
+        // })
         .catch(e => {
             console.log(e);
         })
     }
 
+    // Get Yelp results for a query
     yelpRetailSearch() {
-        axios({method: 'get', url: `/api/search/yelp?term=shopping&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=shopping&location=${this.state.address}`})        // Run an axios request to the Yelp API for "shopping" with the location set to whatever was typed in the search bar
         .then((res) => {
             this.setState({yelpRetail: {list: res.data, head: "Shopping"}})
         })
-        .then(() => {
-            this.yelpGymSearch()
-        })
+        // .then(() => {
+        //     this.yelpGymSearch()
+        // })
         .catch(e => {
             console.log(e);
         })
     }
 
+    // Get Yelp results for a query
     yelpGymSearch() {
-        axios({method: 'get', url: `/api/search/yelp?term=fitness&location=${this.state.address}`})
+        axios({method: 'get', url: `/api/search/yelp?term=fitness&location=${this.state.address}`})        // Run an axios request to the Yelp API for "fitness" with the location set to whatever was typed in the search bar
         .then((res) => {
             this.setState({yelpGyms: {list: res.data, head: "Fitness"}})
         })
-        .then(() => {
-            this.codeAddress()   
-        })
+        // .then(() => {
+        //     this.codeAddress()   
+        // })
         .catch(e => {
             console.log(e);
         })
     }
 
-    
+    // Get Google longitude and latitude for search query put in search field
     codeAddress() {
         var addr = this.state.address
         axios({method: 'get', url: `api/search/google?address=${addr}`})
         .then((res) => {
             // console.log(res.data)
-            this.setState({
+            this.setState({                                                     // Then store the longitude and latitude in state
                     lng: res.data.results[0].geometry.location.lng, 
                     lat: res.data.results[0].geometry.location.lat
             })
         })
-        .then((res) => {
+        .then((res) => {                                                        // Then run walkScoreSearch(), reverseGeo(), and placesSearch()
             this.walkScoreSearch()
+            this.reverseGeo()
+            this.placesSearch()
         })
     }
 
+    // Get the WalkScore using query typed in search field, longitude/latituded provided from Google Geocode
     walkScoreSearch() {
         var addr = this.state.address
         var lat = this.state.lat
@@ -148,41 +162,40 @@ class Search extends React.Component {
                 }
             })
         })
-        .then((res) => {
-            this.reverseGeo()
-        })
     }
 
+    // Get location name using longitude/latitude provided from Google Geocode
     reverseGeo() {
         var lat = this.state.lat
         var lng = this.state.lng
         axios({method: 'get', url: `api/search/reversegeo?lat=${lat}&lon=${lng}`})
         .then((res) => {
             this.setState({town: res.data})
-            this.placesSearch()
+            // this.placesSearch()
         })
     }
 
+    // Get photo of place using longitude/latitude
     placesSearch() {
         var lat = this.state.lat
         var lng = this.state.lng
         axios({method: 'get', url: `api/search/places?lat=${lat}&lon=${lng}`})
         .then((res) => {
-            this.reference = res.data.photoref
+            this.reference = res.data.photoref                                      // Set photo reference to data recieved from axious call to Google Places
             var yR = this.state.yelpRestaurants.list
             var yS = this.state.yelpRetail.list
             var yF = this.state.yelpGyms.list
             var yA = this.state.yelpActivities.list
             if(!!this.reference) {
                 this.setState({
-                    photo: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photoreference=${this.reference}&key=${res.data.apiKey}`
+                    photo: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photoreference=${this.reference}&key=${res.data.apiKey}`      // Use photo reference to get photo of location from Google Places
                 })         
             } else {
                 this.setState({
-                    photo: 'https://tctechcrunch2011.files.wordpress.com/2015/08/clouds.jpg'
+                    photo: 'https://tctechcrunch2011.files.wordpress.com/2015/08/clouds.jpg'                                                            // If no photo exists, use this photo of clouds.
                 })
             }
-            if(yR.length > 7 && yS.length > 7 && yF.length > 7 && yA.length > 7) {
+            if(yR.length >= 7 && yS.length >= 7 && yF.length >= 7 && yA.length >= 7) {                                                                  // Also, if the Yelp searches provided 7 or more results, plot these places on the Google Map
                 this.setState({
                     map: `https://maps.googleapis.com/maps/api/staticmap?
                     center=${this.state.lat},${this.state.lng}
@@ -225,12 +238,19 @@ class Search extends React.Component {
                     &key=${res.data.apiKey}`})   
             }           
         })
-        .then(() => {
-            this.setState({loading: false})
-            this.setState({ready: true})
+        .then(() => {                                                                                       
+            this.setState({loading: false})                         // Then set the loading to false so that the "Exploring..." message goes away
+            this.setState({ready: true})                            // And set the ready to true so that the results populate on the page
         })
     }
+
+    // Before the component unmounts: 
+    componentWillUnmount() {
+        localStorage.removeItem('search')                           // Remove search and town from localStorage
+        localStorage.removeItem('town')
+    }
     
+    // To save a search to your account
     saveButton() {
         const id = this.props.currentUser._id
         axios({method: 'post', url: `/api/users/${id}/searches`, data: {address: this.state.address, town: this.state.town}})
@@ -239,6 +259,7 @@ class Search extends React.Component {
         })
     }
 
+    // To clear search results to create a new search
     newSearch() {
         localStorage.removeItem('search')
         localStorage.removeItem('town')
@@ -264,13 +285,6 @@ class Search extends React.Component {
             map: '',
             town: ''
         })
-    }
-
-	onFormSubmit(evt) {
-        if(!localStorage.search) evt.preventDefault()
-        this.setState({loading: true, error: false})
-        setTimeout(this.yelpRestaurantSearch.bind(this), 500)
-        this.reference = ''
     }
 	
 	render() {
