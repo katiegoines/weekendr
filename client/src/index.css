@@ -319,13 +319,13 @@
     }
 
     .search-results {
-      width: 1350px;
+      max-width: 1350px;
       margin: 30px auto;
     }
 
     .search-category {
       width: 250px;
-      height: 250px;
+      max-height: 250px;
       margin: 10px;
       padding-top: 100px;
       display: inline-block;

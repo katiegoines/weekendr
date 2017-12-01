@@ -21,7 +21,7 @@ class YelpRestaurants extends React.Component {
     }
     
     componentWillReceiveProps() {
-        console.log("Props")
+        console.log('props: ' + this.props.showResults)
         if(this.props.showResults) {
             this.setState({results:{yelpRestaurants:{head:'', list: []}}})
         }
@@ -49,9 +49,12 @@ class YelpRestaurants extends React.Component {
 	render() {
         return (
             <div className="search-results">
-                <div className="search-category">
+                {this.state.results.yelpRestaurants.head !== ''
+                ? (<div className="search-category">
                     <h3>{this.state.results.yelpRestaurants.head}</h3>
-                </div>
+                </div>)
+                : null}
+                
                 {this.state.results.yelpRestaurants.list.slice(0, 7).map(el => {
                     return (
                         <div key={el.id} className="card-2">
