@@ -15,14 +15,19 @@ class YelpRestaurants extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.run === true) {
+        if(this.props.run) {
           this.yelpRestaurantRequest()  
+        } 
+    }
+    
+    componentWillReceiveProps() {
+        console.log("Props")
+        if(this.props.showResults) {
+            this.setState({results:{yelpRestaurants:{head:'', list: []}}})
         }
-        console.log(this.props)
     }
 
     yelpRestaurantRequest() {
-        // console.log(this.props.search)
         axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.props.search}`})                                                 // Run an axios request to the Yelp API for "restaurants" with the location set to whatever was typed in the search bar
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {                                                                   // Then, if there is an error, throw an error
@@ -35,12 +40,6 @@ class YelpRestaurants extends React.Component {
                     }
                 }})                                                                                          // If there is not an error, store the restaurant data in the state to be rendered
             }
-        })
-        .then((res) => {
-            console.log(this.state.yelpRestaurants)
-            const results = this.state.results.yelpRestaurants
-            const yrResults = this.props.yrResults
-            yrResults(results)
         })
         .catch(e => {
             this.setState({error: true});                                                                                                               // If there's an error, set this.state.error to true, so the "Coming soon..." message appears
@@ -78,6 +77,7 @@ class YelpRestaurants extends React.Component {
                         </div>
                     )
                 })}
+                
             </div>
             
             

@@ -11,7 +11,7 @@ class Search extends React.Component {
         super(props)
 
         this.state = {
-            clearAll: false,
+            showResults: true,
             run: false,
             loading: false, 
             error: false,
@@ -25,9 +25,6 @@ class Search extends React.Component {
                 shopping: false,
                 activities: false,
             },
-            results: {
-                yelpRestaurants: {active: false, head: "", list: []}
-            }
         }
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onNewSearch = this.onNewSearch.bind(this)
@@ -40,7 +37,7 @@ class Search extends React.Component {
     }
 
     onNewSearch() {
-        this.setState({search: '', clearAll: true})
+        this.setState({search: '', showResults: false})
     }
 
     yelpRestaurantResults(returnedResults) {
@@ -59,11 +56,18 @@ class Search extends React.Component {
                 <div className="form">
                     <SearchForm {...this.props} onSubmit={this.onFormSubmit} onNewSearch={this.onNewSearch} />
                 </div>
-                {this.state.run && !this.state.clearAll
+
+                {this.state.showResults
+                ? <h1>SHOW RESULTS</h1>
+                : <h1>CLEAR RESULTS</h1>
+                }
+
+                {this.state.run
                 ? (<div className="results">
-                    <YelpRestaurants {...this.props} clearAll={this.state.clearAll} yrResultsCP={this.yelpRestaurantResults} yrResultsPC={this.state.results.yelpRestaurants} run={this.state.run} search={this.state.search} />
+                    <YelpRestaurants {...this.props} showResults={this.state.showResults} yrResultsCP={this.yelpRestaurantResults} run={this.state.run} search={this.state.search} />
                 </div>)
-                : null}
+                : null
+                }
                 
                 
                 <div className="page-end">

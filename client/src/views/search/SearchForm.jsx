@@ -7,6 +7,7 @@ class SearchForm extends React.Component {
         super(props)
 
         this.state = {
+            showResults: false,
             submitted: false,
             input: '',
             search: ''
@@ -32,7 +33,10 @@ class SearchForm extends React.Component {
     }
 
     newSearch() {
-        this.setState({submitted: false, clearAll: true, search: '', input: ''})
+        console.log("SearchForm")
+        this.setState({submitted: false, showResults: true, search: '', input: ''})
+        const {onNewSearch} = this.props
+        onNewSearch(this.state.showResults)
     }
 
 	render() {
