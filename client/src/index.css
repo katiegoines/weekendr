@@ -265,6 +265,14 @@
       padding: 0;
     }
 
+    .checkbox {
+      margin: 15px;
+    }
+
+   label {
+      font-size: 10px !important;
+    }
+
     .left-button {
       margin-right: 10px;
       width: 126px;

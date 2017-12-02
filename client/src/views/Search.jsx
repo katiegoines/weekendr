@@ -1,12 +1,7 @@
 import React from 'react'
-// import axios from 'axios'
-// import { Route } from 'react-router-dom'
 import SearchForm from './search/SearchForm'
 import YelpRestaurants from './search/YelpRestaurants'
 import YelpShopping from './search/YelpShopping'
-
-
-
 
 class Search extends React.Component {
     constructor(props) {
@@ -26,6 +21,8 @@ class Search extends React.Component {
                 restaurants: true,
                 shopping: true,
             },
+            startDate: '',
+            endDate: ''
         }
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onNewSearch = this.onNewSearch.bind(this)
@@ -40,8 +37,7 @@ class Search extends React.Component {
     }
 
     onFormSubmit(forsubmit) {
-        // console.log(forsubmit.active)
-        this.setState({run: true, search: forsubmit.search, active: forsubmit.active})
+        this.setState({run: true, search: forsubmit.search, startDate: forsubmit.startDate, endDate: forsubmit.endDate, active: forsubmit.active})
     }
 
     onNewSearch() {

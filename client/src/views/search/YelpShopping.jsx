@@ -22,16 +22,15 @@ class YelpShopping extends React.Component {
     }
     
     componentWillReceiveProps() {
-        console.log('props: ' + this.props.showResults)
         if(this.props.showResults) {
             this.setState({results:{yelpShopping:{head:'', list: []}}})
         }
     }
 
     yelpShoppingRequest() {
-        axios({method: 'get', url: `/api/search/yelp?term=shopping&location=${this.props.search}`})                                                 // Run an axios request to the Yelp API for "restaurants" with the location set to whatever was typed in the search bar
+        axios({method: 'get', url: `/api/search/yelp?term=shopping&location=${this.props.search}`})
         .then((res) => { 
-            if(res.data.fullType === "rest-call.response-filters.unhandled-status") {                                                                   // Then, if there is an error, throw an error
+            if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
                 this.setState({results: {
@@ -39,14 +38,14 @@ class YelpShopping extends React.Component {
                         list: res.data, 
                         head: "Shopping"
                     }
-                }})                                                                                          // If there is not an error, store the restaurant data in the state to be rendered
+                }})
             }
         })
         .then(res => {
             this.randomizeColor()
         })
         .catch(e => {
-            this.setState({error: true});                                                                                                               // If there's an error, set this.state.error to true, so the "Coming soon..." message appears
+            this.setState({error: true});
         })
     }
 
@@ -98,11 +97,7 @@ class YelpShopping extends React.Component {
                     </div>
                 </span>)
                 }
-                        
-                
             </span>
-            
-            
         )
     }
 }
