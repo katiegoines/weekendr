@@ -2,41 +2,41 @@ import React from 'react'
 import axios from 'axios'
 
 
-class YelpRestaurants extends React.Component {
+class YelpShopping extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
             ready: false,
             results: {
-                yelpRestaurants: {head: "", list: []}
+                yelpShopping: {head: "", list: []}
             }
         }        
     }
 
     componentDidMount() {
         if(this.props.showResults) {
-          this.yelpRestaurantRequest()  
+          this.yelpShoppingRequest()  
         } 
     }
     
     componentWillReceiveProps() {
         console.log('props: ' + this.props.showResults)
         if(this.props.showResults) {
-            this.setState({results:{yelpRestaurants:{head:'', list: []}}})
+            this.setState({results:{yelpShopping:{head:'', list: []}}})
         }
     }
 
-    yelpRestaurantRequest() {
-        axios({method: 'get', url: `/api/search/yelp?term=restaurants&location=${this.props.search}`})                                                 // Run an axios request to the Yelp API for "restaurants" with the location set to whatever was typed in the search bar
+    yelpShoppingRequest() {
+        axios({method: 'get', url: `/api/search/yelp?term=shopping&location=${this.props.search}`})                                                 // Run an axios request to the Yelp API for "restaurants" with the location set to whatever was typed in the search bar
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {                                                                   // Then, if there is an error, throw an error
                 throw new Error("error")
             } else {
                 this.setState({results: {
-                    yelpRestaurants: {
+                    yelpShopping: {
                         list: res.data, 
-                        head: "Restaurants"
+                        head: "Shopping"
                     }
                 }})                                                                                          // If there is not an error, store the restaurant data in the state to be rendered
             }
@@ -49,13 +49,13 @@ class YelpRestaurants extends React.Component {
 	render() {
         return (
             <span className="search-results">
-                {this.state.results.yelpRestaurants.head !== ''
+                {this.state.results.yelpShopping.head !== ''
                 ? (<div className="search-category">
-                    <h3>{this.state.results.yelpRestaurants.head}</h3>
+                    <h3>{this.state.results.yelpShopping.head}</h3>
                 </div>)
                 : null}
                 
-                {this.state.results.yelpRestaurants.list.slice(0, 7).map(el => {
+                {this.state.results.yelpShopping.list.slice(0, 7).map(el => {
                     return (
                         <div key={el.id} className="card-2">
                             <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
@@ -88,4 +88,4 @@ class YelpRestaurants extends React.Component {
     }
 }
 
-export default YelpRestaurants
+export default YelpShopping

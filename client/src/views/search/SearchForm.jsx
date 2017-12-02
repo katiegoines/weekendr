@@ -10,44 +10,61 @@ class SearchForm extends React.Component {
             showResults: false,
             submitted: false,
             input: '',
-            search: '',
-            active: {
-                restaurants: false
+            
+            forsubmit: {
+                active: {
+                    restaurants: true,
+                    shopping: true
+                },
+                search: ''  
             }
+            
         }
 
         this.submitSearchTerm = this.submitSearchTerm.bind(this)
         this.newSearch = this.newSearch.bind(this)
     }
 
+    componentDidMount() {
+        // console.log('restaurant: ' + this.state.forsubmit.active.restaurants + " -- shopping: " + this.state.forsubmit.active.shopping)
+        // console.log(this.state.forsubmit)
+    }
+
     onInputChange(evt) {  
-        // console.log(evt.target)                                       
-		this.setState({                                                                                                                                 // Set the state to the text in the search bar
-            search: evt.target.value
-        })
+        // console.log(evt.target)  
+        this.setState({forsubmit: {search: evt.target.value, active: {restaurants: this.state.forsubmit.active.restaurants, shopping: this.state.forsubmit.active.shopping}}})
+        // console.log(this.state.forsubmit)
+        
     }
 
-    checkbox() {
-        this.setState({active: {restaurants: !this.state.active.restaurants}})
-        const { onCheckbox } = this.props
-        onCheckbox(this.state.active)
-        // console.log(this.state.active)
+    checkboxRestaurant(evt) {
+        var toggle = !this.state.forsubmit.active.restaurants
+        console.log(toggle)
+        this.setState({forsubmit: {active: {restaurants: toggle, shopping: this.state.forsubmit.active.shopping}}})
+        
+        // console.log('clicked restaurant| ' + 'restaurant: ' + this.state.forsubmit.active.restaurants + " -- shopping: " + this.state.forsubmit.active.shopping)
     }
 
-    submitSearchTerm(evt, otherStuff) {
+    checkboxShopping() {
+        var toggle = !this.state.forsubmit.active.shopping
+        console.log(toggle)
+        this.setState({forsubmit: {active: {shopping: toggle, restaurants: this.state.forsubmit.active.restaurants}}})
+        console.log('clicked shopping| restaurant: ' + this.state.forsubmit.active.restaurants + " -- shopping: " + this.state.forsubmit.active.shopping)
+    }
+
+    submitSearchTerm(evt) {
+        
         evt.preventDefault()
         this.setState({submitted: true})
         const { onSubmit } = this.props
-        onSubmit(this.state.search)
-
-        const { onCheckbox } = this.props
-        onCheckbox(this.state.active)
-        // console.log(this.state.active)
+        onSubmit(this.state.forsubmit)
+        
+        // console.log(this.state.forsubmit)
     }
 
     newSearch() {
         // console.log("SearchForm")
-        this.setState({submitted: false, showResults: true, search: '', input: '', active: {restaurants: false}})
+        this.setState({submitted: false, showResults: true, input: '', forsubmit: {search: '', active: {restaurants: true, shopping: true}}})
         const {onNewSearch} = this.props
         onNewSearch(this.state.showResults)
     }
@@ -60,15 +77,21 @@ class SearchForm extends React.Component {
                 {this.state.submitted === false
                  ? (<div>
                         <form  onSubmit={this.submitSearchTerm.bind(this)} >
-                            <input onChange={this.onInputChange.bind(this)} type="text" placeholder="Address or City, State, Zip" name="address" value={this.state.search} />
-                            <input type="checkbox" id="restaurants" value="restaurants" onClick={this.checkbox.bind(this)} />
+                            <input onChange={this.onInputChange.bind(this)} type="text" placeholder="Address or City, State, Zip" name="address" value={this.state.forsubmit.search} />
+
+                            <input type="checkbox" id="restaurants" name="restaurants" value='' onChange={this.checkboxRestaurant.bind(this)} defaultChecked />
                             <label className="label-inline" htmlFor="restaurants">Restaurants</label>
+
+                            <br />< br />
+                            
+                            <input type="checkbox" id="shopping" name="shopping" value='' onChange={this.checkboxShopping.bind(this)} defaultChecked />
+                            <label className="label-inline" htmlFor="shopping">Shopping</label>
 
                         </form>
                         <button onClick={this.submitSearchTerm.bind(this)} className="button button-outline left-button">Go</button>
                     </div>)
                   : <div>
-                        <h2 className="search-heading">{this.state.search}</h2>
+                        <h2 className="search-heading">{this.state.forsubmit.search}</h2>
                         <button className="button button-outline right-button" onClick={this.newSearch.bind(this)}>New Search</button>
                     </div>
              
