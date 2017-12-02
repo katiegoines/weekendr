@@ -1,6 +1,9 @@
 import React from 'react'
 import SearchForm from './search/SearchForm'
-import YelpRestaurants from './search/YelpRestaurants'
+// import YelpRestaurants from './search/YelpRestaurants'
+import Brunch from './search/Brunch'
+import Lunch from './search/Lunch'
+import Dinner from './search/Dinner'
 import YelpShopping from './search/YelpShopping'
 
 class Search extends React.Component {
@@ -18,7 +21,9 @@ class Search extends React.Component {
             lat: '',
             lon: '',
             active: {
-                restaurants: true,
+                brunch: true,
+                lunch: true,
+                dinner: true,
                 shopping: true,
             },
             startDate: '',
@@ -29,7 +34,7 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
-        // console.log(this.state)
+        console.log(this.state)
     }
 
     componentDidUpdate() {
@@ -55,9 +60,23 @@ class Search extends React.Component {
                     <SearchForm {...this.props} onCheckbox={this.onCheckbox} onSubmit={this.onFormSubmit} onNewSearch={this.onNewSearch} />
                 </div>
 
-                {!!this.state.run && !!this.state.active.restaurants
+                {!!this.state.run && !!this.state.active.brunch
                 ? (<span className="results">
-                    <YelpRestaurants {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
+                    <Brunch {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
+                </span>)
+                : null
+                }
+
+                {!!this.state.run && !!this.state.active.lunch
+                ? (<span className="results">
+                    <Lunch {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
+                </span>)
+                : null
+                }
+
+                {!!this.state.run && !!this.state.active.dinner
+                ? (<span className="results">
+                    <Dinner {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
                 </span>)
                 : null
                 }

@@ -14,7 +14,9 @@ class SearchForm extends React.Component {
                 startDate: '', 
                 endDate: '',
                 active: {
-                    restaurants: true,
+                    brunch: true,
+                    lunch: true,
+                    dinner: true,
                     shopping: true
                 }
             }
@@ -33,7 +35,12 @@ class SearchForm extends React.Component {
             forsubmit: {
                 search: evt.target.value, 
                 startDate: fs.startDate,
-                active: {restaurants: fs.active.restaurants, shopping: fs.active.shopping}
+                active: {
+                    brunch: fs.active.brunch, 
+                    lunch: fs.active.lunch, 
+                    dinner: fs.active.dinner,
+                    shopping: fs.active.shopping
+                }
             }
         })        
     }
@@ -45,7 +52,12 @@ class SearchForm extends React.Component {
                 search: fs.search, 
                 startDate: evt.target.value, 
                 endDate: fs.endDate, 
-                active: {restaurants: fs.active.restaurants, shopping: fs.active.shopping}
+                active: {
+                    brunch: fs.active.brunch, 
+                    lunch: fs.active.lunch, 
+                    dinner: fs.active.dinner,
+                    shopping: fs.active.shopping
+                }
             }
         })        
     }
@@ -57,19 +69,74 @@ class SearchForm extends React.Component {
                 search: fs.search, 
                 startDate: fs.startDate, 
                 endDate: evt.target.value, 
-                active: {restaurants: fs.active.restaurants, shopping: fs.active.shopping}
+                active: {
+                    brunch: fs.active.brunch, 
+                    lunch: fs.active.lunch, 
+                    dinner: fs.active.dinner,
+                    shopping: fs.active.shopping
+                }
             }
         })        
     }
 
-    checkboxRestaurant(evt) {
-        var toggle = !this.state.forsubmit.active.restaurants
-        this.setState({forsubmit: {active: {restaurants: toggle, shopping: this.state.forsubmit.active.shopping}}})
+    checkboxBrunch(evt) {
+        const a = this.state.forsubmit.active 
+        var toggle = !a.brunch
+        this.setState({
+            forsubmit: {
+                active: {
+                    brunch: toggle, 
+                    lunch: a.lunch, 
+                    dinner: a.dinner,
+                    shopping: a.shopping
+                }
+            }
+        })
+    }
+
+    checkboxLunch(evt) {
+        const a = this.state.forsubmit.active  
+        var toggle = !a.lunch
+        this.setState({
+            forsubmit: {
+                active: {
+                    brunch: a.brunch, 
+                    lunch: toggle, 
+                    dinner: a.dinner,
+                    shopping: a.shopping
+                }
+            }
+        })
+    }
+
+    checkboxDinner(evt) {
+        const a = this.state.forsubmit.active  
+        var toggle = !a.dinner
+        this.setState({
+            forsubmit: {
+                active: {
+                    brunch: a.brunch, 
+                    lunch: a.lunch, 
+                    dinner: toggle,
+                    shopping: a.shopping
+                }
+            }
+        })
     }
 
     checkboxShopping() {
-        var toggle = !this.state.forsubmit.active.shopping
-        this.setState({forsubmit: {active: {shopping: toggle, restaurants: this.state.forsubmit.active.restaurants}}})
+        const a = this.state.forsubmit.active
+        var toggle = !a.shopping
+        this.setState({
+            forsubmit: {
+                active: {
+                    brunch: a.brunch, 
+                    lunch: a.lunch, 
+                    dinner: a.dinner,
+                    shopping: toggle
+                }
+            }
+        })
     }
 
     submitSearchTerm(evt) {
@@ -80,7 +147,20 @@ class SearchForm extends React.Component {
     }
 
     newSearch() {
-        this.setState({submitted: false, showResults: true, input: '', forsubmit: {search: '', active: {restaurants: true, shopping: true}}})
+        this.setState({
+            submitted: false, 
+            showResults: true, 
+            input: '', 
+            forsubmit: {
+                search: '', 
+                active: {
+                    brunch: true, 
+                    lunch: true, 
+                    dinner: true,
+                    shopping: true
+                }
+            }
+        })
         const {onNewSearch} = this.props
         onNewSearch(this.state.showResults)
     }
@@ -90,57 +170,80 @@ class SearchForm extends React.Component {
             <div className="search-form">
                 {this.state.submitted === false
                  ? (<div>
-                        <form  onSubmit={this.submitSearchTerm.bind(this)} >
-                            <input 
-                                type="text" 
-                                name="address" 
-                                placeholder="Address or City, State, Zip" 
-                                value={this.state.forsubmit.search}
-                                onChange={this.onInputChange.bind(this)}  />
-                            <input 
-                                type="date" 
-                                name="startDate" 
-                                placeholder="Start Date" 
-                                value={this.state.forsubmit.startDate}
-                                onChange={this.onInputChangeStartDate.bind(this)} />
-                            <input 
-                                type="date" 
-                                name="endDate" 
-                                placeholder="End Date" 
-                                value={this.state.forsubmit.endDate}
-                                onChange={this.onInputChangeEndDate.bind(this)} />
-                            <div>
-                                <span className="checkbox">
+                        <div className="form-box">
+                            <form  onSubmit={this.submitSearchTerm.bind(this)} >
+                                <input 
+                                    type="text" 
+                                    name="address" 
+                                    placeholder="Address or City, State, Zip" 
+                                    value={this.state.forsubmit.search}
+                                    onChange={this.onInputChange.bind(this)}  />
+                                <div className="dates">
+                                    <span className="date-label">from</span>
                                     <input 
-                                        type="checkbox" 
-                                        name="restaurants" 
-                                        value='' 
-                                        onChange={this.checkboxRestaurant.bind(this)} 
-                                        defaultChecked />
-                                    <label className="label-inline" htmlFor="restaurants">Restaurants</label>
-                                </span>
-                                <span className="checkbox">
+                                        type="date" 
+                                        name="startDate" 
+                                        value={this.state.forsubmit.startDate}
+                                        onChange={this.onInputChangeStartDate.bind(this)} />
+                                    <span className="date-label">to</span>
                                     <input 
-                                        type="checkbox" 
-                                        name="shopping" 
-                                        value='' 
-                                        onChange={this.checkboxShopping.bind(this)} 
-                                        defaultChecked />
-                                    <label className="label-inline" htmlFor="shopping">Shopping</label>
-                                </span>
-                            </div>
-                            
-
-                        </form>
-                        <button 
-                            onClick={this.submitSearchTerm.bind(this)} 
-                            className="button button-outline left-button">Go
-                        </button>
+                                        type="date" 
+                                        name="endDate" 
+                                        value={this.state.forsubmit.endDate}
+                                        onChange={this.onInputChangeEndDate.bind(this)} />
+                                </div>
+                                
+                                <div>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="brunch" 
+                                            value='' 
+                                            onChange={this.checkboxBrunch.bind(this)} 
+                                            defaultChecked />
+                                        <label className="label-inline" htmlFor="brunch">Brunch</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="lunch" 
+                                            value='' 
+                                            onChange={this.checkboxLunch.bind(this)} 
+                                            defaultChecked />
+                                        <label className="label-inline" htmlFor="lunch">Lunch</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="dinner" 
+                                            value='' 
+                                            onChange={this.checkboxDinner.bind(this)} 
+                                            defaultChecked />
+                                        <label className="label-inline" htmlFor="dinner">Dinner</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="shopping" 
+                                            value='' 
+                                            onChange={this.checkboxShopping.bind(this)} 
+                                            defaultChecked />
+                                        <label className="label-inline" htmlFor="shopping">Shopping</label>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                            <button 
+                                onClick={this.submitSearchTerm.bind(this)} 
+                                className="button button-outline">Go
+                            </button>
                     </div>)
                   : <div>
-                        <h2 className="search-heading">{this.state.forsubmit.search}</h2>
+                        <div className="form-box">
+                            <h2 className="location-heading">{this.state.forsubmit.search}</h2>
+                        </div>
                         <button 
-                            className="button button-outline right-button" 
+                            className="button button-outline" 
                             onClick={this.newSearch.bind(this)}>New Search
                         </button>
                     </div>

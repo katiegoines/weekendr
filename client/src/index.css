@@ -22,6 +22,7 @@
 
     input {
       font-family: 'Roboto Slab', serif;
+      color: gray;
     }
 
     button {
@@ -248,8 +249,17 @@
       text-align: center;
     }  
 
+    .location-heading {
+      text-align: center;
+    }
+
+    .form-box {
+      width: 500px;
+      height: 150px;
+    }
+
     .search-form {
-      width: 400px;
+      width: 500px;
       margin: 0 auto;
     }
 
@@ -263,6 +273,15 @@
       font-family: 'Roboto Slab', serif;
       text-transform: inherit;
       padding: 0;
+    }
+
+    .dates {
+      width: 430px;
+      margin: 0 auto;
+    }
+
+    .date-label {
+      margin: 5px;
     }
 
     .checkbox {
