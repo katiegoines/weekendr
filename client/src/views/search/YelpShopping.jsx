@@ -8,6 +8,7 @@ class YelpShopping extends React.Component {
 
         this.state = {
             ready: false,
+            color: '',
             results: {
                 yelpShopping: {head: "", list: []}
             }
@@ -41,9 +42,17 @@ class YelpShopping extends React.Component {
                 }})                                                                                          // If there is not an error, store the restaurant data in the state to be rendered
             }
         })
+        .then(res => {
+            this.randomizeColor()
+        })
         .catch(e => {
             this.setState({error: true});                                                                                                               // If there's an error, set this.state.error to true, so the "Coming soon..." message appears
         })
+    }
+
+    randomizeColor() {
+        var x = Math.floor(Math.random() * 3)
+        this.setState({color: x})
     }
 
 	render() {
@@ -59,7 +68,7 @@ class YelpShopping extends React.Component {
                     return (
                         <div key={el.id} className="card-2">
                             <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
-                            <div className="card-overlay"> 
+                            <div className={`card-overlay-${this.state.color}`}> 
                                 <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
                                 <div className="card-info">
                                     <div className="yelp-categories">{el.categories.map((cat, i)=> {

@@ -59,11 +59,6 @@ class Search extends React.Component {
                     <SearchForm {...this.props} onCheckbox={this.onCheckbox} onSubmit={this.onFormSubmit} onNewSearch={this.onNewSearch} />
                 </div>
 
-                {this.state.showResults
-                ? <h1>SHOW RESULTS</h1>
-                : <h1>CLEAR RESULTS</h1>
-                }
-
                 {!!this.state.run && !!this.state.active.restaurants
                 ? (<span className="results">
                     <YelpRestaurants {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />

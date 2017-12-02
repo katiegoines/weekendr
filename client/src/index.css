@@ -359,7 +359,7 @@
       object-fit: cover;
     }
   
-   .card-overlay {
+   /* .card-overlay-0 {
      background: rgba(255,255,255,0.7);
      padding: 30px;
      width: 250px; 
@@ -367,7 +367,51 @@
      margin: 10px;
      position: relative;
      z-index: 1;
+   } */
+
+   .card-overlay-1 {
+     background: #E24E42;
+     border-radius: 10px;
+     padding: 30px;
+     width: 250px; 
+     height: 250px;
+     margin: 10px;
+     position: relative;
+     z-index: 1;
    }
+
+   .card-overlay-2 {
+    background: #E9B000;
+    border-radius: 10px;    
+    padding: 30px;
+    width: 250px; 
+    height: 250px;
+    margin: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-overlay-2 {
+    background: #EB6E80;
+    border-radius: 10px;    
+    padding: 30px;
+    width: 250px; 
+    height: 250px;
+    margin: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-overlay-0 {
+    background: #008F95;
+    border-radius: 10px;    
+    padding: 30px;
+    width: 250px; 
+    height: 250px;
+    margin: 10px;
+    position: relative;
+    z-index: 1;
+  }
 
    .yelp-categories {
     font-size: 10px;

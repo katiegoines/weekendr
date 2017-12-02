@@ -82,7 +82,6 @@ class SearchForm extends React.Component {
                             <input type="checkbox" id="restaurants" name="restaurants" value='' onChange={this.checkboxRestaurant.bind(this)} defaultChecked />
                             <label className="label-inline" htmlFor="restaurants">Restaurants</label>
 
-                            <br />< br />
                             
                             <input type="checkbox" id="shopping" name="shopping" value='' onChange={this.checkboxShopping.bind(this)} defaultChecked />
                             <label className="label-inline" htmlFor="shopping">Shopping</label>
