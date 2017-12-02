@@ -9,6 +9,7 @@ class YelpRestaurants extends React.Component {
         this.state = {
             ready: false,
             color: '',
+            error: false,
             results: {
                 yelpRestaurants: {head: "", list: []}
             }
@@ -58,37 +59,47 @@ class YelpRestaurants extends React.Component {
 	render() {
         return (
             <span className="search-results">
-                {this.state.results.yelpRestaurants.head !== ''
-                ? (<div className="search-category">
-                    <h3>{this.state.results.yelpRestaurants.head}</h3>
-                </div>)
-                : null}
-                
-                {this.state.results.yelpRestaurants.list.slice(0, 7).map(el => {
-                    return (
-                        <div key={el.id} className="card-2">
-                            <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
-                            <div className={`card-overlay-${this.state.color}`}> 
-                                <div className={`card-title-${this.state.color}`}><a href={el.url} target="_blank">{el.name}</a></div>
-                                <div className="card-info">
-                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
-                                        return (
-                                            <span key={i}>{` - ${cat.title} - `}</span>
-                                        )
-                                    })}</div>
-                                    <div className="body-text">
-                                        <div>{el.location.address1}</div>
-                                        <div>{el.location.city}</div>
-                                        <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                        <div>{`Price: ${el.price}`}</div>
-                                        <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                {!this.state.error
+                ? (<span>
+                        {this.state.results.yelpRestaurants.head !== ''
+                        ? (<div className="search-category">
+                            <h3>{this.state.results.yelpRestaurants.head}</h3>
+                        </div>)
+                        : null}
+                        
+                        {this.state.results.yelpRestaurants.list.slice(0, 7).map(el => {
+                            return (
+                                <div key={el.id} className="card-2">
+                                    <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
+                                    <div className={`card-overlay-${this.state.color}`}> 
+                                        <div className={`card-title-${this.state.color}`}><a href={el.url} target="_blank">{el.name}</a></div>
+                                        <div className="card-info">
+                                            <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                                return (
+                                                    <span key={i}>{` - ${cat.title} - `}</span>
+                                                )
+                                            })}</div>
+                                            <div className="body-text">
+                                                <div>{el.location.address1}</div>
+                                                <div>{el.location.city}</div>
+                                                <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                                <div>{`Price: ${el.price}`}</div>
+                                                <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-                                    
                                 </div>
-                            </div>
-                        </div>
-                    )
-                })}
+                            )
+                        })}
+                  </span>)
+                : (<span>
+                    <div className="search-category">
+                        <h3>Restaurants <br /> Coming Soon</h3>
+                    </div>
+                </span>)
+                }
+                        
                 
             </span>
             
