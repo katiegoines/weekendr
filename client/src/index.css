@@ -423,13 +423,25 @@
     font-size: 14px;
   }
 
-  .card-title {
+  .card-title-0, .card-title-1, .card-title-2, .card-title-3 {
     text-align: center;
     font-weight: bold;
   }
 
-  .card-title a {
-    color: #048BA8;
+  .card-title-0 a {
+    color: lime !important;
+  }
+
+  .card-title-1 a {
+    color: purple !important;
+  }
+
+  .card-title-2 a {
+    color: white !important;
+  }
+
+  .card-title-3 a {
+    color: black !important;
   }
   
   .card-info {

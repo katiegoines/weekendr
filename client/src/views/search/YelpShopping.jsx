@@ -69,8 +69,8 @@ class YelpShopping extends React.Component {
                         <div key={el.id} className="card-2">
                             <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
                             <div className={`card-overlay-${this.state.color}`}> 
-                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
-                                <div className="card-info">
+                            <div className={`card-title-${this.state.color}`}><a href={el.url} target="_blank">{el.name}</a></div>
+                            <div className="card-info">
                                     <div className="yelp-categories">{el.categories.map((cat, i)=> {
                                         return (
                                             <span key={i}>{` - ${cat.title} - `}</span>
