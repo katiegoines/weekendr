@@ -86,32 +86,38 @@ class SearchForm extends React.Component {
     }
 
     checkboxBrunch(evt) {
-        const a = this.state.forsubmit.active 
-        var toggle = !a.brunch
+        const fs = this.state.forsubmit
+        var toggle = !fs.active.brunch
         this.setState({
             forsubmit: {
+                search: fs.search, 
+                startDate: fs.startDate, 
+                endDate: fs.endDate, 
                 active: {
                     brunch: toggle, 
-                    lunch: a.lunch, 
-                    dinner: a.dinner,
-                    shopping: a.shopping,
-                    music: a.music
+                    lunch: fs.active.lunch, 
+                    dinner: fs.active.dinner,
+                    shopping: fs.active.shopping,
+                    music: fs.active.music
                 }
             }
         })
     }
 
     checkboxLunch(evt) {
-        const a = this.state.forsubmit.active  
-        var toggle = !a.lunch
+        const fs = this.state.forsubmit 
+        var toggle = !fs.active.lunch
         this.setState({
             forsubmit: {
+                search: fs.search, 
+                startDate: fs.startDate, 
+                endDate: fs.endDate, 
                 active: {
-                    brunch: a.brunch, 
+                    brunch: fs.active.brunch, 
                     lunch: toggle, 
-                    dinner: a.dinner,
-                    shopping: a.shopping,
-                    music: a.music
+                    dinner: fs.active.dinner,
+                    shopping: fs.active.shopping,
+                    music: fs.active.music
                     
                 }
             }
@@ -119,33 +125,39 @@ class SearchForm extends React.Component {
     }
 
     checkboxDinner(evt) {
-        const a = this.state.forsubmit.active  
-        var toggle = !a.dinner
+        const fs = this.state.forsubmit 
+        var toggle = !fs.active.dinner
         this.setState({
             forsubmit: {
+                search: fs.search, 
+                startDate: fs.startDate, 
+                endDate: fs.endDate, 
                 active: {
-                    brunch: a.brunch, 
-                    lunch: a.lunch, 
+                    brunch: fs.active.brunch, 
+                    lunch: fs.active.lunch, 
                     dinner: toggle,
-                    shopping: a.shopping,
-                    music: a.music
+                    shopping: fs.active.shopping,
+                    music: fs.active.music
                     
                 }
             }
         })
     }
 
-    checkboxShopping() {
-        const a = this.state.forsubmit.active
-        var toggle = !a.shopping
+    checkboxShopping(e) {
+        const fs = this.state.forsubmit
+        var toggle = !fs.active.shopping
         this.setState({
             forsubmit: {
+                search: fs.search, 
+                startDate: fs.startDate, 
+                endDate: fs.endDate, 
                 active: {
-                    brunch: a.brunch, 
-                    lunch: a.lunch, 
-                    dinner: a.dinner,
+                    brunch: fs.active.brunch, 
+                    lunch: fs.active.lunch, 
+                    dinner: fs.active.dinner,
                     shopping: toggle,
-                    music: a.music
+                    music: fs.active.music
                     
                 }
             }
@@ -153,15 +165,18 @@ class SearchForm extends React.Component {
     }
 
     checkboxmusic() {
-        const a = this.state.forsubmit.active
-        var toggle = !a.music
+        const fs = this.state.forsubmit
+        var toggle = !fs.active.music
         this.setState({
             forsubmit: {
+                search: fs.search, 
+                startDate: fs.startDate, 
+                endDate: fs.endDate, 
                 active: {
-                    brunch: a.brunch, 
-                    lunch: a.lunch, 
-                    dinner: a.dinner,
-                    shopping: a.shopping,
+                    brunch: fs.active.brunch, 
+                    lunch: fs.active.lunch, 
+                    dinner: fs.active.dinner,
+                    shopping: fs.active.shopping,
                     music: toggle
                     
                 }
