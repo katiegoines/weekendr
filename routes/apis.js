@@ -9,7 +9,7 @@ const
     yelpSecret = process.env.YELP_SECRET,
     walkScoreID = process.env.WALK_SCORE_ID,
     googleID = process.env.GOOGLE_API_KEY,
-    eventfulID=process.env.EVENTFUL_API_KEY
+    eventfulID = process.env.EVENTFUL_API_KEY
 
 
 //Request for all Yelp Searches
@@ -38,9 +38,11 @@ apiRoutes.route('/yelp')
 
 apiRoutes.route('/eventful')
     .get((req, res) => {
-        var apiUrl = `http://api.eventful.com/json/events/search?authentication=${eventfulID}&location=${req.query.search}&date=${req.query.dateRange}`
+        // console.log(req.query.dateRange)
+        var apiUrl = `https://api.eventful.com/json/events/search?app_key=${eventfulID}&location=${req.query.location}&category=${req.query.category}&date=${req.query.dateRange}&within=5`        
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
+            // console.log(results)
             res.json(results)
         })
     })

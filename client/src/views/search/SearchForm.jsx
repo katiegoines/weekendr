@@ -17,7 +17,8 @@ class SearchForm extends React.Component {
                     brunch: true,
                     lunch: true,
                     dinner: true,
-                    shopping: true
+                    shopping: true,
+                    events: true
                 }
             }
         }
@@ -39,7 +40,8 @@ class SearchForm extends React.Component {
                     brunch: fs.active.brunch, 
                     lunch: fs.active.lunch, 
                     dinner: fs.active.dinner,
-                    shopping: fs.active.shopping
+                    shopping: fs.active.shopping,
+                    events: fs.active.events
                 }
             }
         })        
@@ -56,7 +58,9 @@ class SearchForm extends React.Component {
                     brunch: fs.active.brunch, 
                     lunch: fs.active.lunch, 
                     dinner: fs.active.dinner,
-                    shopping: fs.active.shopping
+                    shopping: fs.active.shopping,
+                    events: fs.active.events
+                    
                 }
             }
         })        
@@ -73,7 +77,9 @@ class SearchForm extends React.Component {
                     brunch: fs.active.brunch, 
                     lunch: fs.active.lunch, 
                     dinner: fs.active.dinner,
-                    shopping: fs.active.shopping
+                    shopping: fs.active.shopping,
+                    events: fs.active.events
+                    
                 }
             }
         })        
@@ -88,7 +94,8 @@ class SearchForm extends React.Component {
                     brunch: toggle, 
                     lunch: a.lunch, 
                     dinner: a.dinner,
-                    shopping: a.shopping
+                    shopping: a.shopping,
+                    events: a.events
                 }
             }
         })
@@ -103,7 +110,9 @@ class SearchForm extends React.Component {
                     brunch: a.brunch, 
                     lunch: toggle, 
                     dinner: a.dinner,
-                    shopping: a.shopping
+                    shopping: a.shopping,
+                    events: a.events
+                    
                 }
             }
         })
@@ -118,7 +127,9 @@ class SearchForm extends React.Component {
                     brunch: a.brunch, 
                     lunch: a.lunch, 
                     dinner: toggle,
-                    shopping: a.shopping
+                    shopping: a.shopping,
+                    events: a.events
+                    
                 }
             }
         })
@@ -133,7 +144,26 @@ class SearchForm extends React.Component {
                     brunch: a.brunch, 
                     lunch: a.lunch, 
                     dinner: a.dinner,
-                    shopping: toggle
+                    shopping: toggle,
+                    events: a.events
+                    
+                }
+            }
+        })
+    }
+
+    checkboxEvents() {
+        const a = this.state.forsubmit.active
+        var toggle = !a.events
+        this.setState({
+            forsubmit: {
+                active: {
+                    brunch: a.brunch, 
+                    lunch: a.lunch, 
+                    dinner: a.dinner,
+                    shopping: a.shopping,
+                    events: toggle
+                    
                 }
             }
         })
@@ -157,7 +187,8 @@ class SearchForm extends React.Component {
                     brunch: true, 
                     lunch: true, 
                     dinner: true,
-                    shopping: true
+                    shopping: true,
+                    events: true
                 }
             }
         })
@@ -229,6 +260,15 @@ class SearchForm extends React.Component {
                                             onChange={this.checkboxShopping.bind(this)} 
                                             defaultChecked />
                                         <label className="label-inline" htmlFor="shopping">Shopping</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="events" 
+                                            value='' 
+                                            onChange={this.checkboxEvents.bind(this)} 
+                                            defaultChecked />
+                                        <label className="label-inline" htmlFor="events">Events</label>
                                     </span>
                                 </div>
                             </form>

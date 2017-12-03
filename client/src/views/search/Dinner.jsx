@@ -10,9 +10,7 @@ class Dinner extends React.Component {
             ready: false,
             color: '',
             error: false,
-            results: {
-                dinner: {head: "", list: []}
-            }
+            results: {head: "", list: []}
         }        
     }
 
@@ -24,7 +22,7 @@ class Dinner extends React.Component {
     
     componentWillReceiveProps() {
         if(this.props.showResults) {
-            this.setState({results:{dinner:{head:'', list: []}}})
+            this.setState({results:{head:'', list: []}})
         }
     }
 
@@ -35,10 +33,8 @@ class Dinner extends React.Component {
                 throw new Error("error")
             } else {
                 this.setState({results: {
-                    dinner: {
-                        list: res.data, 
-                        head: "Dinner"
-                    }
+                    list: res.data, 
+                    head: "Dinner"
                 }})
             }
         })
@@ -60,13 +56,13 @@ class Dinner extends React.Component {
             <span className="search-results">
                 {!this.state.error
                 ? (<span>
-                        {this.state.results.dinner.head !== ''
+                        {this.state.results.head !== ''
                         ? (<div className="search-category">
-                            <h3>{this.state.results.dinner.head}</h3>
+                            <h3>{this.state.results.head}</h3>
                         </div>)
                         : null}
                         
-                        {this.state.results.dinner.list.slice(0, 7).map(el => {
+                        {this.state.results.list.slice(0, 7).map(el => {
                             return (
                                 <div key={el.id} className="card-2">
                                     <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />

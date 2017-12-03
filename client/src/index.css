@@ -362,7 +362,7 @@
 
     .card-2 {
       display: inline-block;  
-      overflow:hidden;
+      overflow: hidden;
     }
 
     .card-2:hover>img {

@@ -10,35 +10,31 @@ class Brunch extends React.Component {
             ready: false,
             color: '',
             error: false,
-            results: {
-                brunch: {head: "", list: []}
-            }
+            results: {head: "", list: []}
         }        
     }
 
     componentDidMount() {
         if(this.props.showResults) {
-          this.yelpRequest()  
+          this.request()  
         } 
     }
     
     componentWillReceiveProps() {
         if(this.props.showResults) {
-            this.setState({results:{brunch:{head:'', list: []}}})
+            this.setState({results:{head:'', list: []}})
         }
     }
 
-    yelpRequest() {
+    request() {
         axios({method: 'get', url: `/api/search/yelp?term=brunch&location=${this.props.search}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
                 this.setState({results: {
-                    brunch: {
                         list: res.data, 
                         head: "Brunch"
-                    }
                 }})
             }
         })
@@ -60,13 +56,13 @@ class Brunch extends React.Component {
             <span className="search-results">
                 {!this.state.error
                 ? (<span>
-                        {this.state.results.brunch.head !== ''
+                        {this.state.results.head !== ''
                         ? (<div className="search-category">
-                            <h3>{this.state.results.brunch.head}</h3>
+                            <h3>{this.state.results.head}</h3>
                         </div>)
                         : null}
                         
-                        {this.state.results.brunch.list.slice(0, 7).map(el => {
+                        {this.state.results.list.slice(0, 7).map(el => {
                             return (
                                 <div key={el.id} className="card-2">
                                     <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
