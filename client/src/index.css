@@ -370,7 +370,7 @@
       z-index: 0
     }
 
-    .card-img-2 {
+    .card-img-2, .card-img-events {
       width: 250px;
       height: 250px;  
       /* max-width: 250px;
@@ -380,6 +380,10 @@
       margin: 10px;
       position: absolute;
       z-index: 2;
+    }
+
+    .card-img-events {
+      border: 1px lightgray solid;
     }
 
     .object-fit_cover {
@@ -410,7 +414,7 @@
    .card-overlay-2 {
     background: #E9B000;
     border-radius: 10px;    
-    padding: 30px;
+    padding: 30px 10px;
     width: 250px; 
     height: 250px;
     margin: 10px;

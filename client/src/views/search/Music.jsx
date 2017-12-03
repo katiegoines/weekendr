@@ -85,7 +85,7 @@ class Events extends React.Component {
                             return (
                                 <div key={el.id} className="card-2">
                                     {el.image !==  null
-                                     ? <img className="card-img-2 object-fit_cover" src={el.image.medium.url} alt="" />
+                                     ? <img className="card-img-events object-fit_cover" src={`//d1marr3m5x4iac.cloudfront.net/images/large${el.image.medium.url.substr(45)}`} alt="" />
                                      : null
                                     }
                                     <div className={`card-overlay-${this.state.color}`}> 
