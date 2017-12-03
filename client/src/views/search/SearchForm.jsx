@@ -18,7 +18,7 @@ class SearchForm extends React.Component {
                     lunch: true,
                     dinner: true,
                     shopping: true,
-                    events: true
+                    music: true
                 }
             }
         }
@@ -41,7 +41,7 @@ class SearchForm extends React.Component {
                     lunch: fs.active.lunch, 
                     dinner: fs.active.dinner,
                     shopping: fs.active.shopping,
-                    events: fs.active.events
+                    music: fs.active.music
                 }
             }
         })        
@@ -59,7 +59,7 @@ class SearchForm extends React.Component {
                     lunch: fs.active.lunch, 
                     dinner: fs.active.dinner,
                     shopping: fs.active.shopping,
-                    events: fs.active.events
+                    music: fs.active.music
                     
                 }
             }
@@ -78,7 +78,7 @@ class SearchForm extends React.Component {
                     lunch: fs.active.lunch, 
                     dinner: fs.active.dinner,
                     shopping: fs.active.shopping,
-                    events: fs.active.events
+                    music: fs.active.music
                     
                 }
             }
@@ -95,7 +95,7 @@ class SearchForm extends React.Component {
                     lunch: a.lunch, 
                     dinner: a.dinner,
                     shopping: a.shopping,
-                    events: a.events
+                    music: a.music
                 }
             }
         })
@@ -111,7 +111,7 @@ class SearchForm extends React.Component {
                     lunch: toggle, 
                     dinner: a.dinner,
                     shopping: a.shopping,
-                    events: a.events
+                    music: a.music
                     
                 }
             }
@@ -128,7 +128,7 @@ class SearchForm extends React.Component {
                     lunch: a.lunch, 
                     dinner: toggle,
                     shopping: a.shopping,
-                    events: a.events
+                    music: a.music
                     
                 }
             }
@@ -145,16 +145,16 @@ class SearchForm extends React.Component {
                     lunch: a.lunch, 
                     dinner: a.dinner,
                     shopping: toggle,
-                    events: a.events
+                    music: a.music
                     
                 }
             }
         })
     }
 
-    checkboxEvents() {
+    checkboxmusic() {
         const a = this.state.forsubmit.active
-        var toggle = !a.events
+        var toggle = !a.music
         this.setState({
             forsubmit: {
                 active: {
@@ -162,7 +162,7 @@ class SearchForm extends React.Component {
                     lunch: a.lunch, 
                     dinner: a.dinner,
                     shopping: a.shopping,
-                    events: toggle
+                    music: toggle
                     
                 }
             }
@@ -188,7 +188,7 @@ class SearchForm extends React.Component {
                     lunch: true, 
                     dinner: true,
                     shopping: true,
-                    events: true
+                    music: true
                 }
             }
         })
@@ -264,11 +264,11 @@ class SearchForm extends React.Component {
                                     <span className="checkbox">
                                         <input 
                                             type="checkbox" 
-                                            name="events" 
+                                            name="music" 
                                             value='' 
-                                            onChange={this.checkboxEvents.bind(this)} 
+                                            onChange={this.checkboxmusic.bind(this)} 
                                             defaultChecked />
-                                        <label className="label-inline" htmlFor="events">Events</label>
+                                        <label className="label-inline" htmlFor="music">Music</label>
                                     </span>
                                 </div>
                             </form>

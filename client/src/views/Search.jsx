@@ -5,7 +5,7 @@ import Brunch from './search/Brunch'
 import Lunch from './search/Lunch'
 import Dinner from './search/Dinner'
 import YelpShopping from './search/YelpShopping'
-import Events from './search/Events'
+import Music from './search/Music'
 
 class Search extends React.Component {
     constructor(props) {
@@ -26,6 +26,7 @@ class Search extends React.Component {
                 lunch: true,
                 dinner: true,
                 shopping: true,
+                music: true,
             },
             startDate: '',
             endDate: ''
@@ -89,9 +90,9 @@ class Search extends React.Component {
                 : null
                 }
                 
-                {!!this.state.run && !!this.state.active.events
+                {!!this.state.run && !!this.state.active.music
                 ? (<span className="results">
-                    <Events {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} startDate={this.state.startDate} endDate={this.state.endDate} />
+                    <Music {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} startDate={this.state.startDate} endDate={this.state.endDate} />
                 </span>)
                 : null
                 }

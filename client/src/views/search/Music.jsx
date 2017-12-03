@@ -89,12 +89,21 @@ class Events extends React.Component {
                                      : null
                                     }
                                     <div className={`card-overlay-${this.state.color}`}> 
-                                        <div className={`card-title-${this.state.color}`}><a href={el.url} target="_blank">{el.title.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&")}</a></div>
+                                        <div className={`card-title-${this.state.color}`}>
+                                            <a href={el.url} target="_blank">
+                                                {el.title.length > 45
+                                                ? el.title.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&").substr(0,45) + "..."
+                                                : el.title.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&")
+                                                }
+                                                
+                                            </a>
+                                        </div>
                                         <div className="card-info">
                                             <div className="body-text">
                                                 <div>{el.venue_name.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&")}</div>
                                                 <div>{el.venue_address}</div>
                                                 <div>{el.city_name}</div>
+                                                <br />
                                                 {el.stop_time === null || el.stop_time.substr(0,10) === el.start_time.substr(0,10)
                                                 ? (<span>
                                                         <div><Moment format="ddd MMM D">{el.start_time}</Moment></div>
@@ -103,9 +112,9 @@ class Events extends React.Component {
                                                 : <div>Through <Moment format="ddd MMM D">{el.stop_time}</Moment></div>}
 
                                                 <br />
-                                                {el.description !== null
+                                                {/* {el.description !== null
                                                 ? <div>{el.description.replace(/&#39;/g, "'").replace(/&#38;/g, "&")}</div>
-                                                : null}
+                                                : null} */}
                                             </div>
                                         </div>
                                     </div>
