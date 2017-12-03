@@ -370,7 +370,8 @@
       z-index: 0
     }
 
-    .card-img-2, .card-img-events {
+    .card-img-0, .card-img-1, .card-img-2, .card-img-3 {
+      object-fit: cover;
       width: 250px;
       height: 250px;  
       /* max-width: 250px;
@@ -382,13 +383,39 @@
       z-index: 2;
     }
 
-    .card-img-events {
-      border: 1px lightgray solid;
+    .card-img-1 {
+      border: 2px #E24E42 solid;
     }
+ 
+    .card-img-2 {
+     border: 2px #E9B000 solid;
+   }
+ 
+   .card-img-3 {
+     border: 2px #EB6E80 solid;
+   }
+ 
+   .card-img-0 {
+     border: 2px #008F95 solid;
+   }
 
+    /* .card-img-2, .card-img-events {
+      width: 250px;
+      height: 250px;  
+      border-radius: 10px;
+      overflow:hidden;
+      margin: 10px;
+      position: absolute;
+      z-index: 2;
+    } */
+
+    /* .card-img-events {
+      border: 1px lightgray solid;
+    } */
+/* 
     .object-fit_cover {
       object-fit: cover;
-    }
+    } */
   
    /* .card-overlay-0 {
      background: rgba(255,255,255,0.7);
@@ -400,48 +427,31 @@
      z-index: 1;
    } */
 
+   .card-overlay-0, .card-overlay-1, .card-overlay-2, .card-overlay-3 {
+      border-radius: 10px;
+      padding: 30px;
+      width: 250px; 
+      height: 250px;
+      margin: 10px;
+      position: relative;
+      z-index: 1;
+      color:white;
+   }
+
    .card-overlay-1 {
      background: #E24E42;
-     border-radius: 10px;
-     padding: 30px;
-     width: 250px; 
-     height: 250px;
-     margin: 10px;
-     position: relative;
-     z-index: 1;
    }
 
    .card-overlay-2 {
     background: #E9B000;
-    border-radius: 10px;    
-    padding: 30px 10px;
-    width: 250px; 
-    height: 250px;
-    margin: 10px;
-    position: relative;
-    z-index: 1;
   }
 
-  .card-overlay-2 {
+  .card-overlay-3 {
     background: #EB6E80;
-    border-radius: 10px;    
-    padding: 30px;
-    width: 250px; 
-    height: 250px;
-    margin: 10px;
-    position: relative;
-    z-index: 1;
   }
 
   .card-overlay-0 {
     background: #008F95;
-    border-radius: 10px;    
-    padding: 30px;
-    width: 250px; 
-    height: 250px;
-    margin: 10px;
-    position: relative;
-    z-index: 1;
   }
 
    .yelp-categories {
@@ -454,7 +464,17 @@
     font-size: 14px;
   }
 
-  .card-title-0, .card-title-1, .card-title-2, .card-title-3 {
+  .card-title {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .card-title a {
+    color: white !important;
+  }
+
+
+  /* .card-title-0, .card-title-1, .card-title-2, .card-title-3 {
     text-align: center;
     font-weight: bold;
   }
@@ -473,7 +493,7 @@
 
   .card-title-3 a {
     color: black !important;
-  }
+  } */
   
   .card-info {
     width: 90%;

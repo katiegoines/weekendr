@@ -8,7 +8,6 @@ class SearchForm extends React.Component {
             showResults: false,
             submitted: false,
             input: '',
-            
             forsubmit: {
                 search: '' ,
                 startDate: '', 
@@ -26,24 +25,9 @@ class SearchForm extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.state.forsubmit.brunch)
     }
 
     onInputChange(evt) {  
-        const fs = this.state.forsubmit
-        // this.setState({
-        //     forsubmit: {
-        //         search: evt.target.value, 
-        //         startDate: fs.startDate,
-        //         active: {
-        //             brunch: fs.active.brunch, 
-        //             lunch: fs.active.lunch, 
-        //             dinner: fs.active.dinner,
-        //             shopping: fs.active.shopping,
-        //             music: fs.active.music
-        //         }
-        //     }
-        // }) 
         this.setState({
             forsubmit: {
                 ...this.state.forsubmit,
@@ -51,25 +35,6 @@ class SearchForm extends React.Component {
             }
         }) 
     }
-
-    // onInputChangeStartDate(evt) {  
-    //     const fs = this.state.forsubmit        
-    //     this.setState({
-    //         forsubmit: {
-    //             ...fs,
-    //             [evt.target.name]: evt.target.value
-    //         }
-    //     })        
-    // }
-
-    // onInputChangeEndDate(evt) {  
-    //     this.setState({
-    //         forsubmit: {
-    //             ...this.state.forsubmit,
-    //             [evt.target.name]: evt.target.value
-    //         }
-    //     })        
-    // }
 
     checkbox(evt) {
         if(evt.target.value === "true") {

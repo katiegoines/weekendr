@@ -8,7 +8,6 @@ class YelpShopping extends React.Component {
 
         this.state = {
             ready: false,
-            color: '',
             results: {
                 yelpShopping: {head: "", list: []}
             }
@@ -51,7 +50,7 @@ class YelpShopping extends React.Component {
 
     randomizeColor() {
         var x = Math.floor(Math.random() * 3)
-        this.setState({color: x})
+        return x
     }
 
 	render() {
@@ -68,9 +67,9 @@ class YelpShopping extends React.Component {
                         {this.state.results.yelpShopping.list.slice(0, 7).map(el => {
                             return (
                                 <div key={el.id} className="card-2">
-                                    <img className="card-img-2 object-fit_cover" src={el.image_url} alt="" />
-                                    <div className={`card-overlay-${this.state.color}`}> 
-                                        <div className={`card-title-${this.state.color}`}><a href={el.url} target="_blank">{el.name}</a></div>
+                                    <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
+                                    <div className={`card-overlay-${this.randomizeColor()}`}> 
+                                        <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
                                         <div className="card-info">
                                             <div className="yelp-categories">{el.categories.map((cat, i)=> {
                                                 return (

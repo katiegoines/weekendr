@@ -10,7 +10,6 @@ class Events extends React.Component {
         this.state = {
             dateRange: '',
             search: this.props.search,
-            color: '',
             results: {head: '', list: []}
         }        
     }
@@ -29,8 +28,9 @@ class Events extends React.Component {
     }
 
     request() {
+        console.log(this.props.startDate)
         var dates
-        if(this.props.startDate !== undefined && this.props.endDate !== undefined) {
+        if(this.props.startDate !== "" && this.props.endDate !== "") {
             dates = this.props.startDate.replace(/[^0-9]/g, '') + "00-" + this.props.endDate.replace(/[^0-9]/g, '') + "00"
         } else {
             var today = new Date()
@@ -51,7 +51,7 @@ class Events extends React.Component {
                 console.log(res.data.events.event)
                 this.setState({results: {
                         list: res.data.events.event, 
-                        head: "Music"
+                        head: "Music Events"
                     }
                 })
             }
@@ -66,7 +66,7 @@ class Events extends React.Component {
 
     randomizeColor() {
         var x = Math.floor(Math.random() * 3)
-        this.setState({color: x})
+        return x
     }
 
 
@@ -85,11 +85,11 @@ class Events extends React.Component {
                             return (
                                 <div key={el.id} className="card-2">
                                     {el.image !==  null
-                                     ? <img className="card-img-events object-fit_cover" src={`//d1marr3m5x4iac.cloudfront.net/images/large${el.image.medium.url.substr(45)}`} alt="" />
+                                     ? <img className={`card-img-${this.randomizeColor()}`} src={`//d1marr3m5x4iac.cloudfront.net/images/large${el.image.medium.url.substr(45)}`} alt="" />
                                      : null
                                     }
-                                    <div className={`card-overlay-${this.state.color}`}> 
-                                        <div className={`card-title-${this.state.color}`}>
+                                    <div className={`card-overlay-${this.randomizeColor()}`}> 
+                                        <div className="card-title">
                                             <a href={el.url} target="_blank">
                                                 {el.title.length > 45
                                                 ? el.title.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&").substr(0,45) + "..."
@@ -124,7 +124,7 @@ class Events extends React.Component {
                   </span>)
                 : (<span>
                     <div className="search-category">
-                        <h3>Music <br /> Coming Soon</h3>
+                        <h3>Music Events <br /> Coming Soon</h3>
                     </div>
                 </span>)
                 }
