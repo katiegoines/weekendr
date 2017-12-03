@@ -30,7 +30,7 @@ class Events extends React.Component {
 
     request() {
         var dates
-        if(this.state.startDate !== undefined && this.state.endDate !== undefined) {
+        if(this.props.startDate !== undefined && this.props.endDate !== undefined) {
             dates = this.props.startDate.replace(/[^0-9]/g, '') + "00-" + this.props.endDate.replace(/[^0-9]/g, '') + "00"
         } else {
             var today = new Date()

@@ -17,19 +17,20 @@ class Search extends React.Component {
             loading: false, 
             error: false,
             ready: false,
-            search: '',
             town: '',
             lat: '',
             lon: '',
-            active: {
+            fromForm: {
+                search: '',
                 brunch: true,
                 lunch: true,
                 dinner: true,
                 shopping: true,
                 music: true,
+                startDate: '',
+                endDate: ''
             },
-            startDate: '',
-            endDate: ''
+            
         }
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onNewSearch = this.onNewSearch.bind(this)
@@ -44,14 +45,15 @@ class Search extends React.Component {
     }
 
     onFormSubmit(forsubmit) {
-        this.setState({run: true, search: forsubmit.search, startDate: forsubmit.startDate, endDate: forsubmit.endDate, active: forsubmit.active})
+        this.setState({run: true, fromForm: forsubmit})
     }
 
     onNewSearch() {
-        this.setState({search: '', showResults: true, run: false})
+        this.setState({fromForm: {search: ''}, showResults: true, run: false})
     }
 
 	render() {
+        const s = this.state
         return (
             <div className="search-page">
                 <div className="search-heading">
@@ -62,37 +64,37 @@ class Search extends React.Component {
                     <SearchForm {...this.props} onCheckbox={this.onCheckbox} onSubmit={this.onFormSubmit} onNewSearch={this.onNewSearch} />
                 </div>
 
-                {!!this.state.run && !!this.state.active.brunch
+                {!!s.run && !!s.fromForm.brunch
                 ? (<span className="results">
-                    <Brunch {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
+                    <Brunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
                 </span>)
                 : null
                 }
 
-                {!!this.state.run && !!this.state.active.lunch
+                {!!s.run && !!s.fromForm.lunch
                 ? (<span className="results">
-                    <Lunch {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
+                    <Lunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
                 </span>)
                 : null
                 }
 
-                {!!this.state.run && !!this.state.active.dinner
+                {!!s.run && !!s.fromForm.dinner
                 ? (<span className="results">
-                    <Dinner {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
+                    <Dinner {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
                 </span>)
                 : null
                 }
 
-                {!!this.state.run && !!this.state.active.shopping
+                {!!s.run && !!s.fromForm.shopping
                 ? (<span className="results">
-                    <YelpShopping {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} />
+                    <YelpShopping {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
                 </span>)
                 : null
                 }
                 
-                {!!this.state.run && !!this.state.active.music
+                {!!s.run && !!s.fromForm.music
                 ? (<span className="results">
-                    <Music {...this.props} showResults={this.state.showResults} run={this.state.run} search={this.state.search} startDate={this.state.startDate} endDate={this.state.endDate} />
+                    <Music {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} startDate={s.fromForm.startDate} endDate={s.fromForm.endDate} />
                 </span>)
                 : null
                 }

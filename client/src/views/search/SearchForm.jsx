@@ -13,13 +13,11 @@ class SearchForm extends React.Component {
                 search: '' ,
                 startDate: '', 
                 endDate: '',
-                active: {
-                    brunch: true,
-                    lunch: true,
-                    dinner: true,
-                    shopping: true,
-                    music: true
-                }
+                brunch: true,
+                lunch: true,
+                dinner: true,
+                shopping: true,
+                music: true
             }
         }
 
@@ -28,160 +26,67 @@ class SearchForm extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.state.forsubmit.brunch)
     }
 
     onInputChange(evt) {  
         const fs = this.state.forsubmit
+        // this.setState({
+        //     forsubmit: {
+        //         search: evt.target.value, 
+        //         startDate: fs.startDate,
+        //         active: {
+        //             brunch: fs.active.brunch, 
+        //             lunch: fs.active.lunch, 
+        //             dinner: fs.active.dinner,
+        //             shopping: fs.active.shopping,
+        //             music: fs.active.music
+        //         }
+        //     }
+        // }) 
         this.setState({
             forsubmit: {
-                search: evt.target.value, 
-                startDate: fs.startDate,
-                active: {
-                    brunch: fs.active.brunch, 
-                    lunch: fs.active.lunch, 
-                    dinner: fs.active.dinner,
-                    shopping: fs.active.shopping,
-                    music: fs.active.music
-                }
+                ...this.state.forsubmit,
+                [evt.target.name]: evt.target.value
             }
-        })        
+        }) 
     }
 
-    onInputChangeStartDate(evt) {  
-        const fs = this.state.forsubmit        
-        this.setState({
-            forsubmit: {
-                search: fs.search, 
-                startDate: evt.target.value, 
-                endDate: fs.endDate, 
-                active: {
-                    brunch: fs.active.brunch, 
-                    lunch: fs.active.lunch, 
-                    dinner: fs.active.dinner,
-                    shopping: fs.active.shopping,
-                    music: fs.active.music
-                    
-                }
-            }
-        })        
-    }
+    // onInputChangeStartDate(evt) {  
+    //     const fs = this.state.forsubmit        
+    //     this.setState({
+    //         forsubmit: {
+    //             ...fs,
+    //             [evt.target.name]: evt.target.value
+    //         }
+    //     })        
+    // }
 
-    onInputChangeEndDate(evt) {  
-        const fs = this.state.forsubmit        
-        this.setState({
-            forsubmit: {
-                search: fs.search, 
-                startDate: fs.startDate, 
-                endDate: evt.target.value, 
-                active: {
-                    brunch: fs.active.brunch, 
-                    lunch: fs.active.lunch, 
-                    dinner: fs.active.dinner,
-                    shopping: fs.active.shopping,
-                    music: fs.active.music
-                    
-                }
-            }
-        })        
-    }
+    // onInputChangeEndDate(evt) {  
+    //     this.setState({
+    //         forsubmit: {
+    //             ...this.state.forsubmit,
+    //             [evt.target.name]: evt.target.value
+    //         }
+    //     })        
+    // }
 
-    checkboxBrunch(evt) {
-        const fs = this.state.forsubmit
-        var toggle = !fs.active.brunch
-        this.setState({
-            forsubmit: {
-                search: fs.search, 
-                startDate: fs.startDate, 
-                endDate: fs.endDate, 
-                active: {
-                    brunch: toggle, 
-                    lunch: fs.active.lunch, 
-                    dinner: fs.active.dinner,
-                    shopping: fs.active.shopping,
-                    music: fs.active.music
+    checkbox(evt) {
+        if(evt.target.value === "true") {
+            this.setState({
+                forsubmit: {
+                    ...this.state.forsubmit,
+                    [evt.target.name]: false
                 }
-            }
-        })
-    }
-
-    checkboxLunch(evt) {
-        const fs = this.state.forsubmit 
-        var toggle = !fs.active.lunch
-        this.setState({
-            forsubmit: {
-                search: fs.search, 
-                startDate: fs.startDate, 
-                endDate: fs.endDate, 
-                active: {
-                    brunch: fs.active.brunch, 
-                    lunch: toggle, 
-                    dinner: fs.active.dinner,
-                    shopping: fs.active.shopping,
-                    music: fs.active.music
-                    
+            })
+        } else if (evt.target.value === "false") {
+            this.setState({
+                forsubmit: {
+                    ...this.state.forsubmit,
+                    [evt.target.name]: true
                 }
-            }
-        })
-    }
-
-    checkboxDinner(evt) {
-        const fs = this.state.forsubmit 
-        var toggle = !fs.active.dinner
-        this.setState({
-            forsubmit: {
-                search: fs.search, 
-                startDate: fs.startDate, 
-                endDate: fs.endDate, 
-                active: {
-                    brunch: fs.active.brunch, 
-                    lunch: fs.active.lunch, 
-                    dinner: toggle,
-                    shopping: fs.active.shopping,
-                    music: fs.active.music
-                    
-                }
-            }
-        })
-    }
-
-    checkboxShopping(e) {
-        const fs = this.state.forsubmit
-        var toggle = !fs.active.shopping
-        this.setState({
-            forsubmit: {
-                search: fs.search, 
-                startDate: fs.startDate, 
-                endDate: fs.endDate, 
-                active: {
-                    brunch: fs.active.brunch, 
-                    lunch: fs.active.lunch, 
-                    dinner: fs.active.dinner,
-                    shopping: toggle,
-                    music: fs.active.music
-                    
-                }
-            }
-        })
-    }
-
-    checkboxmusic() {
-        const fs = this.state.forsubmit
-        var toggle = !fs.active.music
-        this.setState({
-            forsubmit: {
-                search: fs.search, 
-                startDate: fs.startDate, 
-                endDate: fs.endDate, 
-                active: {
-                    brunch: fs.active.brunch, 
-                    lunch: fs.active.lunch, 
-                    dinner: fs.active.dinner,
-                    shopping: fs.active.shopping,
-                    music: toggle
-                    
-                }
-            }
-        })
+            })
+        }
     }
 
     submitSearchTerm(evt) {
@@ -198,13 +103,11 @@ class SearchForm extends React.Component {
             input: '', 
             forsubmit: {
                 search: '', 
-                active: {
-                    brunch: true, 
-                    lunch: true, 
-                    dinner: true,
-                    shopping: true,
-                    music: true
-                }
+                brunch: true, 
+                lunch: true, 
+                dinner: true,
+                shopping: true,
+                music: true
             }
         })
         const {onNewSearch} = this.props
@@ -220,7 +123,7 @@ class SearchForm extends React.Component {
                             <form  onSubmit={this.submitSearchTerm.bind(this)} >
                                 <input 
                                     type="text" 
-                                    name="address" 
+                                    name="search" 
                                     placeholder="Address or City, State, Zip" 
                                     value={this.state.forsubmit.search}
                                     onChange={this.onInputChange.bind(this)}  />
@@ -230,13 +133,13 @@ class SearchForm extends React.Component {
                                         type="date" 
                                         name="startDate" 
                                         value={this.state.forsubmit.startDate}
-                                        onChange={this.onInputChangeStartDate.bind(this)} />
+                                        onChange={this.onInputChange.bind(this)} />
                                     <span className="date-label">to</span>
                                     <input 
                                         type="date" 
                                         name="endDate" 
                                         value={this.state.forsubmit.endDate}
-                                        onChange={this.onInputChangeEndDate.bind(this)} />
+                                        onChange={this.onInputChange.bind(this)} />
                                 </div>
                                 
                                 <div>
@@ -244,8 +147,8 @@ class SearchForm extends React.Component {
                                         <input 
                                             type="checkbox" 
                                             name="brunch" 
-                                            value='' 
-                                            onChange={this.checkboxBrunch.bind(this)} 
+                                            value={this.state.forsubmit.brunch}
+                                            onChange={this.checkbox.bind(this)} 
                                             defaultChecked />
                                         <label className="label-inline" htmlFor="brunch">Brunch</label>
                                     </span>
@@ -253,8 +156,8 @@ class SearchForm extends React.Component {
                                         <input 
                                             type="checkbox" 
                                             name="lunch" 
-                                            value='' 
-                                            onChange={this.checkboxLunch.bind(this)} 
+                                            value={this.state.forsubmit.lunch}
+                                            onChange={this.checkbox.bind(this)} 
                                             defaultChecked />
                                         <label className="label-inline" htmlFor="lunch">Lunch</label>
                                     </span>
@@ -262,8 +165,8 @@ class SearchForm extends React.Component {
                                         <input 
                                             type="checkbox" 
                                             name="dinner" 
-                                            value='' 
-                                            onChange={this.checkboxDinner.bind(this)} 
+                                            value={this.state.forsubmit.dinner}
+                                            onChange={this.checkbox.bind(this)} 
                                             defaultChecked />
                                         <label className="label-inline" htmlFor="dinner">Dinner</label>
                                     </span>
@@ -271,8 +174,8 @@ class SearchForm extends React.Component {
                                         <input 
                                             type="checkbox" 
                                             name="shopping" 
-                                            value='' 
-                                            onChange={this.checkboxShopping.bind(this)} 
+                                            value={this.state.forsubmit.shopping}
+                                            onChange={this.checkbox.bind(this)} 
                                             defaultChecked />
                                         <label className="label-inline" htmlFor="shopping">Shopping</label>
                                     </span>
@@ -280,8 +183,8 @@ class SearchForm extends React.Component {
                                         <input 
                                             type="checkbox" 
                                             name="music" 
-                                            value='' 
-                                            onChange={this.checkboxmusic.bind(this)} 
+                                            value={this.state.forsubmit.music}
+                                            onChange={this.checkbox.bind(this)} 
                                             defaultChecked />
                                         <label className="label-inline" htmlFor="music">Music</label>
                                     </span>
