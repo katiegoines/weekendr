@@ -66,7 +66,7 @@ class Search extends React.Component {
                 </div>
 
                 {!!s.run && s.fromForm.search === ''
-                ? <div><h1>PLEASE ENTER SEARCH TERM</h1></div>
+                ? null
                 : ( <span>
                     {!!s.run && !!s.fromForm.brunch
                     ? (<span className="results">
