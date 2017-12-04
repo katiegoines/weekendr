@@ -74,6 +74,8 @@ class SearchForm extends React.Component {
         if(this.state.forsubmit.search === '') {
             this.setState({blank: 'blank'})
         } else {
+            localStorage.removeItem('saved')
+
             localStorage.setItem('search', this.state.forsubmit.search)
             localStorage.setItem('startDate', this.state.forsubmit.startDate)
             localStorage.setItem('endDate', this.state.forsubmit.endDate)
@@ -88,28 +90,6 @@ class SearchForm extends React.Component {
         const { onSubmit } = this.props
         onSubmit(this.state.forsubmit)
     }
-
-    // newSearch() {
-    //     this.setState({
-    //         submitted: false, 
-    //         showResults: true, 
-    //         input: '', 
-    //         blank: '',
-    //         forsubmit: {
-    //             search: '', 
-    //             startDate: '',
-    //             endDate: '',
-    //             brunch: true, 
-    //             lunch: true, 
-    //             dinner: true,
-    //             shopping: true,
-    //             music: true,
-    //             quantity: 1,
-    //         }
-    //     })
-    //     const {onNewSearch} = this.props
-    //     onNewSearch(this.state.showResults)
-    // }
 
 	render() {
         return (

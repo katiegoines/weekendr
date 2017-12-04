@@ -69,7 +69,7 @@ class Search extends React.Component {
         this.setState({fromForm: {search: ''}, run: run})
     }
 
-    onBackSearch(run) {
+    onBackSearch(run) {        
         this.setState({
             run: run,
             savedSearch: true,

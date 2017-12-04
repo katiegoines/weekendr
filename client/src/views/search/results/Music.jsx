@@ -44,7 +44,7 @@ class Events extends React.Component {
             // var mmo = (other.getMonth() + 1) > 10 ? (other.getMonth() + 1) : "0" + (other.getMonth() + 1)            
             // var yyyyo = other.getFullYear()
             // dates = `${yyyy}${mm}${dd}00-${yyyyo}${mmo}${ddo}00`
-            dates = "Next+Weekend"
+            dates = "This+Weekend"
         }
         axios({method: 'get', url: `/api/search/eventful?location=${this.props.search}&category=music&dateRange=${dates}`})
         .then((res) => { 

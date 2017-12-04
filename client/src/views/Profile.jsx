@@ -64,10 +64,15 @@ class Profile extends React.Component {
                 {this.state.searches.map((search, i) => {
                     return (
                         <div className="searches" key={search._id}>
-                            <span>{`${search.search}${search.startDate !== '' ? " -- " : null}`}</span> 
-                            <span>{search.startDate === '' ? null : <Moment format="ddd MMM D">{search.startDate}</Moment>}</span> 
-                            <span>{search.startDate !== '' ? " to " : null}</span>
-                            <span>{search.startDate === '' ? null : <Moment format="ddd MMM D">{search.endDate}</Moment>}</span>
+                            {!search.startDate
+                                ? <span>{search.search}</span>
+                                : <span>
+                                    {`${search.search} -- `}
+                                    <Moment format="ddd MMM D">{search.startDate}</Moment>
+                                    {` to `} 
+                                    <Moment format="ddd MMM D">{search.endDate}</Moment>
+                                </span>
+                            }
                             <button 
                                 className="button button-outline searches-button"
                                 onClick={this.onRemoveClick.bind(this, search._id)}>x

@@ -25,9 +25,6 @@ class Lunch extends React.Component {
     }
     
     componentWillReceiveProps() {
-        // if(this.props.run) {
-        //     this.setState({results:{head:'', list: []}})
-        // }
     }
 
     request() {

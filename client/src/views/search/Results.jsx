@@ -38,6 +38,7 @@ class Results extends React.Component {
     newSearch() {
         // this.setState({run: false})
         localStorage.removeItem('saved')
+
         localStorage.removeItem('search')
         localStorage.removeItem('startDate')
         localStorage.removeItem('endDate')
@@ -59,6 +60,7 @@ class Results extends React.Component {
     saveSearch() {
         const id = this.props.currentUser._id
         console.log('clicked')
+        console.log(localStorage.getItem('startDate'))
         axios({
             method: 'post', 
             url: `/api/users/${id}/searches`, 
