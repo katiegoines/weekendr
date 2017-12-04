@@ -73,8 +73,8 @@ class Search extends React.Component {
                             run={s.run} 
                             fromForm={s.fromForm}
                             // search={s.fromForm.search} 
-                            // quantity={s.fromForm.quantity} 
-                            tileView={s.tileView}  />
+                            // quantity={s.fromForm.quantity}  
+                            />
                     }              
                 </div>  
                 <div className="page-end">

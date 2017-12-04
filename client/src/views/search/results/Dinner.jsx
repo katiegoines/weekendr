@@ -15,13 +15,10 @@ class Dinner extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.run) {
           this.request()  
-        } 
     }
 
     componentDidUpdate() {
-        console.log(this.state.results)
         if(this.state.tileView !== this.props.tileView) {
             this.setState({tileView: this.props.tileView})
             this.request()
@@ -29,9 +26,9 @@ class Dinner extends React.Component {
     }
     
     componentWillReceiveProps() {
-        if(this.props.run) {
-            this.setState({results:{head:'', list: []}})
-        }
+        // if(this.props.run) {
+        //     this.setState({results:{head:'', list: []}})
+        // }
     }
 
     request() {

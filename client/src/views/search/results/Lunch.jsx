@@ -15,9 +15,7 @@ class Lunch extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.run) {
           this.request()  
-        } 
     }
 
     componentDidUpdate() {
@@ -28,9 +26,9 @@ class Lunch extends React.Component {
     }
     
     componentWillReceiveProps() {
-        if(this.props.run) {
-            this.setState({results:{head:'', list: []}})
-        }
+        // if(this.props.run) {
+        //     this.setState({results:{head:'', list: []}})
+        // }
     }
 
     request() {
