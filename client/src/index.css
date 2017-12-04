@@ -254,7 +254,7 @@
     }
 
     #blank {
-      border: 1px solid red;
+      border: 1px solid #E24E42;;
     }
 
     .form-box {
@@ -358,6 +358,42 @@
       margin: 30px auto;
     }
 
+    .list-view {
+      max-width: 1080px;
+      height: 100vh;
+      margin: 0 auto;
+    }
+
+    .search-results-list-0, .search-results-list-1, .search-results-list-2, .search-results-list-3 {
+      width: 300px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 30px;
+      padding: 10px;
+      float: left;
+      font-size: 12px;
+    }
+
+    .search-results-list-1 {
+      background: #E24E42;
+    }
+ 
+    .search-results-list-2 {
+     background: #E9B000;
+   }
+ 
+   .search-results-list-3 {
+     background: #EB6E80;
+   }
+ 
+   .search-results-list-0 {
+     background: #008F95;
+   }
+
+   .search-results-list-0 a, .search-results-list-1 a, .search-results-list-2 a, .search-results-list-3 a {
+      color: white !important;
+    }
+
     .search-category {
       width: 250px;
       max-height: 250px;
@@ -452,28 +488,6 @@
   .card-title a {
     color: white !important;
   }
-
-
-  /* .card-title-0, .card-title-1, .card-title-2, .card-title-3 {
-    text-align: center;
-    font-weight: bold;
-  }
-
-  .card-title-0 a {
-    color: lime !important;
-  }
-
-  .card-title-1 a {
-    color: purple !important;
-  }
-
-  .card-title-2 a {
-    color: white !important;
-  }
-
-  .card-title-3 a {
-    color: black !important;
-  } */
   
   .card-info {
     width: 90%;
@@ -547,4 +561,8 @@
     .SignUp .right-button {
       color: white !important;    
       background: gray;
+    }
+
+    .page-end {
+      clear: both;
     }

@@ -15,7 +15,7 @@ class Dinner extends React.Component {
 
     componentDidMount() {
         if(this.props.showResults) {
-          this.yelpRestaurantRequest()  
+          this.request()  
         } 
     }
     
@@ -25,15 +25,15 @@ class Dinner extends React.Component {
         }
     }
 
-    yelpRestaurantRequest() {
-        axios({method: 'get', url: `/api/search/yelp?term=dinner&location=${this.props.search}`})
+    request() {
+        axios({method: 'get', url: `/api/search/yelp?term=Dinner&location=${this.props.search}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
                 this.setState({results: {
-                    list: res.data, 
-                    head: "Dinner"
+                        list: res.data, 
+                        head: "Dinner"
                 }})
             }
         })
@@ -53,50 +53,78 @@ class Dinner extends React.Component {
 
 	render() {
         return (
-            <span className="search-results">
-                {!this.state.error
-                ? (<span>
-                        {this.state.results.head !== ''
-                        ? (<div className="search-category">
-                            <h3>{this.state.results.head}</h3>
-                        </div>)
-                        : null}
+            // <span className="search-results">
+            //     {!this.state.error
+            //     ? (<span>
+            //             {this.state.results.head !== ''
+            //             ? (<div className="search-category">
+            //                 <h3>{this.state.results.head}</h3>
+            //             </div>)
+            //             : null}
                         
-                        {this.state.results.list.slice(0, this.props.quantity).map(el => {
-                            return (
-                                <div key={el.id} className="card-2">
-                                    <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
-                                    <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
-                                        <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
-                                        <div className="card-info">
-                                            <div className="yelp-categories">{el.categories.map((cat, i)=> {
-                                                return (
-                                                    <span key={i}>{` - ${cat.title} - `}</span>
-                                                )
-                                            })}</div>
-                                            <div className="body-text">
-                                                <div>{el.location.address1}</div>
-                                                <div>{el.location.city}</div>
-                                                <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                                <div>{`Price: ${el.price}`}</div>
-                                                <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
-                                            </div>
+            //             {this.state.results.list.slice(0, this.props.quantity).map(el => {
+            //                 return (
+            //                     <div key={el.id} className="card-2">
+            //                         <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
+            //                         <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
+            //                             <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+            //                             <div className="card-info">
+            //                                 <div className="yelp-categories">{el.categories.map((cat, i)=> {
+            //                                     return (
+            //                                         <span key={i}>{` - ${cat.title} - `}</span>
+            //                                     )
+            //                                 })}</div>
+            //                                 <div className="body-text">
+            //                                     <div>{el.location.address1}</div>
+            //                                     <div>{el.location.city}</div>
+            //                                     <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+            //                                     <div>{`Price: ${el.price}`}</div>
+            //                                     <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+            //                                 </div>
                                             
-                                        </div>
-                                    </div>
+            //                             </div>
+            //                         </div>
+            //                     </div>
+            //                 )
+            //             })}
+            //       </span>)
+            //     : (<span>
+            //         <div className="search-category">
+            //             <h3>Dinner <br /> Coming Soon</h3>
+            //         </div>
+            //     </span>)
+            //     }                
+            // </span>
+
+            <div className="search-results-list-0">
+                <h3>{this.state.results.head}</h3>
+                   {this.state.results.list.slice(0, this.props.quantity).map(el => {
+                       return (
+                        <div key={el.id}><a href={el.url} target="_blank">{el.name}</a>
+                            <ul>
+                                <div>
+                                    {el.categories.map((cat, i) => {
+                                        return (
+                                            <span key={i}><small>
+                                                {(i + 1) < el.categories.length 
+                                                ? <span>{`${cat.title}, `}</span>
+                                                : <span>{cat.title}</span>
+                                                }
+                                            </small></span>
+                                        )
+                                    })}
                                 </div>
-                            )
-                        })}
-                  </span>)
-                : (<span>
-                    <div className="search-category">
-                        <h3>Dinner <br /> Coming Soon</h3>
-                    </div>
-                </span>)
-                }
-                        
-                
-            </span>
+                                <div>{`${el.location.address1}, ${el.location.city}`}</div>
+                                <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                <div>{`Price: ${el.price}`}</div>
+                                <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                            </ul>
+                        </div> 
+                       )
+                       
+                   })} 
+
+            </div>
             
             
         )

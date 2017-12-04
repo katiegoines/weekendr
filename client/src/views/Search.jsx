@@ -17,6 +17,7 @@ class Search extends React.Component {
             loading: false, 
             error: false,
             ready: false,
+            tileView: true,
             town: '',
             lat: '',
             lon: '',
@@ -49,6 +50,10 @@ class Search extends React.Component {
         this.setState({run: true, fromForm: forsubmit})
     }
 
+    tileView() {
+        this.setState({tileView: !this.state.tileView})
+    }
+
     onNewSearch() {
         this.setState({fromForm: {search: ''}, showResults: true, run: false})
     }
@@ -65,48 +70,46 @@ class Search extends React.Component {
                     <SearchForm {...this.props} onCheckbox={this.onCheckbox} onSubmit={this.onFormSubmit} onNewSearch={this.onNewSearch} />
                 </div>
 
-                {!!s.run && s.fromForm.search === ''
-                ? null
-                : ( <span>
-                    {!!s.run && !!s.fromForm.brunch
-                    ? (<span className="results">
-                        <Brunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
-                    </span>)
-                    : null
-                    }
-    
-                    {!!s.run && !!s.fromForm.lunch
-                    ? (<span className="results">
-                        <Lunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
-                    </span>)
-                    : null
-                    }
-    
-                    {!!s.run && !!s.fromForm.dinner
-                    ? (<span className="results">
-                        <Dinner {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
-                    </span>)
-                    : null
-                    }
-    
-                    {!!s.run && !!s.fromForm.shopping
-                    ? (<span className="results">
-                        <YelpShopping {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
-                    </span>)
-                    : null
-                    }
-                    
-                    {!!s.run && !!s.fromForm.music
-                    ? (<span className="results">
-                        <Music {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} startDate={s.fromForm.startDate} endDate={s.fromForm.endDate} quantity={s.fromForm.quantity} />
-                    </span>)
-                    : null
-                    }
-                    </span>)
-                }
-
-                
-                
+                <div>
+                    {!!s.run && s.fromForm.search === ''
+                    ? null
+                    : ( <span>
+                        {!!s.run
+                        ? (<span>
+                            {!!s.tileView
+                            ? <div><button onClick={this.tileView.bind(this)}>Switch to List View</button></div>
+                            : <div><button onClick={this.tileView.bind(this)}>Switch to Tile View</button></div>}
+                          </span>)
+                        : null
+                        }
+                        
+                        {!!s.run && !!s.fromForm.brunch
+                        ? <Brunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} tileView={this.state.tileView} />
+                        : null
+                        }
+        
+                        {/* {!!s.run && !!s.fromForm.lunch
+                        ? <Lunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
+                        : null
+                        }
+        
+                        {!!s.run && !!s.fromForm.dinner
+                        ? <Dinner {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
+                        : null
+                        }
+        
+                        {!!s.run && !!s.fromForm.shopping
+                        ? <YelpShopping {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
+                        : null
+                        }
+                        
+                        {!!s.run && !!s.fromForm.music
+                        ? <Music {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} startDate={s.fromForm.startDate} endDate={s.fromForm.endDate} quantity={s.fromForm.quantity} />
+                        : null
+                        } */}
+                        </span>)
+                    }              
+                </div>  
                 <div className="page-end">
                     <small>*Definitely not limited to just weekends</small>
                 </div>
