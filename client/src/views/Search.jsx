@@ -28,7 +28,6 @@ class Search extends React.Component {
         }
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onNewSearch = this.onNewSearch.bind(this)
-        this.tileView = this.tileView.bind(this)
     }
 
     componentDidMount() {
@@ -40,11 +39,10 @@ class Search extends React.Component {
     }
 
     onFormSubmit(forsubmit) {
-        this.setState({run: true, fromForm: forsubmit})
-    }
-
-    tileView() {
-        this.setState({tileView: !this.state.tileView})
+        if(forsubmit.search !== '') {
+           this.setState({run: true, fromForm: forsubmit}) 
+        }
+        
     }
 
     onNewSearch() {
@@ -68,7 +66,7 @@ class Search extends React.Component {
                 </div>
 
                 <div className="results">
-                    {!!s.run && s.fromForm.search === ''
+                    {!s.run && s.fromForm.search === ''
                         ? null
                         : <Results 
                             {...this.props}
@@ -89,3 +87,4 @@ class Search extends React.Component {
 }
 
 export default Search
+

@@ -15,9 +15,7 @@ class Brunch extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.run) {
           this.request()  
-        } 
     }
 
     componentDidUpdate() {

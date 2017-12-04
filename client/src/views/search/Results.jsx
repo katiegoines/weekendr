@@ -19,6 +19,7 @@ class Results extends React.Component {
             // lon: '',
             fromForm: ''
         }
+        this.tileView = this.tileView.bind(this)        
     }
 
     componentDidMount() {
@@ -29,6 +30,19 @@ class Results extends React.Component {
         if(this.state.tileView !== this.props.tileView) {
             this.setState({tileView: this.props.tileView})
         }
+    }
+
+    tileView() {
+        if(this.state.tileView === true) {
+            this.setState({tileView: false})
+            console.log("set to false")
+        } else if (this.state.tileView === false) {
+            this.setState({tileView: true})
+            console.log("set to true")
+            
+        }
+        // this.setState({tileView: !this.state.tileView})
+        console.log(typeof(this.state.tileView))
     }
 
 	render() {
@@ -45,7 +59,7 @@ class Results extends React.Component {
                     </span>
                  
                     <span>
-                        {!!s.run && !!s.fromForm.brunch
+                        {!!s.fromForm.brunch
                             ? <Brunch 
                                 {...this.props} 
                                 run={s.run} 
@@ -55,16 +69,16 @@ class Results extends React.Component {
                             : null
                         }
         
-                        {!!s.run && !!s.fromForm.lunch
+                        {!!s.fromForm.lunch
                             ? <Lunch 
                                 {...this.props} 
-                                run={s.run} search={s.fromForm.search} 
+                                search={s.fromForm.search} 
                                 quantity={s.fromForm.quantity} 
                                 tileView={s.tileView}  />
                             : null
                         }
         
-                        {!!s.run && !!s.fromForm.dinner
+                        {!!s.fromForm.dinner
                             ? <Dinner 
                                 {...this.props} 
                                 run={s.run} 
@@ -74,7 +88,7 @@ class Results extends React.Component {
                             : null
                         }
         
-                        {/* {!!s.run && !!s.fromForm.shopping
+                        {/* {!!s.fromForm.shopping
                             ? <YelpShopping 
                                 {...this.props} 
                                 run={s.run} 
@@ -84,7 +98,7 @@ class Results extends React.Component {
                             : null
                         }
                         
-                        {!!s.run && !!s.fromForm.music
+                        {!!s.fromForm.music
                             ? <Music 
                                 {...this.props} 
                                 run={s.run} 
