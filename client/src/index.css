@@ -364,6 +364,10 @@
       margin: 0 auto;
     }
 
+    .list-result {
+      padding: 10px;
+    }
+
     .search-results-list-0, .search-results-list-1, .search-results-list-2, .search-results-list-3 {
       width: 300px;
       border-radius: 20px;

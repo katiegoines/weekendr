@@ -69,7 +69,7 @@ class Results extends React.Component {
                             : null
                         }
                         
-                        {/* {!!s.fromForm.music
+                        {!!s.fromForm.music
                             ? <Music 
                                 {...this.props} 
                                 search={s.fromForm.search} 
@@ -78,7 +78,7 @@ class Results extends React.Component {
                                 quantity={s.fromForm.quantity} 
                                 tileView={s.tileView} />
                             : null
-                        } */}
+                        }
                     </span>
                 </span>
             </div>  

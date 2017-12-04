@@ -7,7 +7,6 @@ class Brunch extends React.Component {
         super(props)
 
         this.state = {
-            ready: false,
             error: false,
             tileView: true,
             results: {head: "", list: []}
@@ -63,34 +62,34 @@ class Brunch extends React.Component {
                     ? <span className="search-results">
                         {!this.state.error
                             ? <span>
-                                    {this.state.results.head !== ''
-                                        ? <div className="search-category">
-                                            <h3>{this.state.results.head}</h3>
-                                        </div>
-                                        : null
-                                    }
-                                    {this.state.results.list.slice(0, this.props.quantity).map(el => {
-                                        return (
-                                            <div key={el.id} className="card-2">
-                                                <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
-                                                <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
-                                                    <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
-                                                    <div className="card-info">
-                                                        <div className="yelp-categories">{el.categories.map((cat, i)=> {
-                                                            return <span key={i}>{` - ${cat.title} - `}</span>
-                                                        })}</div>
-                                                        <div className="body-text">
-                                                            <div>{el.location.address1}</div>
-                                                            <div>{el.location.city}</div>
-                                                            <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                                            <div>{`Price: ${el.price}`}</div>
-                                                            <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
-                                                        </div>
+                                {this.state.results.head !== ''
+                                    ? <div className="search-category">
+                                        <h3>{this.state.results.head}</h3>
+                                    </div>
+                                    : null
+                                }
+                                {this.state.results.list.slice(0, this.props.quantity).map(el => {
+                                    return (
+                                        <div key={el.id} className="card-2">
+                                            <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
+                                            <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
+                                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                                <div className="card-info">
+                                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                                        return <span key={i}>{` - ${cat.title} - `}</span>
+                                                    })}</div>
+                                                    <div className="body-text">
+                                                        <div>{el.location.address1}</div>
+                                                        <div>{el.location.city}</div>
+                                                        <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                                        <div>{`Price: ${el.price}`}</div>
+                                                        <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        )
-                                    })}
+                                        </div>
+                                    )
+                                })}
                             </span>
                             : <span>
                                 <div className="search-category">
@@ -103,8 +102,8 @@ class Brunch extends React.Component {
                         <h3>{this.state.results.head}</h3>
                         {this.state.results.list.slice(0, this.props.quantity).map(el => {
                             return (
-                                <div key={el.id}><a href={el.url} target="_blank">{el.name}</a>
-                                    <ul>
+                                <div  className="list-result" key={el.id}><a href={el.url} target="_blank">{el.name}</a>
+                                    <div>
                                         <div>
                                             {el.categories.map((cat, i) => {
                                                 return (
@@ -118,7 +117,7 @@ class Brunch extends React.Component {
                                         <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
                                         <div>{`Price: ${el.price}`}</div>
                                         <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
-                                    </ul>
+                                    </div>
                                 </div> 
                             )
                         })} 
