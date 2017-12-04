@@ -11,6 +11,7 @@ class Results extends React.Component {
 
         this.state = {
             // loading: false, 
+            run: true,
             error: false,
             tileView: true,
             // town: '',
@@ -18,7 +19,8 @@ class Results extends React.Component {
             // lon: '',
             fromForm: ''
         }
-        this.tileView = this.tileView.bind(this)        
+        this.tileView = this.tileView.bind(this) 
+        this.newSearch = this.newSearch.bind(this)       
     }
 
     componentDidMount() {
@@ -30,16 +32,26 @@ class Results extends React.Component {
         console.log(this.state.tileView)
     }
 
+    newSearch() {
+        // this.setState({run: false})
+        const onNewSearch = this.props.onNewSearch
+        onNewSearch(false)
+    }
+
 	render() {
         const s = this.state
         return (
             <div className="results">
                 <span>
-                    <span>
+                    <div>
                         {!!s.tileView
-                            ? <div><button onClick={this.tileView}>Switch to List View</button></div>
-                            : <div><button onClick={this.tileView}>Switch to Tile View</button></div>}
-                    </span>
+                            ? <span><button onClick={this.tileView}>Switch to List View</button></span>
+                            : <span><button onClick={this.tileView}>Switch to Tile View</button></span>
+                        }
+                        <span><button onClick={this.newSearch}>New Search</button></span>
+                        <span><button>Back to Search</button></span>
+                        <span><button>Save Search</button></span>
+                    </div>
                  
                     <span>
                         {!!s.fromForm.brunch
