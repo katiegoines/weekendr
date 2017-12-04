@@ -1,18 +1,12 @@
 import React from 'react'
 import SearchForm from './search/SearchForm'
-// import YelpRestaurants from './search/YelpRestaurants'
-import Brunch from './search/Brunch'
-import Lunch from './search/Lunch'
-import Dinner from './search/Dinner'
-import YelpShopping from './search/YelpShopping'
-import Music from './search/Music'
+import Results from './search/Results'
 
 class Search extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            showResults: true,
             run: false,
             loading: false, 
             error: false,
@@ -54,7 +48,7 @@ class Search extends React.Component {
     }
 
     onNewSearch() {
-        this.setState({fromForm: {search: ''}, showResults: true, run: false})
+        this.setState({fromForm: {search: ''}, run: false})
     }
 
 	render() {
@@ -73,76 +67,16 @@ class Search extends React.Component {
                         onNewSearch={this.onNewSearch} />
                 </div>
 
-                <div>
+                <div className="results">
                     {!!s.run && s.fromForm.search === ''
-                    ? null
-                    : <span>
-                        {!!s.run
-                        ? <span>
-                            {!!s.tileView
-                            ? <div><button onClick={this.tileView}>Switch to List View</button></div>
-                            : <div><button onClick={this.tileView}>Switch to Tile View</button></div>}
-                          </span>
-                        : null
-                        }
-                        <span>
-                            {!!s.run && !!s.fromForm.brunch
-                            ? <Brunch 
-                                {...this.props} 
-                                showResults={s.showResults} 
-                                run={s.run} 
-                                search={s.fromForm.search} 
-                                quantity={s.fromForm.quantity} 
-                                tileView={s.tileView} />
-                            : null
-                            }
-            
-                            {!!s.run && !!s.fromForm.lunch
-                            ? <Lunch 
-                                {...this.props} 
-                                showResults={s.showResults} 
-                                run={s.run} search={s.fromForm.search} 
-                                quantity={s.fromForm.quantity} 
-                                tileView={s.tileView}  />
-                            : null
-                            }
-            
-                            {!!s.run && !!s.fromForm.dinner
-                            ? <Dinner 
-                                {...this.props} 
-                                showResults={s.showResults} 
-                                run={s.run} 
-                                search={s.fromForm.search} 
-                                quantity={s.fromForm.quantity} 
-                                tileView={s.tileView}  />
-                            : null
-                            }
-            
-                            {/* {!!s.run && !!s.fromForm.shopping
-                            ? <YelpShopping 
-                                {...this.props} 
-                                showResults={s.showResults} 
-                                run={s.run} 
-                                search={s.fromForm.search} 
-                                quantity={s.fromForm.quantity} 
-                                tileView={s.tileView} />
-                            : null
-                            }
-                            
-                            {!!s.run && !!s.fromForm.music
-                            ? <Music 
-                                {...this.props} 
-                                showResults={s.showResults} 
-                                run={s.run} 
-                                search={s.fromForm.search} 
-                                startDate={s.fromForm.startDate} 
-                                endDate={s.fromForm.endDate} 
-                                quantity={s.fromForm.quantity} 
-                                tileView={s.tileView} />
-                            : null
-                            } */}
-                        </span>
-                     </span>
+                        ? null
+                        : <Results 
+                            {...this.props}
+                            run={s.run} 
+                            fromForm={s.fromForm}
+                            // search={s.fromForm.search} 
+                            // quantity={s.fromForm.quantity} 
+                            tileView={s.tileView}  />
                     }              
                 </div>  
                 <div className="page-end">

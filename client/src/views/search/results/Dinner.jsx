@@ -15,7 +15,7 @@ class Dinner extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.showResults) {
+        if(this.props.run) {
           this.request()  
         } 
     }
@@ -29,7 +29,7 @@ class Dinner extends React.Component {
     }
     
     componentWillReceiveProps() {
-        if(this.props.showResults) {
+        if(this.props.run) {
             this.setState({results:{head:'', list: []}})
         }
     }

@@ -16,13 +16,13 @@ class Events extends React.Component {
 
     componentDidMount() {
         console.log(this.props.search)
-        if(this.props.showResults) {
+        if(this.props.run) {
           this.request()  
         }
     }
     
     componentWillReceiveProps() {
-        if(this.props.showResults) {
+        if(this.props.run) {
             this.setState({results:{brunch:{head:'', list: []}}})
         }
     }

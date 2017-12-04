@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 
-class Brunch extends React.Component {
+class Lunch extends React.Component {
     constructor(props) {
         super(props)
 
@@ -15,7 +15,7 @@ class Brunch extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.showResults) {
+        if(this.props.run) {
           this.request()  
         } 
     }
@@ -28,20 +28,20 @@ class Brunch extends React.Component {
     }
     
     componentWillReceiveProps() {
-        if(this.props.showResults) {
+        if(this.props.run) {
             this.setState({results:{head:'', list: []}})
         }
     }
 
     request() {
-        axios({method: 'get', url: `/api/search/yelp?term=Brunch&location=${this.props.search}`})
+        axios({method: 'get', url: `/api/search/yelp?term=Lunch&location=${this.props.search}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
                 this.setState({results: {
                         list: res.data, 
-                        head: "Brunch"
+                        head: "Lunch"
                 }})
             }
         })
@@ -97,12 +97,12 @@ class Brunch extends React.Component {
                             </span>
                             : <span>
                                 <div className="search-category">
-                                    <h3>Brunch <br /> Coming Soon</h3>
+                                    <h3>Lunch <br /> Coming Soon</h3>
                                 </div>
                             </span>
                         }                
                     </span>
-                    : <div className="search-results-list-0">
+                    : <div className="search-results-list-1">
                         <h3>{this.state.results.head}</h3>
                         {this.state.results.list.slice(0, this.props.quantity).map(el => {
                             return (
@@ -132,4 +132,4 @@ class Brunch extends React.Component {
     }
 }
 
-export default Brunch
+export default Lunch
