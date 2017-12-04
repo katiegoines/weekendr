@@ -9,7 +9,18 @@ module.exports = {
     },
 
     create: (req, res) => {
-        var newSearch = new Search({search: req.body.address, town: req.body.town})
+        console.log(req.body)
+        var newSearch = new Search({
+            search: req.body.search,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            brunch: req.body.brunch,
+            lunch: req.body.lunch,
+            dinner: req.body.dinner,
+            shopping: req.body.shopping,
+            music: req.body.music,
+            quantity: req.body.quantity
+        })
         newSearch.user = req.params.id
         newSearch.save((err, search) => {
             res.json({success: true, message: "Search saved.", search})

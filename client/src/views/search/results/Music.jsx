@@ -35,15 +35,16 @@ class Events extends React.Component {
         if(this.props.startDate !== "" && this.props.endDate !== "") {
             dates = this.props.startDate.replace(/[^0-9]/g, '') + "00-" + this.props.endDate.replace(/[^0-9]/g, '') + "00"
         } else {
-            var today = new Date()
-            var dd = today.getDate() > 10 ? today.getDate() : "0" + today.getDate()
-            var mm = (today.getMonth() + 1) > 10 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1)
-            var yyyy = today.getFullYear()
-            var other = new Date(today.getTime() + (5 * 86400000))
-            var ddo = other.getDate() > 10 ? other.getDate() : "0" + other.getDate()
-            var mmo = (other.getMonth() + 1) > 10 ? (other.getMonth() + 1) : "0" + (other.getMonth() + 1)            
-            var yyyyo = other.getFullYear()
-            dates = `${yyyy}${mm}${dd}00-${yyyyo}${mmo}${ddo}00`
+            // var today = new Date()
+            // var dd = today.getDate() > 10 ? today.getDate() : "0" + today.getDate()
+            // var mm = (today.getMonth() + 1) > 10 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1)
+            // var yyyy = today.getFullYear()
+            // var other = new Date(today.getTime() + (5 * 86400000))
+            // var ddo = other.getDate() > 10 ? other.getDate() : "0" + other.getDate()
+            // var mmo = (other.getMonth() + 1) > 10 ? (other.getMonth() + 1) : "0" + (other.getMonth() + 1)            
+            // var yyyyo = other.getFullYear()
+            // dates = `${yyyy}${mm}${dd}00-${yyyyo}${mmo}${ddo}00`
+            dates = "Next+Weekend"
         }
         axios({method: 'get', url: `/api/search/eventful?location=${this.props.search}&category=music&dateRange=${dates}`})
         .then((res) => { 
@@ -95,8 +96,8 @@ class Events extends React.Component {
                                             <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}> 
                                                 <div className="card-title">
                                                     <a href={el.url} target="_blank">
-                                                        {el.title.length > 45
-                                                            ? el.title.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&").substr(0,45) + "..."
+                                                        {el.title.length > 40
+                                                            ? el.title.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&").substr(0,40) + "..."
                                                             : el.title.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&")
                                                         }
                                                         

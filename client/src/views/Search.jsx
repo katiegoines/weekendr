@@ -32,11 +32,30 @@ class Search extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.state)
+        // console.log(this.state)
+        // console.log(this.props.currentUser)
+        console.log(localStorage.getItem('saved'))
+        
+        if(localStorage.getItem('saved') === "true") {
+            this.setState({
+                run: true,
+                fromForm: {
+                    search: localStorage.getItem('search'),
+                    startDate: localStorage.getItem('startDate'),
+                    endDate: localStorage.getItem('endDate'),
+                    brunch: JSON.parse(localStorage.getItem('brunch')),
+                    lunch: JSON.parse(localStorage.getItem('lunch')),
+                    dinner: JSON.parse(localStorage.getItem('dinner')),
+                    shopping: JSON.parse(localStorage.getItem('shopping')),
+                    music: JSON.parse(localStorage.getItem('music')),
+                    quantity: JSON.parse(localStorage.getItem('quantity'))
+                }
+            })
+        }
     }
 
     componentDidUpdate() {
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     onFormSubmit(forsubmit) {
@@ -63,8 +82,7 @@ class Search extends React.Component {
                 dinner: JSON.parse(localStorage.getItem('dinner')),
                 shopping: JSON.parse(localStorage.getItem('shopping')),
                 music: JSON.parse(localStorage.getItem('music')),
-                quantity: JSON.parse(localStorage.getItem('quantity')),
-
+                quantity: JSON.parse(localStorage.getItem('quantity'))
             }
         })
     }
@@ -91,6 +109,7 @@ class Search extends React.Component {
                             </div>
                             : <Results 
                                 {...this.props}
+                                currentUser={this.props.currentUser}
                                 run={s.run} 
                                 fromForm={s.fromForm}
                                 onNewSearch={this.onNewSearch}

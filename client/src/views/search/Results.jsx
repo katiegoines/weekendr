@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 import Brunch from './results/Brunch'
 import Lunch from './results/Lunch'
@@ -22,6 +23,7 @@ class Results extends React.Component {
         this.tileView = this.tileView.bind(this) 
         this.newSearch = this.newSearch.bind(this)     
         this.backSearch = this.backSearch.bind(this)  
+        this.saveSearch = this.saveSearch.bind(this)  
     }
 
     componentDidMount() {
@@ -35,6 +37,7 @@ class Results extends React.Component {
 
     newSearch() {
         // this.setState({run: false})
+        localStorage.removeItem('saved')
         localStorage.removeItem('search')
         localStorage.removeItem('startDate')
         localStorage.removeItem('endDate')
@@ -53,6 +56,29 @@ class Results extends React.Component {
         onBackSearch(false)
     }
 
+    saveSearch() {
+        const id = this.props.currentUser._id
+        console.log('clicked')
+        axios({
+            method: 'post', 
+            url: `/api/users/${id}/searches`, 
+            data: {
+                search: localStorage.getItem('search'),
+                startDate: localStorage.getItem('startDate'),
+                endDate: localStorage.getItem('endDate'),
+                brunch: JSON.parse(localStorage.getItem('brunch')),
+                lunch: JSON.parse(localStorage.getItem('lunch')),
+                dinner: JSON.parse(localStorage.getItem('dinner')),
+                shopping: JSON.parse(localStorage.getItem('shopping')),
+                music: JSON.parse(localStorage.getItem('music')),
+                quantity: JSON.parse(localStorage.getItem('quantity'))
+            }
+        })
+        .then((res) => {
+            this.props.history.push(`/profile`)
+        })
+    }
+
 	render() {
         const s = this.state
         return (
@@ -65,7 +91,11 @@ class Results extends React.Component {
                         }
                         <span><button onClick={this.newSearch}>New Search</button></span>
                         <span><button onClick={this.backSearch}>Back to Search</button></span>
-                        <span><button>Save Search</button></span>
+                        {!!this.props.currentUser
+                            ? <span><button onClick={this.saveSearch}>Save Search</button></span>
+                            : null
+                        }
+                        
                     </div>
                  
                     <span>

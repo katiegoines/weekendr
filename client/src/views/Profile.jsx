@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Moment from 'react-moment'
 
 
 class Profile extends React.Component {
@@ -19,6 +20,7 @@ class Profile extends React.Component {
         })
         axios({method: 'get', url: `/api/users/${id}/searches`})
         .then((res) => {
+            console.log(res.data)
             this.setState({searches: res.data})
         })
     }
@@ -38,8 +40,18 @@ class Profile extends React.Component {
     }
 
     savedSearch(search) {
+        localStorage.setItem('saved', true)
+        
         localStorage.setItem('search', search.search)
-        localStorage.setItem('town', search.town)
+        localStorage.setItem('startDate', search.startDate)
+        localStorage.setItem('endDate', search.endDate)
+        localStorage.setItem('brunch', search.brunch)
+        localStorage.setItem('lunch', search.lunch)
+        localStorage.setItem('dinner', search.dinner)
+        localStorage.setItem('shopping', search.shopping)
+        localStorage.setItem('music', search.music)
+        localStorage.setItem('quantity', search.quantity)
+
         this.props.history.push(`/search`)
     }
 
@@ -52,7 +64,10 @@ class Profile extends React.Component {
                 {this.state.searches.map((search, i) => {
                     return (
                         <div className="searches" key={search._id}>
-                            <span>{search.town}</span>
+                            <span>{`${search.search}${search.startDate !== '' ? " -- " : null}`}</span> 
+                            <span>{search.startDate === '' ? null : <Moment format="ddd MMM D">{search.startDate}</Moment>}</span> 
+                            <span>{search.startDate !== '' ? " to " : null}</span>
+                            <span>{search.startDate === '' ? null : <Moment format="ddd MMM D">{search.endDate}</Moment>}</span>
                             <button 
                                 className="button button-outline searches-button"
                                 onClick={this.onRemoveClick.bind(this, search._id)}>x
