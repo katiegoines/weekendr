@@ -49,7 +49,9 @@ class Events extends React.Component {
                 throw new Error("error")
             } else {
                 console.log(res.data.events.event)
-                this.setState({results: {
+                this.setState({
+                    ready: true,
+                    results: {
                         list: res.data.events.event, 
                         head: "Music Events"
                     }

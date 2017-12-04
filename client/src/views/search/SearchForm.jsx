@@ -9,6 +9,7 @@ class SearchForm extends React.Component {
             submitted: false,
             input: '',
             blank: '',
+            tileView: true,
             forsubmit: {
                 search: '' ,
                 startDate: '', 
@@ -102,7 +103,7 @@ class SearchForm extends React.Component {
         return (
             <div className="search-form">
                 {!this.state.submitted
-                 ? (<div>
+                 ? <div>
                         <div className="form-box">
                             <form  onSubmit={this.submitSearchTerm.bind(this)} >
                                 <input 
@@ -199,7 +200,7 @@ class SearchForm extends React.Component {
                                 onClick={this.submitSearchTerm.bind(this)} 
                                 className="button button-outline">Go
                             </button>
-                    </div>)
+                    </div>
                   : <div>
                         <div className="form-box">
                             <h2 className="location-heading">{this.state.forsubmit.search}</h2>
