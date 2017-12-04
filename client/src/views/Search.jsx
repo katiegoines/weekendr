@@ -8,12 +8,11 @@ class Search extends React.Component {
 
         this.state = {
             run: false,
-            loading: false, 
+            // loading: false, 
             error: false,
-            tileView: true,
-            town: '',
-            lat: '',
-            lon: '',
+            // town: '',
+            // lat: '',
+            // lon: '',
             fromForm: {
                 search: '',
                 brunch: true,
@@ -71,10 +70,7 @@ class Search extends React.Component {
                         : <Results 
                             {...this.props}
                             run={s.run} 
-                            fromForm={s.fromForm}
-                            // search={s.fromForm.search} 
-                            // quantity={s.fromForm.quantity}  
-                            />
+                            fromForm={s.fromForm} />
                     }              
                 </div>  
                 <div className="page-end">

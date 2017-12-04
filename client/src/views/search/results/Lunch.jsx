@@ -21,7 +21,6 @@ class Lunch extends React.Component {
     componentDidUpdate() {
         if(this.state.tileView !== this.props.tileView) {
             this.setState({tileView: this.props.tileView})
-            this.request()
         }
     }
     
