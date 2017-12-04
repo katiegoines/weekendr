@@ -46,7 +46,8 @@ class Dinner extends React.Component {
     }
 
     randomizeColor() {
-        var x = Math.floor(Math.random() * 3)
+        var x = Math.floor(Math.random() * 4)
+        this.color = x
         return x
     }
 
@@ -61,11 +62,11 @@ class Dinner extends React.Component {
                         </div>)
                         : null}
                         
-                        {this.state.results.list.slice(0, 7).map(el => {
+                        {this.state.results.list.slice(0, this.props.quantity).map(el => {
                             return (
                                 <div key={el.id} className="card-2">
                                     <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
-                                    <div className={`card-overlay-${this.randomizeColor()}`}> 
+                                    <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
                                         <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
                                         <div className="card-info">
                                             <div className="yelp-categories">{el.categories.map((cat, i)=> {

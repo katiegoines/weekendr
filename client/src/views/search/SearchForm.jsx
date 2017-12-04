@@ -8,6 +8,7 @@ class SearchForm extends React.Component {
             showResults: false,
             submitted: false,
             input: '',
+            blank: '',
             forsubmit: {
                 search: '' ,
                 startDate: '', 
@@ -16,7 +17,8 @@ class SearchForm extends React.Component {
                 lunch: true,
                 dinner: true,
                 shopping: true,
-                music: true
+                music: true,
+                quantity: 1,
             }
         }
 
@@ -54,9 +56,22 @@ class SearchForm extends React.Component {
         }
     }
 
+    quantity(evt) {
+        this.setState({
+            forsubmit: {
+                ...this.state.forsubmit,
+                [evt.target.name]: evt.target.value
+            }
+        })
+    }
+
     submitSearchTerm(evt) {
         evt.preventDefault()
-        this.setState({submitted: true})
+        if(this.state.forsubmit.search === '') {
+            this.setState({blank: 'blank'})
+        } else {
+          this.setState({submitted: true})  
+        }
         const { onSubmit } = this.props
         onSubmit(this.state.forsubmit)
     }
@@ -66,13 +81,17 @@ class SearchForm extends React.Component {
             submitted: false, 
             showResults: true, 
             input: '', 
+            blank: '',
             forsubmit: {
                 search: '', 
+                startDate: '',
+                endDate: '',
                 brunch: true, 
                 lunch: true, 
                 dinner: true,
                 shopping: true,
-                music: true
+                music: true,
+                quantity: 1,
             }
         })
         const {onNewSearch} = this.props
@@ -82,12 +101,13 @@ class SearchForm extends React.Component {
 	render() {
         return (
             <div className="search-form">
-                {this.state.submitted === false
+                {!this.state.submitted
                  ? (<div>
                         <div className="form-box">
                             <form  onSubmit={this.submitSearchTerm.bind(this)} >
                                 <input 
-                                    type="text" 
+                                    type="text"
+                                    id={this.state.blank} 
                                     name="search" 
                                     placeholder="Address or City, State, Zip" 
                                     value={this.state.forsubmit.search}
@@ -152,6 +172,25 @@ class SearchForm extends React.Component {
                                             onChange={this.checkbox.bind(this)} 
                                             defaultChecked />
                                         <label className="label-inline" htmlFor="music">Music</label>
+                                    </span>
+                                    <span className="dropdown">
+                                        <label className="label-inline" htmlFor="results-quantity">No. of Results</label>
+                                        <select 
+                                            id="results-quantity"
+                                            name="quantity"
+                                            // value={this.state.forsubmit.quantity}
+                                            onChange={this.quantity.bind(this)} >
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
                                     </span>
                                 </div>
                             </form>

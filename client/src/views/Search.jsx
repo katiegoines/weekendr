@@ -28,7 +28,8 @@ class Search extends React.Component {
                 shopping: true,
                 music: true,
                 startDate: '',
-                endDate: ''
+                endDate: '',
+                quantity: ''
             },
             
         }
@@ -64,40 +65,47 @@ class Search extends React.Component {
                     <SearchForm {...this.props} onCheckbox={this.onCheckbox} onSubmit={this.onFormSubmit} onNewSearch={this.onNewSearch} />
                 </div>
 
-                {!!s.run && !!s.fromForm.brunch
-                ? (<span className="results">
-                    <Brunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
-                </span>)
-                : null
+                {!!s.run && s.fromForm.search === ''
+                ? <div><h1>PLEASE ENTER SEARCH TERM</h1></div>
+                : ( <span>
+                    {!!s.run && !!s.fromForm.brunch
+                    ? (<span className="results">
+                        <Brunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
+                    </span>)
+                    : null
+                    }
+    
+                    {!!s.run && !!s.fromForm.lunch
+                    ? (<span className="results">
+                        <Lunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
+                    </span>)
+                    : null
+                    }
+    
+                    {!!s.run && !!s.fromForm.dinner
+                    ? (<span className="results">
+                        <Dinner {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
+                    </span>)
+                    : null
+                    }
+    
+                    {!!s.run && !!s.fromForm.shopping
+                    ? (<span className="results">
+                        <YelpShopping {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} quantity={s.fromForm.quantity} />
+                    </span>)
+                    : null
+                    }
+                    
+                    {!!s.run && !!s.fromForm.music
+                    ? (<span className="results">
+                        <Music {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} startDate={s.fromForm.startDate} endDate={s.fromForm.endDate} quantity={s.fromForm.quantity} />
+                    </span>)
+                    : null
+                    }
+                    </span>)
                 }
 
-                {!!s.run && !!s.fromForm.lunch
-                ? (<span className="results">
-                    <Lunch {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
-                </span>)
-                : null
-                }
-
-                {!!s.run && !!s.fromForm.dinner
-                ? (<span className="results">
-                    <Dinner {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
-                </span>)
-                : null
-                }
-
-                {!!s.run && !!s.fromForm.shopping
-                ? (<span className="results">
-                    <YelpShopping {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} />
-                </span>)
-                : null
-                }
                 
-                {!!s.run && !!s.fromForm.music
-                ? (<span className="results">
-                    <Music {...this.props} showResults={s.showResults} run={s.run} search={s.fromForm.search} startDate={s.fromForm.startDate} endDate={s.fromForm.endDate} />
-                </span>)
-                : null
-                }
                 
                 <div className="page-end">
                     <small>*Definitely not limited to just weekends</small>

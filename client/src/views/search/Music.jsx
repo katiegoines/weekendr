@@ -65,7 +65,8 @@ class Events extends React.Component {
     }
 
     randomizeColor() {
-        var x = Math.floor(Math.random() * 3)
+        var x = Math.floor(Math.random() * 4)
+        this.color = x
         return x
     }
 
@@ -81,14 +82,14 @@ class Events extends React.Component {
                         </div>)
                         : null}
                         
-                        {this.state.results.list.slice(0, 7).map(el => {
+                        {this.state.results.list.slice(0, this.props.quantity).map(el => {
                             return (
                                 <div key={el.id} className="card-2">
                                     {el.image !==  null
                                      ? <img className={`card-img-${this.randomizeColor()}`} src={`//d1marr3m5x4iac.cloudfront.net/images/large${el.image.medium.url.substr(45)}`} alt="" />
                                      : null
                                     }
-                                    <div className={`card-overlay-${this.randomizeColor()}`}> 
+                                    <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}> 
                                         <div className="card-title">
                                             <a href={el.url} target="_blank">
                                                 {el.title.length > 45
@@ -110,11 +111,6 @@ class Events extends React.Component {
                                                         <div>Starts at <Moment format="h:mm a">{el.start_time}</Moment></div>
                                                     </span>)            
                                                 : <div>Through <Moment format="ddd MMM D">{el.stop_time}</Moment></div>}
-
-                                                <br />
-                                                {/* {el.description !== null
-                                                ? <div>{el.description.replace(/&#39;/g, "'").replace(/&#38;/g, "&")}</div>
-                                                : null} */}
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +127,6 @@ class Events extends React.Component {
                         
                 
             </span>
-            //  <h1>music</h1>   
         )
     }
 }
