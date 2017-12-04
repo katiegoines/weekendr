@@ -20,7 +20,8 @@ class Results extends React.Component {
             fromForm: ''
         }
         this.tileView = this.tileView.bind(this) 
-        this.newSearch = this.newSearch.bind(this)       
+        this.newSearch = this.newSearch.bind(this)     
+        this.backSearch = this.backSearch.bind(this)  
     }
 
     componentDidMount() {
@@ -34,8 +35,22 @@ class Results extends React.Component {
 
     newSearch() {
         // this.setState({run: false})
+        localStorage.removeItem('search')
+        localStorage.removeItem('startDate')
+        localStorage.removeItem('endDate')
+        localStorage.removeItem('brunch')
+        localStorage.removeItem('lunch')
+        localStorage.removeItem('dinner')
+        localStorage.removeItem('shopping')
+        localStorage.removeItem('music')
+        localStorage.removeItem('quantity')
         const onNewSearch = this.props.onNewSearch
         onNewSearch(false)
+    }
+
+    backSearch() {
+        const onBackSearch = this.props.onBackSearch
+        onBackSearch(false)
     }
 
 	render() {
@@ -49,7 +64,7 @@ class Results extends React.Component {
                             : <span><button onClick={this.tileView}>Switch to Tile View</button></span>
                         }
                         <span><button onClick={this.newSearch}>New Search</button></span>
-                        <span><button>Back to Search</button></span>
+                        <span><button onClick={this.backSearch}>Back to Search</button></span>
                         <span><button>Save Search</button></span>
                     </div>
                  

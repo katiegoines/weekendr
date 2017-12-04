@@ -24,10 +24,13 @@ class SearchForm extends React.Component {
         }
 
         this.submitSearchTerm = this.submitSearchTerm.bind(this)
-        this.newSearch = this.newSearch.bind(this)
+        // this.newSearch = this.newSearch.bind(this)
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        if(!!this.props.savedSearch) {
+            this.setState({forsubmit: this.props.fromForm})
+        }
     }
 
     onInputChange(evt) {  
@@ -71,33 +74,42 @@ class SearchForm extends React.Component {
         if(this.state.forsubmit.search === '') {
             this.setState({blank: 'blank'})
         } else {
-          this.setState({submitted: true})  
+            localStorage.setItem('search', this.state.forsubmit.search)
+            localStorage.setItem('startDate', this.state.forsubmit.startDate)
+            localStorage.setItem('endDate', this.state.forsubmit.endDate)
+            localStorage.setItem('brunch', this.state.forsubmit.brunch)
+            localStorage.setItem('lunch', this.state.forsubmit.lunch)
+            localStorage.setItem('dinner', this.state.forsubmit.dinner)
+            localStorage.setItem('shopping', this.state.forsubmit.shopping)
+            localStorage.setItem('music', this.state.forsubmit.music)
+            localStorage.setItem('quantity', this.state.forsubmit.quantity)
+            this.setState({submitted: true})  
         }
         const { onSubmit } = this.props
         onSubmit(this.state.forsubmit)
     }
 
-    newSearch() {
-        this.setState({
-            submitted: false, 
-            showResults: true, 
-            input: '', 
-            blank: '',
-            forsubmit: {
-                search: '', 
-                startDate: '',
-                endDate: '',
-                brunch: true, 
-                lunch: true, 
-                dinner: true,
-                shopping: true,
-                music: true,
-                quantity: 1,
-            }
-        })
-        const {onNewSearch} = this.props
-        onNewSearch(this.state.showResults)
-    }
+    // newSearch() {
+    //     this.setState({
+    //         submitted: false, 
+    //         showResults: true, 
+    //         input: '', 
+    //         blank: '',
+    //         forsubmit: {
+    //             search: '', 
+    //             startDate: '',
+    //             endDate: '',
+    //             brunch: true, 
+    //             lunch: true, 
+    //             dinner: true,
+    //             shopping: true,
+    //             music: true,
+    //             quantity: 1,
+    //         }
+    //     })
+    //     const {onNewSearch} = this.props
+    //     onNewSearch(this.state.showResults)
+    // }
 
 	render() {
         return (
@@ -135,7 +147,7 @@ class SearchForm extends React.Component {
                                             name="brunch" 
                                             value={this.state.forsubmit.brunch}
                                             onChange={this.checkbox.bind(this)} 
-                                            defaultChecked />
+                                            checked={this.state.forsubmit.brunch} />
                                         <label className="label-inline" htmlFor="brunch">Brunch</label>
                                     </span>
                                     <span className="checkbox">
@@ -144,7 +156,7 @@ class SearchForm extends React.Component {
                                             name="lunch" 
                                             value={this.state.forsubmit.lunch}
                                             onChange={this.checkbox.bind(this)} 
-                                            defaultChecked />
+                                            checked={this.state.forsubmit.lunch} />
                                         <label className="label-inline" htmlFor="lunch">Lunch</label>
                                     </span>
                                     <span className="checkbox">
@@ -153,7 +165,7 @@ class SearchForm extends React.Component {
                                             name="dinner" 
                                             value={this.state.forsubmit.dinner}
                                             onChange={this.checkbox.bind(this)} 
-                                            defaultChecked />
+                                            checked={this.state.forsubmit.dinner} />
                                         <label className="label-inline" htmlFor="dinner">Dinner</label>
                                     </span>
                                     <span className="checkbox">
@@ -162,7 +174,7 @@ class SearchForm extends React.Component {
                                             name="shopping" 
                                             value={this.state.forsubmit.shopping}
                                             onChange={this.checkbox.bind(this)} 
-                                            defaultChecked />
+                                            checked={this.state.forsubmit.shopping} />
                                         <label className="label-inline" htmlFor="shopping">Shopping</label>
                                     </span>
                                     <span className="checkbox">
@@ -171,7 +183,7 @@ class SearchForm extends React.Component {
                                             name="music" 
                                             value={this.state.forsubmit.music}
                                             onChange={this.checkbox.bind(this)} 
-                                            defaultChecked />
+                                            checked={this.state.forsubmit.music} />
                                         <label className="label-inline" htmlFor="music">Music</label>
                                     </span>
                                     <span className="dropdown">
@@ -179,7 +191,7 @@ class SearchForm extends React.Component {
                                         <select 
                                             id="results-quantity"
                                             name="quantity"
-                                            // value={this.state.forsubmit.quantity}
+                                            defaultValue={this.state.forsubmit.quantity}
                                             onChange={this.quantity.bind(this)} >
                                             <option value="1">1</option>
                                             <option value="2">2</option>

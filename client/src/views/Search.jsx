@@ -10,6 +10,7 @@ class Search extends React.Component {
             run: false,
             // loading: false, 
             error: false,
+            savedSearch: false,
             // town: '',
             // lat: '',
             // lon: '',
@@ -27,6 +28,7 @@ class Search extends React.Component {
         }
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onNewSearch = this.onNewSearch.bind(this)
+        this.onBackSearch = this.onBackSearch.bind(this)
     }
 
     componentDidMount() {
@@ -48,14 +50,31 @@ class Search extends React.Component {
         this.setState({fromForm: {search: ''}, run: run})
     }
 
+    onBackSearch(run) {
+        this.setState({
+            run: run,
+            savedSearch: true,
+            fromForm: {
+                search: localStorage.getItem('search'),
+                startDate: localStorage.getItem('startDate'),
+                endDate: localStorage.getItem('endDate'),
+                brunch: JSON.parse(localStorage.getItem('brunch')),
+                lunch: JSON.parse(localStorage.getItem('lunch')),
+                dinner: JSON.parse(localStorage.getItem('dinner')),
+                shopping: JSON.parse(localStorage.getItem('shopping')),
+                music: JSON.parse(localStorage.getItem('music')),
+                quantity: JSON.parse(localStorage.getItem('quantity')),
+
+            }
+        })
+    }
+
 	render() {
         const s = this.state
         return (
             <div>
-                
-
                     <div className="results">
-                        {!s.run && s.fromForm.search === ''
+                        {!s.run 
                             ? <div className="search-page">
                                 <div className="search-heading">
                                     <h1>Where will you be this weekend?</h1>
@@ -65,14 +84,17 @@ class Search extends React.Component {
                                         {...this.props} 
                                         onCheckbox={this.onCheckbox} 
                                         onSubmit={this.onFormSubmit} 
-                                        onNewSearch={this.onNewSearch} />
+                                        onNewSearch={this.onNewSearch}
+                                        fromForm={s.fromForm}
+                                        savedSearch={s.savedSearch} />
                                 </div>
                             </div>
                             : <Results 
                                 {...this.props}
                                 run={s.run} 
                                 fromForm={s.fromForm}
-                                onNewSearch={this.onNewSearch} />
+                                onNewSearch={this.onNewSearch}
+                                onBackSearch={this.onBackSearch} />
                         }              
                     </div>  
                     <div className="page-end">
