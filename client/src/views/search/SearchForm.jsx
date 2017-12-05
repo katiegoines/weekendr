@@ -261,8 +261,8 @@ class SearchForm extends React.Component {
                                             value={this.state.forsubmit.museums}
                                             onChange={this.checkbox} 
                                             checked={this.state.forsubmit.museums} />
-                                        <label className="label-inline" htmlFor="museums">Museums</label>
-                                    </span> 
+                                        <label className="label-inline" htmlFor="museums">Museum</label>
+                                    </span>
                                 </div>
                                 <div className="cat-groups">
                                     <span className="check-title">Events</span>

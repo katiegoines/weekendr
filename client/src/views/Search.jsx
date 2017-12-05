@@ -19,6 +19,7 @@ class Search extends React.Component {
                 dinner: true,
                 shopping: true,
                 music: true,
+                museums: true,
                 startDate: '',
                 endDate: '',
                 quantity: ''
@@ -48,6 +49,7 @@ class Search extends React.Component {
                     dinner: JSON.parse(localStorage.getItem('dinner')),
                     shopping: JSON.parse(localStorage.getItem('shopping')),
                     music: JSON.parse(localStorage.getItem('music')),
+                    museums: JSON.parse(localStorage.getItem('museums')),                    
                     quantity: JSON.parse(localStorage.getItem('quantity'))
                 }
             })
@@ -84,6 +86,7 @@ class Search extends React.Component {
                 dinner: JSON.parse(localStorage.getItem('dinner')),
                 shopping: JSON.parse(localStorage.getItem('shopping')),
                 music: JSON.parse(localStorage.getItem('music')),
+                museums: JSON.parse(localStorage.getItem('museums')),                
                 quantity: JSON.parse(localStorage.getItem('quantity'))
             }
         })
