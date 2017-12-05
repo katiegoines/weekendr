@@ -2,12 +2,11 @@ import React from 'react'
 import axios from 'axios'
 
 
-class Lunch extends React.Component {
+class Desserts extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            ready: false,
             error: false,
             tileView: true,
             results: {head: "", list: []}
@@ -25,21 +24,25 @@ class Lunch extends React.Component {
     }
     
     componentWillReceiveProps() {
+        // if(this.props.run) {
+        //     this.setState({results:{head:'', list: []}})
+        // }
     }
 
     request() {
-        axios({method: 'get', url: `/api/search/yelp?term=Lunch&location=${this.props.search}`})
+        axios({method: 'get', url: `/api/search/yelp?categories=desserts&location=${this.props.search}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
                 this.setState({results: {
                         list: res.data, 
-                        head: "Lunch"
+                        head: "Desserts"
                 }})
             }
         })
         .then(res => {
+            console.log(this.state.results.list)
             this.randomizeColor()
         })
         .catch(e => {
@@ -60,43 +63,51 @@ class Lunch extends React.Component {
                     ? <span className="search-results">
                         {!this.state.error
                             ? <span>
-                                    {this.state.results.head !== ''
-                                        ? <div className="search-category">
-                                            <h3>{this.state.results.head}</h3>
-                                        </div>
-                                        : null
-                                    }
-                                    {this.state.results.list.slice(0, this.props.quantity).map(el => {
-                                        return (
-                                            <div key={el.id} className="card-2">
-                                                <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
-                                                <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
-                                                    <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
-                                                    <div className="card-info">
-                                                        <div className="yelp-categories">{el.categories.map((cat, i)=> {
-                                                            return <span key={i}>{` - ${cat.title} - `}</span>
-                                                        })}</div>
-                                                        <div className="body-text">
-                                                            <div>{el.location.address1}</div>
-                                                            <div>{el.location.city}</div>
-                                                            <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                                            <div>{`Price: ${el.price}`}</div>
-                                                            <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
-                                                        </div>
+                                {this.state.results.head !== ''
+                                    ? <div className="search-category">
+                                        <h3>{this.state.results.head}</h3>
+                                        <a href={`https://www.yelp.com/search?categories=desserts&location=${this.props.search}&start=0&cflt=desserts`} target="_blank">See more results from Yelp</a>
+                                    </div>
+                                    : null
+                                }
+                                {this.state.results.list.slice(0, this.props.quantity).map(el => {
+                                    return (
+                                        <div key={el.id} className="card-2">
+                                            <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
+                                            <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
+                                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                                <div className="card-info">
+                                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
+                                                        return (
+                                                            <span key={i}>
+                                                                {i < el.categories.length - 1
+                                                                    ? cat.title + " - "
+                                                                    : cat.title
+                                                                }
+                                                            </span>
+                                                        )
+                                                    })}</div>
+                                                    <div className="body-text">
+                                                        <div>{el.location.address1}</div>
+                                                        <div>{el.location.city}</div>
+                                                        <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
+                                                        <div>{`Price: ${el.price}`}</div>
+                                                        <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        )
-                                    })}
+                                        </div>
+                                    )
+                                })}
                             </span>
                             : <span>
                                 <div className="search-category">
-                                    <h3>Lunch <br /> Coming Soon</h3>
+                                    <h3>Desserts <br /> Coming Soon</h3>
                                 </div>
                             </span>
                         }                
                     </span>
-                    : <div className="search-results-list-1">
+                    : <div className={`search-results-list-${this.randomizeColor()}`}>
                         <h3>{this.state.results.head}</h3>
                         {this.state.results.list.slice(0, this.props.quantity).map(el => {
                             return (
@@ -126,4 +137,4 @@ class Lunch extends React.Component {
     }
 }
 
-export default Lunch
+export default Desserts

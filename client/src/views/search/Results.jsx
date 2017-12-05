@@ -2,8 +2,8 @@ import React from 'react'
 import axios from 'axios'
 
 import Brunch from './results/Brunch'
-import Lunch from './results/Lunch'
-import Dinner from './results/Dinner'
+import Desserts from './results/Desserts'
+
 import Music from './results/Music'
 import Museums from './results/Museums'
 
@@ -88,22 +88,13 @@ class Results extends React.Component {
                                 tileView={s.tileView} />
                             : null
                         }
-        
-                        {!!s.fromForm.lunch
-                            ? <Lunch 
+
+                        {!!s.fromForm.desserts
+                            ? <Desserts 
                                 {...this.props} 
                                 search={s.fromForm.search} 
                                 quantity={s.fromForm.quantity} 
-                                tileView={s.tileView}  />
-                            : null
-                        }
-        
-                        {!!s.fromForm.dinner
-                            ? <Dinner 
-                                {...this.props} 
-                                search={s.fromForm.search} 
-                                quantity={s.fromForm.quantity} 
-                                tileView={s.tileView}  />
+                                tileView={s.tileView} />
                             : null
                         }
                         

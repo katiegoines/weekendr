@@ -20,11 +20,30 @@ class SearchForm extends React.Component {
                 startDate: '', 
                 endDate: '',
                 brunch: true,
-                lunch: true,
-                dinner: true,
-                shopping: true,
-                music: true,
+                cafes: true,
+                vegetarian: true,
+                foodstands: true,
+                desserts: true,
+                breweries: true,
+                wineries: true,
+                cocktails: true,
+                pubs: true,
+                clubs: true,
+                antiques: true,
+                media: true,
+                sportinggoods: true,
+                fashion: true,
+                fleamarkets: true,
+                hiking: true,
                 museums: true,
+                zoos: true,
+                spas: true,
+                parks: true,
+                music: true,
+                sports: true,
+                performingarts: true,
+                comedy: true,
+                technology: true,
                 quantity: 1,
             }
         }
@@ -77,11 +96,30 @@ class SearchForm extends React.Component {
                 forsubmit: {
                     ...this.state.forsubmit,
                     brunch: false,
-                    lunch: false,
-                    dinner: false,
-                    shopping: false,
+                    cafes: false,
+                    vegetarian: false,
+                    foodstands: false,
+                    desserts: false,
+                    breweries: false,
+                    wineries: false,
+                    cocktails: false,
+                    pubs: false,
+                    clubs: false,
+                    antiques: false,
+                    media: false,
+                    sportinggoods: false,
+                    fashion: false,
+                    fleamarkets: false,
+                    hiking: false,
+                    museums: false,
+                    zoos: false,
+                    spas: false,
+                    parks: false,
                     music: false,
-                    museums: false
+                    sports: false,
+                    performingarts: false,
+                    comedy: false,
+                    technology: false,
                 }
             })
         } else if (evt.target.value === "false") {
@@ -90,11 +128,30 @@ class SearchForm extends React.Component {
                 forsubmit: {
                     ...this.state.forsubmit,
                     brunch: true,
-                    lunch: true,
-                    dinner: true,
-                    shopping: true,
+                    cafes: true,
+                    vegetarian: true,
+                    foodstands: true,
+                    desserts: true,
+                    breweries: true,
+                    wineries: true,
+                    cocktails: true,
+                    pubs: true,
+                    clubs: true,
+                    antiques: true,
+                    media: true,
+                    sportinggoods: true,
+                    fashion: true,
+                    fleamarkets: true,
+                    hiking: true,
+                    museums: true,
+                    zoos: true,
+                    spas: true,
+                    parks: true,
                     music: true,
-                    museums: true
+                    sports: true,
+                    performingarts: true,
+                    comedy: true,
+                    technology: true,
                 }
             })
         }
@@ -148,7 +205,7 @@ class SearchForm extends React.Component {
             <div className="search-form">
                 <div>
                     <div className="form-box">
-                        <form  onSubmit={this.submitSearchTerm} >
+                        <form onSubmit={this.submitSearchTerm} >
                             <input 
                                 type="text"
                                 id={this.state.blank} 
@@ -183,53 +240,166 @@ class SearchForm extends React.Component {
                                         <label className="label-inline" htmlFor="brunch">Check/Uncheck All</label>
                                     </span>
                                 </div>
+                        {/* FOOD */}
                                 <div className="cat-groups">
                                     <span className="check-title">Food</span>
-                                    <span className="checkbox">
-                                    <input 
-                                        type="checkbox" 
-                                        name="brunch" 
-                                        value={this.state.forsubmit.brunch}
-                                        onChange={this.checkbox} 
-                                        checked={this.state.forsubmit.brunch} />
-                                    <label className="label-inline" htmlFor="brunch">Brunch</label>
+                                    <span className="checkbox-short">
+                                        <input 
+                                            type="checkbox" 
+                                            name="brunch" 
+                                            value={this.state.forsubmit.brunch}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.brunch} />
+                                        <label className="label-inline" htmlFor="brunch">Brunch</label>
                                     </span>
                                     <span className="checkbox">
                                         <input 
                                             type="checkbox" 
-                                            name="lunch" 
-                                            value={this.state.forsubmit.lunch}
+                                            name="cafes" 
+                                            value={this.state.forsubmit.cafes}
                                             onChange={this.checkbox} 
-                                            checked={this.state.forsubmit.lunch} />
-                                        <label className="label-inline" htmlFor="lunch">Lunch</label>
+                                            checked={this.state.forsubmit.cafes} />
+                                        <label className="label-inline" htmlFor="cafes">Cafes</label>
+                                    </span>
+                                    <span className="checkbox-long">
+                                        <input 
+                                            type="checkbox" 
+                                            name="vegetarian" 
+                                            value={this.state.forsubmit.vegetarian}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.vegetarian} />
+                                        <label className="label-inline" htmlFor="vegetarian">Vegan/Vegetarian</label>
                                     </span>
                                     <span className="checkbox">
                                         <input 
                                             type="checkbox" 
-                                            name="dinner" 
-                                            value={this.state.forsubmit.dinner}
+                                            name="foodstands" 
+                                            value={this.state.forsubmit.foodstands}
                                             onChange={this.checkbox} 
-                                            checked={this.state.forsubmit.dinner} />
-                                        <label className="label-inline" htmlFor="dinner">Dinner</label>
+                                            checked={this.state.forsubmit.foodstands} />
+                                        <label className="label-inline" htmlFor="foodstands">Foodstands</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="desserts" 
+                                            value={this.state.forsubmit.desserts}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.desserts} />
+                                        <label className="label-inline" htmlFor="desserts">Desserts</label>
                                     </span>
                                 </div>
+
+
                                 <div className="cat-groups">
                                     <span className="check-title">Bars</span>
-                                </div>
-                                <div className="cat-groups">
-                                    <span className="check-title">Shopping</span>
+                                    <span className="checkbox-short">
+                                        <input 
+                                            type="checkbox" 
+                                            name="breweries" 
+                                            value={this.state.forsubmit.breweries}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.breweries} />
+                                        <label className="label-inline" htmlFor="breweries">Breweries</label>
+                                    </span>
                                     <span className="checkbox">
                                         <input 
                                             type="checkbox" 
-                                            name="shopping" 
-                                            value={this.state.forsubmit.shopping}
+                                            name="wineries" 
+                                            value={this.state.forsubmit.wineries}
                                             onChange={this.checkbox} 
-                                            checked={this.state.forsubmit.shopping} />
-                                        <label className="label-inline" htmlFor="shopping">Shopping</label>
-                                    </span> 
+                                            checked={this.state.forsubmit.wineries} />
+                                        <label className="label-inline" htmlFor="wineries">Wine Tasting</label>
+                                    </span>
+                                    <span className="checkbox-long">
+                                        <input 
+                                            type="checkbox" 
+                                            name="cocktails" 
+                                            value={this.state.forsubmit.cocktails}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.cocktails} />
+                                        <label className="label-inline" htmlFor="cocktails">Cocktail Bars</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="pubs" 
+                                            value={this.state.forsubmit.pubs}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.pubs} />
+                                        <label className="label-inline" htmlFor="pubs">Pubs</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="clubs" 
+                                            value={this.state.forsubmit.clubs}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.clubs} />
+                                        <label className="label-inline" htmlFor="clubs">Clubs</label>
+                                    </span>
+                                </div>
+
+
+                                <div className="cat-groups">
+                                    <span className="check-title">Shopping</span>
+                                    <span className="checkbox-short">
+                                        <input 
+                                            type="checkbox" 
+                                            name="fashion" 
+                                            value={this.state.forsubmit.fashion}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.fashion} />
+                                        <label className="label-inline" htmlFor="fashion">Clothes</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="antiques" 
+                                            value={this.state.forsubmit.antiques}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.antiques} />
+                                        <label className="label-inline" htmlFor="antiques">Antiques</label>
+                                    </span>
+                                    <span className="checkbox-long">
+                                        <input 
+                                            type="checkbox" 
+                                            name="media" 
+                                            value={this.state.forsubmit.media}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.media} />
+                                        <label className="label-inline" htmlFor="media">Books/Movies/Music</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="sportinggoods" 
+                                            value={this.state.forsubmit.sportinggoods}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.sportinggoods} />
+                                        <label className="label-inline" htmlFor="sportinggoods">Sporting Goods</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="fleamarkets" 
+                                            value={this.state.forsubmit.fleamarkets}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.fleamarkets} />
+                                        <label className="label-inline" htmlFor="fleamarkets">Flea Markets</label>
+                                    </span>
                                 </div>
                                 <div className="cat-groups">
                                     <span className="check-title">Activities</span>
+                                    <span className="checkbox-short">
+                                        <input 
+                                            type="checkbox" 
+                                            name="hiking" 
+                                            value={this.state.forsubmit.hiking}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.hiking} />
+                                        <label className="label-inline" htmlFor="hiking">Hikes</label>
+                                    </span>
                                     <span className="checkbox">
                                         <input 
                                             type="checkbox" 
@@ -237,19 +407,82 @@ class SearchForm extends React.Component {
                                             value={this.state.forsubmit.museums}
                                             onChange={this.checkbox} 
                                             checked={this.state.forsubmit.museums} />
-                                        <label className="label-inline" htmlFor="museums">Museum</label>
+                                        <label className="label-inline" htmlFor="museums">Musuems</label>
+                                    </span>
+                                    <span className="checkbox-long">
+                                        <input 
+                                            type="checkbox" 
+                                            name="zoos" 
+                                            value={this.state.forsubmit.zoos}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.zoos} />
+                                        <label className="label-inline" htmlFor="zoos">Zoos/Aquariums</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="parks" 
+                                            value={this.state.forsubmit.parks}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.parks} />
+                                        <label className="label-inline" htmlFor="parks">Parks</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="spas" 
+                                            value={this.state.forsubmit.spas}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.spas} />
+                                        <label className="label-inline" htmlFor="spas">Spas</label>
                                     </span>
                                 </div>
                                 <div className="cat-groups">
                                     <span className="check-title">Events</span>
-                                    <span className="checkbox">
+                                    <span className="checkbox-short">
                                         <input 
                                             type="checkbox" 
                                             name="music" 
                                             value={this.state.forsubmit.music}
                                             onChange={this.checkbox} 
                                             checked={this.state.forsubmit.music} />
-                                        <label className="label-inline" htmlFor="music">Music</label>
+                                        <label className="label-inline" htmlFor="music">Concerts</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="sports" 
+                                            value={this.state.forsubmit.sports}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.sports} />
+                                        <label className="label-inline" htmlFor="sports">Sports</label>
+                                    </span>
+                                    <span className="checkbox-long">
+                                        <input 
+                                            type="checkbox" 
+                                            name="performingarts" 
+                                            value={this.state.forsubmit.performingarts}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.performingarts} />
+                                        <label className="label-inline" htmlFor="performingarts">Performing Arts</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="comedy" 
+                                            value={this.state.forsubmit.comedy}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.comedy} />
+                                        <label className="label-inline" htmlFor="comedy">Comedy</label>
+                                    </span>
+                                    <span className="checkbox">
+                                        <input 
+                                            type="checkbox" 
+                                            name="technology" 
+                                            value={this.state.forsubmit.technology}
+                                            onChange={this.checkbox} 
+                                            checked={this.state.forsubmit.technology} />
+                                        <label className="label-inline" htmlFor="technology">Tech</label>
                                     </span>
                                 </div>
                                 
@@ -279,7 +512,7 @@ class SearchForm extends React.Component {
                                         className="button button-outline">Go
                                     </button>
                                 </span>
-                                <small className ="adv">*Adventures not limited to weekends.</small>
+                                <div><small className ="adv">*Adventures not limited to weekends.</small></div>
                             </div>
                         </form>
                     </div>

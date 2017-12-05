@@ -15,11 +15,30 @@ class Search extends React.Component {
                 lon: '', 
                 lat: '',
                 brunch: true,
-                lunch: true,
-                dinner: true,
-                shopping: true,
-                music: true,
+                cafes: true,
+                vegetarian: true,
+                foodstands: true,
+                desserts: true,
+                breweries: true,
+                wineries: true,
+                cocktails: true,
+                pubs: true,
+                clubs: true,
+                antiques: true,
+                media: true,
+                sportinggoods: true,
+                fashion: true,
+                fleamarkets: true,
+                hiking: true,
                 museums: true,
+                zoos: true,
+                spas: true,
+                parks: true,
+                music: true,
+                sports: true,
+                performingarts: true,
+                comedy: true,
+                technology: true,
                 startDate: '',
                 endDate: '',
                 quantity: ''
@@ -71,9 +90,7 @@ class Search extends React.Component {
                         {!s.run
                             ? <div className="search-page">
                                 <div className="search-heading">
-                                    {/* <h1><span className="swirly-font">What are you up to this weekend?</span></h1> */}
                                     <h1>What are you up to this weekend?</h1>
-
                                 </div>
                                 <div className="form">
                                     <SearchForm 
@@ -95,9 +112,7 @@ class Search extends React.Component {
                         }              
                     </div> 
                 }
-                     
             </div>
-            
         )
     }
 }
