@@ -37,18 +37,6 @@ class Results extends React.Component {
         // this.setState({run: false})
         localStorage.removeItem('saved')
         localStorage.removeItem('formInfo')
-        // localStorage.removeItem('search')
-        // localStorage.removeItem('startDate')
-        // localStorage.removeItem('endDate')
-        // localStorage.removeItem('lon')
-        // localStorage.removeItem('lat')
-        // localStorage.removeItem('brunch')
-        // localStorage.removeItem('lunch')
-        // localStorage.removeItem('dinner')
-        // localStorage.removeItem('shopping')
-        // localStorage.removeItem('music')
-        // localStorage.removeItem('museums')
-        // localStorage.removeItem('quantity')
         const onNewSearch = this.props.onNewSearch
         onNewSearch(false)
     }
@@ -66,20 +54,6 @@ class Results extends React.Component {
             method: 'post', 
             url: `/api/users/${id}/searches`, 
             data: JSON.parse(localStorage.getItem('formInfo'))
-            // data: {
-            //     search: localStorage.getItem('search'),
-            //     startDate: localStorage.getItem('startDate'),
-            //     endDate: localStorage.getItem('endDate'),
-            //     lon: JSON.parse(localStorage.getItem('lon')),
-            //     lat: JSON.parse(localStorage.getItem('lat')),                
-            //     brunch: JSON.parse(localStorage.getItem('brunch')),
-            //     lunch: JSON.parse(localStorage.getItem('lunch')),
-            //     dinner: JSON.parse(localStorage.getItem('dinner')),
-            //     shopping: JSON.parse(localStorage.getItem('shopping')),
-            //     music: JSON.parse(localStorage.getItem('music')),
-            //     museums: JSON.parse(localStorage.getItem('museums')),
-            //     quantity: JSON.parse(localStorage.getItem('quantity'))
-            // }
         })
         .then((res) => {
             this.props.history.push(`/profile`)
