@@ -36,21 +36,9 @@
 
     .button-outline {
       border-color: #04aba8 !important;
-
-    }
-
-    .swirly-font {
-      font-family: 'Clicker Script', cursive;
-      letter-spacing: 1px;
-      /* font-weight: bold; */
-    }
-
-    .logo {
-      font-size: 24px;
     }
 
 /* Navbar */
-
     .NavBar {
       height: 50px;
       padding-top: 5px;
@@ -88,6 +76,12 @@
     .standard a {
       margin-left: 20px;
       margin-right: 30px;
+    }
+
+    .swirly-font {
+      font-family: 'Clicker Script', cursive;
+      font-size: 24px;
+      letter-spacing: 1px;
     }
 
     /* .logo {
