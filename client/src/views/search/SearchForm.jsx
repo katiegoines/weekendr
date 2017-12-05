@@ -294,6 +294,7 @@ class SearchForm extends React.Component {
                                         className="button button-outline">Go
                                     </button>
                                 </span>
+                                <small className ="adv">*Adventures not limited to weekends.</small>
                             </div>
                         </form>
                     </div>

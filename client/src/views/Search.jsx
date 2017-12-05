@@ -97,7 +97,7 @@ class Search extends React.Component {
                         {!s.run 
                             ? <div className="search-page">
                                 <div className="search-heading">
-                                    <h1>Where will you be this weekend?</h1>
+                                    <h1>What are you up to this weekend?</h1>
                                 </div>
                                 <div className="form">
                                     <SearchForm 
@@ -118,9 +118,6 @@ class Search extends React.Component {
                                 onBackSearch={this.onBackSearch} />
                         }              
                     </div>  
-                    <div className="page-end">
-                        <small>*Definitely not limited to just weekends</small>
-                    </div>
             </div>
             
         )

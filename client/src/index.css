@@ -263,6 +263,11 @@
       border: 1px solid #E24E42;;
     }
 
+    .adv {
+      float: right;
+      margin-bottom: 10px;
+    }
+
     .form-box {
       width: 500px;
       height: 400px;
