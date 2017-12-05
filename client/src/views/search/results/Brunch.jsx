@@ -107,7 +107,7 @@ class Brunch extends React.Component {
                             </span>
                         }                
                     </span>
-                    : <div className="search-results-list-0">
+                    : <div className={`search-results-list-${this.randomizeColor()}`}>
                         <h3>{this.state.results.head}</h3>
                         {this.state.results.list.slice(0, this.props.quantity).map(el => {
                             return (
