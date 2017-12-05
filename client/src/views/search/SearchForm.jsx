@@ -42,6 +42,7 @@ class SearchForm extends React.Component {
             this.setState({forsubmit: this.props.fromForm})
         }
     }
+    
 
     onInputChange(evt) {  
         console.log(this.state.forsubmit.quantity)
@@ -112,7 +113,16 @@ class SearchForm extends React.Component {
 
     submitSearchTerm(evt) {
         evt.preventDefault()
-        this.codeAddress()
+        
+    }
+
+    submitSearchTerm(evt) {
+        evt.preventDefault()
+        if(this.state.forsubmit.search === '') {
+            this.setState({blank: 'blank'})
+        } else {
+            this.codeAddress()  
+        }
     }
 
     codeAddress() {
@@ -128,9 +138,6 @@ class SearchForm extends React.Component {
             })
         })
         .then((res) => {
-            if(this.state.forsubmit.search === '') {
-                this.setState({blank: 'blank'})
-            } else {
                 localStorage.removeItem('saved')
     
                 localStorage.setItem('search', this.state.forsubmit.search)
@@ -149,7 +156,6 @@ class SearchForm extends React.Component {
 
                 const { onSubmit } = this.props
                 onSubmit(this.state.forsubmit)
-            }
         })
         // .then(res => {
         //     this.setState({submitted: true}) 
