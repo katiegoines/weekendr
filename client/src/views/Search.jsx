@@ -38,20 +38,21 @@ class Search extends React.Component {
         if(localStorage.getItem('saved') === "true") {
             this.setState({
                 run: true,
-                fromForm: {
-                    search: localStorage.getItem('search'),
-                    startDate: localStorage.getItem('startDate'),
-                    endDate: localStorage.getItem('endDate'),
-                    lon: JSON.parse(localStorage.getItem('lon')),
-                    lat: JSON.parse(localStorage.getItem('lat')),
-                    brunch: JSON.parse(localStorage.getItem('brunch')),
-                    lunch: JSON.parse(localStorage.getItem('lunch')),
-                    dinner: JSON.parse(localStorage.getItem('dinner')),
-                    shopping: JSON.parse(localStorage.getItem('shopping')),
-                    music: JSON.parse(localStorage.getItem('music')),
-                    museums: JSON.parse(localStorage.getItem('museums')),                    
-                    quantity: JSON.parse(localStorage.getItem('quantity'))
-                }
+                fromForm: JSON.parse(localStorage.getItem('formInfo'))
+                // fromForm: {
+                //     search: localStorage.getItem('search'),
+                //     startDate: localStorage.getItem('startDate'),
+                //     endDate: localStorage.getItem('endDate'),
+                //     lon: JSON.parse(localStorage.getItem('lon')),
+                //     lat: JSON.parse(localStorage.getItem('lat')),
+                //     brunch: JSON.parse(localStorage.getItem('brunch')),
+                //     lunch: JSON.parse(localStorage.getItem('lunch')),
+                //     dinner: JSON.parse(localStorage.getItem('dinner')),
+                //     shopping: JSON.parse(localStorage.getItem('shopping')),
+                //     music: JSON.parse(localStorage.getItem('music')),
+                //     museums: JSON.parse(localStorage.getItem('museums')),                    
+                //     quantity: JSON.parse(localStorage.getItem('quantity'))
+                // }
             })
         }
     }
@@ -75,20 +76,21 @@ class Search extends React.Component {
         this.setState({
             run: run,
             savedSearch: true,
-            fromForm: {
-                search: localStorage.getItem('search'),
-                startDate: localStorage.getItem('startDate'),
-                endDate: localStorage.getItem('endDate'),
-                lon: JSON.parse(localStorage.getItem('lon')),
-                lat: JSON.parse(localStorage.getItem('lat')),                
-                brunch: JSON.parse(localStorage.getItem('brunch')),
-                lunch: JSON.parse(localStorage.getItem('lunch')),
-                dinner: JSON.parse(localStorage.getItem('dinner')),
-                shopping: JSON.parse(localStorage.getItem('shopping')),
-                music: JSON.parse(localStorage.getItem('music')),
-                museums: JSON.parse(localStorage.getItem('museums')),                
-                quantity: JSON.parse(localStorage.getItem('quantity'))
-            }
+            fromForm: JSON.parse(localStorage.getItem('formInfo'))            
+            // fromForm: {
+            //     search: localStorage.getItem('search'),
+            //     startDate: localStorage.getItem('startDate'),
+            //     endDate: localStorage.getItem('endDate'),
+            //     lon: JSON.parse(localStorage.getItem('lon')),
+            //     lat: JSON.parse(localStorage.getItem('lat')),                
+            //     brunch: JSON.parse(localStorage.getItem('brunch')),
+            //     lunch: JSON.parse(localStorage.getItem('lunch')),
+            //     dinner: JSON.parse(localStorage.getItem('dinner')),
+            //     shopping: JSON.parse(localStorage.getItem('shopping')),
+            //     music: JSON.parse(localStorage.getItem('music')),
+            //     museums: JSON.parse(localStorage.getItem('museums')),                
+            //     quantity: JSON.parse(localStorage.getItem('quantity'))
+            // }
         })
     }
 

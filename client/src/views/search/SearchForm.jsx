@@ -113,11 +113,6 @@ class SearchForm extends React.Component {
 
     submitSearchTerm(evt) {
         evt.preventDefault()
-        
-    }
-
-    submitSearchTerm(evt) {
-        evt.preventDefault()
         if(this.state.forsubmit.search === '') {
             this.setState({blank: 'blank'})
         } else {
@@ -139,19 +134,20 @@ class SearchForm extends React.Component {
         })
         .then((res) => {
                 localStorage.removeItem('saved')
-    
-                localStorage.setItem('search', this.state.forsubmit.search)
-                localStorage.setItem('startDate', this.state.forsubmit.startDate)
-                localStorage.setItem('endDate', this.state.forsubmit.endDate)
-                localStorage.setItem('lon', this.state.forsubmit.lon)
-                localStorage.setItem('lat', this.state.forsubmit.lat)                
-                localStorage.setItem('brunch', this.state.forsubmit.brunch)
-                localStorage.setItem('lunch', this.state.forsubmit.lunch)
-                localStorage.setItem('dinner', this.state.forsubmit.dinner)
-                localStorage.setItem('shopping', this.state.forsubmit.shopping)
-                localStorage.setItem('music', this.state.forsubmit.music)
-                localStorage.setItem('museums', this.state.forsubmit.museums)
-                localStorage.setItem('quantity', this.state.forsubmit.quantity)
+
+                localStorage.setItem('formInfo', JSON.stringify(this.state.forsubmit))
+                // localStorage.setItem('search', this.state.forsubmit.search)
+                // localStorage.setItem('startDate', this.state.forsubmit.startDate)
+                // localStorage.setItem('endDate', this.state.forsubmit.endDate)
+                // localStorage.setItem('lon', this.state.forsubmit.lon)
+                // localStorage.setItem('lat', this.state.forsubmit.lat)                
+                // localStorage.setItem('brunch', this.state.forsubmit.brunch)
+                // localStorage.setItem('lunch', this.state.forsubmit.lunch)
+                // localStorage.setItem('dinner', this.state.forsubmit.dinner)
+                // localStorage.setItem('shopping', this.state.forsubmit.shopping)
+                // localStorage.setItem('music', this.state.forsubmit.music)
+                // localStorage.setItem('museums', this.state.forsubmit.museums)
+                // localStorage.setItem('quantity', this.state.forsubmit.quantity)
                 console.log(this.state.forsubmit.quantity)
 
                 const { onSubmit } = this.props
