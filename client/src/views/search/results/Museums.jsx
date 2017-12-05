@@ -68,7 +68,7 @@ class Museums extends React.Component {
                                 {this.state.results.head !== ''
                                     ? <div className="search-category">
                                         <h3>{this.state.results.head}</h3>
-                                        <a href={``} target="_blank">See more results from Google</a>
+                                        {/* <a href={``} target="_blank">See more results from Google</a> */}
                                     </div>
                                     : null
                                 }
@@ -97,25 +97,14 @@ class Museums extends React.Component {
                             </span>
                         }                
                     </span>
-                    : <div className="search-results-list-0">
+                    : <div className={`search-results-list-${this.randomizeColor()}`}>
                         <h3>{this.state.results.head}</h3>
                         {this.state.results.list.slice(0, this.props.quantity).map(el => {
                             return (
-                                <div  className="list-result" key={el.id}><a href={el.url} target="_blank">{el.name}</a>
+                                <div className="list-result" key={el.id}><span className="non-a">{el.name}</span>
                                     <div>
-                                        <div>
-                                            {el.categories.map((cat, i) => {
-                                                return (
-                                                    <span key={i}><small>
-                                                        {(i + 1) < el.categories.length ? <span>{`${cat.title}, `}</span> : <span>{cat.title}</span>}
-                                                    </small></span>
-                                                )
-                                            })}
-                                        </div>
-                                        <div>{`${el.location.address1}, ${el.location.city}`}</div>
-                                        <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                        <div>{`Price: ${el.price}`}</div>
-                                        <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                        <div>{el.vicinity}</div>
+                                        <div>{`Rating: ${el.rating}`}</div>
                                     </div>
                                 </div> 
                             )

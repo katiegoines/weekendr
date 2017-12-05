@@ -92,13 +92,13 @@ class Results extends React.Component {
                 <span>
                     <div>
                         {!!s.tileView
-                            ? <span><button onClick={this.tileView}>Switch to List View</button></span>
-                            : <span><button onClick={this.tileView}>Switch to Tile View</button></span>
+                            ? <span><button className="button button-clear" onClick={this.tileView}>Switch to List View</button></span>
+                            : <span><button className="button button-clear"  onClick={this.tileView}>Switch to Tile View</button></span>
                         }
-                        <span><button onClick={this.newSearch}>New Search</button></span>
-                        <span><button onClick={this.backSearch}>Back to Search</button></span>
+                        <span><button className="button button-clear"  onClick={this.newSearch}>New Search</button></span>
+                        <span><button className="button button-clear"  onClick={this.backSearch}>Back to Search</button></span>
                         {!!this.props.currentUser
-                            ? <span><button onClick={this.saveSearch}>Save Search</button></span>
+                            ? <span><button className="button button-clear"  onClick={this.saveSearch}>Save Search</button></span>
                             : null
                         }
                         

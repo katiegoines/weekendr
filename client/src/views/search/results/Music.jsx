@@ -105,18 +105,16 @@ class Events extends React.Component {
                                                         
                                                     </a>
                                                 </div>
-                                                <br />
                                                 <div className="card-info">
                                                     <div className="body-text">
-                                                        <div>{el.venue_name.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&")}</div>
+                                                        <small><div className="music-spacing">{el.venue_name.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&")}</div></small>
                                                         <div>{el.venue_address}</div>
                                                         <div>{el.city_name}</div>
-                                                        <br />
                                                         {el.stop_time === null || el.stop_time.substr(0,10) === el.start_time.substr(0,10)
-                                                            ? <span>
+                                                            ? <div className="music-spacing">
                                                                     <div><Moment format="ddd MMM D">{el.start_time}</Moment></div>
                                                                     <div>Starts at <Moment format="h:mm a">{el.start_time}</Moment></div>
-                                                                </span>          
+                                                                </div>          
                                                             : <div>Through <Moment format="ddd MMM D">{el.stop_time}</Moment></div>
                                                         }
                                                     </div>

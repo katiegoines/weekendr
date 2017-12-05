@@ -27,11 +27,16 @@
 
     button {
       color: #04aba8 !important;
-      border-color: #04aba8 !important;
       font-family: 'Roboto Slab', serif;
       text-transform: inherit;
       padding: 0;
+      float: right;
       min-width: 100px;
+    }
+
+    .button-outline {
+      border-color: #04aba8 !important;
+
     }
 
 /* Navbar */
@@ -43,6 +48,7 @@
       z-index: 3;
       background: white;
       width: 100%;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
     }
 
     .NavBar a, .NavBar span {
@@ -259,7 +265,7 @@
 
     .form-box {
       width: 500px;
-      height: 300px;
+      height: 400px;
     }
 
     .search-form {
@@ -368,6 +374,32 @@
       padding: 10px;
     }
 
+    .music-spacing {
+      margin-top: 15px;
+    }
+
+    .cat-groups {
+      width: 500px;
+      min-height: 37px;
+    }
+
+    .check-title {
+      width: 80px;
+      display: inline-block;
+    }
+
+    .results-title {
+      width: 120px;
+      display: inline-block;
+    }
+
+    /* .cat-groups {
+      width: 80px;
+      margin: 10px;
+      text-align: center;
+      float: left;
+    } */
+
     .search-results-list-0, .search-results-list-1, .search-results-list-2, .search-results-list-3 {
       width: 300px;
       border-radius: 20px;
@@ -398,9 +430,13 @@
       color: white !important;
     }
 
+    .non-a {
+      color: white !important;
+    }
+
     .search-category {
       width: 250px;
-      max-height: 250px;
+      height: 250px;
       margin: 10px;
       padding-top: 100px;
       display: inline-block;
@@ -449,7 +485,7 @@
 
    .card-overlay-0, .card-overlay-1, .card-overlay-2, .card-overlay-3 {
       border-radius: 10px;
-      padding: 30px;
+      padding: 25px 10px;
       width: 250px; 
       height: 250px;
       margin: 10px;
