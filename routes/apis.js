@@ -19,7 +19,7 @@ apiRoutes.route('/yelp')
         .then(response => {
             const client = yelp.client(response.jsonBody.access_token)
             client.search({
-                term: req.query.term,
+                categories: req.query.categories,
                 location: req.query.location
             })
             .then((response) => {
@@ -48,14 +48,15 @@ apiRoutes.route('/eventful')
     })
 
 
-// apiRoutes.route('/google')
-//     .get((req, res) => {
-//         var apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.query.address}&key=${googleID}`
-//         httpClient.get(apiUrl, (err, response, body) => {
-//             var results = JSON.parse(response.body)
-//             res.json(results)
-//         })
-//     })
+apiRoutes.route('/geocode')
+    .get((req, res) => {
+        var apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.query.search}&key=${googleID}`
+        httpClient.get(apiUrl, (err, response, body) => {
+            var results = JSON.parse(response.body)
+            // console.log(results)
+            res.json(results)
+        })
+    })
 
 // apiRoutes.route('/walkscore')
 //     .get((req, res) => {
@@ -84,20 +85,21 @@ apiRoutes.route('/eventful')
 //         })
 //     })
 
-// apiRoutes.route('/places')
-//     .get((req, res) => {
-//         var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.lat},${req.query.lon}&radius=500&key=${googleID}`
-//         httpClient.get(apiUrl, (err, response, body) => {
-//             var results = JSON.parse(response.body)
-//             if(!!results.results && !!results.results[0] && !!results.results[0].photos) {
-//                 var photoref = results.results[0].photos[0].photo_reference
-//             res.json({photoref: photoref, apiKey: googleID})
-//             } else {
-//                 res.json({apiKey: googleID})
-//             }
+apiRoutes.route('/places')
+    .get((req, res) => {
+        var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleID}&location=${req.query.lat},${req.query.lon}&radius=24140&type=${req.query.category}`
+        httpClient.get(apiUrl, (err, response, body) => {
+            var results = JSON.parse(response.body)
+            res.json({results, apiKey: googleID})
+            // if(!!results.results && !!results.results[0] && !!results.results[0].photos) {
+            //     var photoref = results.results[0].photos[0].photo_reference
+            // res.json({photoref: photoref, apiKey: googleID})
+            // } else {
+            //     res.json({apiKey: googleID})
+            // }
             
-//         })
-//     })
+        })
+    })
 
 
 module.exports = apiRoutes

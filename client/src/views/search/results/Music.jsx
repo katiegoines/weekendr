@@ -83,7 +83,9 @@ class Events extends React.Component {
                         {!this.state.error
                             ? <span>
                                 {this.state.results.head !== ''
-                                    ? <div className="search-category"><h3>{this.state.results.head}</h3></div>
+                                    ? <div className="search-category">
+                                        <h3>{this.state.results.head}</h3>
+                                    </div>
                                     : null
                                 }
                                 {this.state.results.list.slice(0, this.props.quantity).map(el => {
@@ -103,6 +105,7 @@ class Events extends React.Component {
                                                         
                                                     </a>
                                                 </div>
+                                                <br />
                                                 <div className="card-info">
                                                     <div className="body-text">
                                                         <div>{el.venue_name.replace(/&#39;/g, "'").replace(/&#38;/g, "&").replace(/&amp;/g, "&")}</div>

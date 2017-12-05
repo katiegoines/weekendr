@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 
-class Brunch extends React.Component {
+class Museums extends React.Component {
     constructor(props) {
         super(props)
 
@@ -30,19 +30,21 @@ class Brunch extends React.Component {
     }
 
     request() {
-        axios({method: 'get', url: `/api/search/yelp?categories=breakfast_brunch&location=${this.props.search}`})
+        axios({method: 'get', url: `/api/search/places?category=museum&lat=${this.props.lat}&lon=${this.props.lon}`})
         .then((res) => { 
+            // console.log(res.data)
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
+                console.log(res.data.results)
+                this.key = res.data.apiKey
                 this.setState({results: {
-                        list: res.data, 
-                        head: "Brunch"
+                        list: res.data.results.results, 
+                        head: "Museums"
                 }})
             }
         })
         .then(res => {
-            console.log(this.state.results.list)
             this.randomizeColor()
         })
         .catch(e => {
@@ -66,33 +68,21 @@ class Brunch extends React.Component {
                                 {this.state.results.head !== ''
                                     ? <div className="search-category">
                                         <h3>{this.state.results.head}</h3>
-                                        <a href={`https://www.yelp.com/search?categories=breakfast_brunch&location=${this.props.search}&start=0&cflt=breakfast_brunch`} target="_blank">See more results from Yelp</a>
+                                        <a href={``} target="_blank">See more results from Google</a>
                                     </div>
                                     : null
                                 }
                                 {this.state.results.list.slice(0, this.props.quantity).map(el => {
                                     return (
                                         <div key={el.id} className="card-2">
-                                            <img className={`card-img-${this.randomizeColor()}`} src={el.image_url} alt="" />
+                                            <img className={`card-img-${this.randomizeColor()}`} src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=${el.photos[0].photo_reference}&key=${this.key}`} alt="" />
                                             <div className={el.image !== null ? `card-overlay-${this.color}` : `card-overlay-${this.randomizeColor()}`}>
-                                                <div className="card-title"><a href={el.url} target="_blank">{el.name}</a></div>
+                                                <div className="card-title">{el.name}</div>
+                                                <br />
                                                 <div className="card-info">
-                                                    <div className="yelp-categories">{el.categories.map((cat, i)=> {
-                                                        return (
-                                                            <span key={i}>
-                                                                {i < el.categories.length - 1
-                                                                    ? cat.title + " - "
-                                                                    : cat.title
-                                                                }
-                                                            </span>
-                                                        )
-                                                    })}</div>
                                                     <div className="body-text">
-                                                        <div>{el.location.address1}</div>
-                                                        <div>{el.location.city}</div>
-                                                        <div>{`${(el.distance * 0.000621371192).toFixed(2)}mi away`}</div>
-                                                        <div>{`Price: ${el.price}`}</div>
-                                                        <div>{`Rating: ${el.rating} (${el.review_count} reviews)`}</div>
+                                                        <div>{el.vicinity}</div>
+                                                        <div>{`Rating: ${el.rating}`}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,7 +92,7 @@ class Brunch extends React.Component {
                             </span>
                             : <span>
                                 <div className="search-category">
-                                    <h3>Brunch <br /> Coming Soon</h3>
+                                    <h3>Museums <br /> Coming Soon</h3>
                                 </div>
                             </span>
                         }                
@@ -137,4 +127,4 @@ class Brunch extends React.Component {
     }
 }
 
-export default Brunch
+export default Museums

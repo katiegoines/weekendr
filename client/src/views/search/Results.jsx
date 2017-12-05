@@ -5,19 +5,17 @@ import Brunch from './results/Brunch'
 import Lunch from './results/Lunch'
 import Dinner from './results/Dinner'
 import Music from './results/Music'
+import Museums from './results/Museums'
+
 
 class Results extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            // loading: false, 
             run: true,
             error: false,
             tileView: true,
-            // town: '',
-            // lat: '',
-            // lon: '',
             fromForm: ''
         }
         this.tileView = this.tileView.bind(this) 
@@ -42,11 +40,14 @@ class Results extends React.Component {
         localStorage.removeItem('search')
         localStorage.removeItem('startDate')
         localStorage.removeItem('endDate')
+        localStorage.removeItem('lon')
+        localStorage.removeItem('lat')
         localStorage.removeItem('brunch')
         localStorage.removeItem('lunch')
         localStorage.removeItem('dinner')
         localStorage.removeItem('shopping')
         localStorage.removeItem('music')
+        localStorage.removeItem('museums')
         localStorage.removeItem('quantity')
         const onNewSearch = this.props.onNewSearch
         onNewSearch(false)
@@ -59,8 +60,8 @@ class Results extends React.Component {
 
     saveSearch() {
         const id = this.props.currentUser._id
-        console.log('clicked')
-        console.log(localStorage.getItem('startDate'))
+        // console.log('clicked')
+        // console.log(localStorage.getItem('startDate'))
         axios({
             method: 'post', 
             url: `/api/users/${id}/searches`, 
@@ -68,11 +69,14 @@ class Results extends React.Component {
                 search: localStorage.getItem('search'),
                 startDate: localStorage.getItem('startDate'),
                 endDate: localStorage.getItem('endDate'),
+                lon: JSON.parse(localStorage.getItem('lon')),
+                lat: JSON.parse(localStorage.getItem('lat')),                
                 brunch: JSON.parse(localStorage.getItem('brunch')),
                 lunch: JSON.parse(localStorage.getItem('lunch')),
                 dinner: JSON.parse(localStorage.getItem('dinner')),
                 shopping: JSON.parse(localStorage.getItem('shopping')),
                 music: JSON.parse(localStorage.getItem('music')),
+                museums: JSON.parse(localStorage.getItem('museums')),
                 quantity: JSON.parse(localStorage.getItem('quantity'))
             }
         })
@@ -134,6 +138,17 @@ class Results extends React.Component {
                                 search={s.fromForm.search} 
                                 startDate={s.fromForm.startDate} 
                                 endDate={s.fromForm.endDate} 
+                                quantity={s.fromForm.quantity} 
+                                tileView={s.tileView} />
+                            : null
+                        }
+
+                        {!!s.fromForm.museums
+                            ? <Museums 
+                                {...this.props} 
+                                search={s.fromForm.search}
+                                lon={s.fromForm.lon} 
+                                lat={s.fromForm.lat}
                                 quantity={s.fromForm.quantity} 
                                 tileView={s.tileView} />
                             : null
