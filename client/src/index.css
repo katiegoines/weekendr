@@ -39,11 +39,21 @@
 
     }
 
+    .swirly-font {
+      font-family: 'Clicker Script', cursive;
+      letter-spacing: 1px;
+      /* font-weight: bold; */
+    }
+
+    .logo {
+      font-size: 24px;
+    }
+
 /* Navbar */
 
     .NavBar {
       height: 50px;
-      padding-top: 10px;
+      padding-top: 5px;
       position:fixed;
       z-index: 3;
       background: white;
@@ -67,6 +77,7 @@
 
     .account {
       float:right;
+      margin-top: 3px;
     }
 
     .account a, .account span {
@@ -79,9 +90,9 @@
       margin-right: 30px;
     }
 
-    .logo {
+    /* .logo {
       width: 90px;
-    }
+    } */
 
     @media (min-width: 576px) and (max-width: 767px) {      
       .account a {

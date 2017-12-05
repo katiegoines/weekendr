@@ -6,8 +6,9 @@ const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
 			<span className="standard">
-				<Link to="/"><img className='logo' src={Logo} alt="logo" /></Link>
-				<Link to="/search">Search</Link>
+				<Link to="/"><span className="swirly-font logo">Weekendr</span></Link>
+				{/* <Link to="/"><img className='logo' src={Logo} alt="logo" /></Link> */}
+				{/* <Link to="/search">Search</Link> */}
 			</span>
 			
 			{props.currentUser

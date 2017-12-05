@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import clientAuth from './clientAuth'
 
 import NavBar from './NavBar'
-import Home from './views/Home'
+// import Home from './views/Home'
 import Search from './views/Search'
 import SignUp from './views/SignUp'
 import LogIn from './views/LogIn'
@@ -67,7 +67,7 @@ class App extends Component {
               return <Search {...props} currentUser={clientAuth.getCurrentUser()} />
             }} />
 
-            <Route path="/" component={Home} />
+            <Route path="/" component={Search} />
 
           </Switch>
         </div>
