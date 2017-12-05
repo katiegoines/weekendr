@@ -69,7 +69,7 @@ apiRoutes.route('/geocode')
 
 apiRoutes.route('/places')
     .get((req, res) => {
-        var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleID}&location=${req.query.lat},${req.query.lon}&radius=24140&type=${req.query.category}`
+        var apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleID}&location=${req.query.lat},${req.query.lon}&radius=50000&type=${req.query.category}`
         httpClient.get(apiUrl, (err, response, body) => {
             var results = JSON.parse(response.body)
             res.json({results, apiKey: googleID})

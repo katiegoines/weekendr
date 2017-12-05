@@ -90,21 +90,21 @@ class Results extends React.Component {
         return (
             <div className="results">
                 <span>
-                    <div>
+                    <div className="buttons-bar">
                         {!!s.tileView
                             ? <span><button className="button button-clear" onClick={this.tileView}>Switch to List View</button></span>
                             : <span><button className="button button-clear"  onClick={this.tileView}>Switch to Tile View</button></span>
                         }
-                        <span><button className="button button-clear"  onClick={this.newSearch}>New Search</button></span>
-                        <span><button className="button button-clear"  onClick={this.backSearch}>Back to Search</button></span>
+                        
                         {!!this.props.currentUser
                             ? <span><button className="button button-clear"  onClick={this.saveSearch}>Save Search</button></span>
                             : null
                         }
-                        
+                        <span><button className="button button-clear"  onClick={this.backSearch}>Back to Search</button></span>
+                        <span><button className="button button-clear"  onClick={this.newSearch}>New Search</button></span>
                     </div>
                  
-                    <span>
+                    <div>
                         {!!s.fromForm.brunch
                             ? <Brunch 
                                 {...this.props} 
@@ -153,7 +153,7 @@ class Results extends React.Component {
                                 tileView={s.tileView} />
                             : null
                         }
-                    </span>
+                    </div>
                 </span>
             </div>  
             

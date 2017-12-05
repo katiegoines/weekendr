@@ -38,11 +38,13 @@ class SearchForm extends React.Component {
 
     componentDidMount() {
         if(!!this.props.savedSearch) {
+            console.log(this.props.fromForm)
             this.setState({forsubmit: this.props.fromForm})
         }
     }
 
     onInputChange(evt) {  
+        console.log(this.state.forsubmit.quantity)
         this.setState({
             forsubmit: {
                 ...this.state.forsubmit,
@@ -143,6 +145,7 @@ class SearchForm extends React.Component {
                 localStorage.setItem('music', this.state.forsubmit.music)
                 localStorage.setItem('museums', this.state.forsubmit.museums)
                 localStorage.setItem('quantity', this.state.forsubmit.quantity)
+                console.log(this.state.forsubmit.quantity)
 
                 const { onSubmit } = this.props
                 onSubmit(this.state.forsubmit)
@@ -276,7 +279,7 @@ class SearchForm extends React.Component {
                                     <select 
                                         id="results-quantity"
                                         name="quantity"
-                                        defaultValue={this.state.forsubmit.quantity}
+                                        defaultValue={this.props.fromForm.quantity}
                                         onChange={this.quantity} >
                                         <option value="1">1</option>
                                         <option value="2">2</option>

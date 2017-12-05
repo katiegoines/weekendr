@@ -250,6 +250,11 @@
     }
 
 /* Search View */
+
+    .buttons-bar {
+      height: 50px;
+    }
+
     .search-heading {
       margin-top: 10%;
       text-align: center;
