@@ -93,8 +93,10 @@ class Search extends React.Component {
         const s = this.state
         return (
             <div>
-                    <div className="results">
-                        {!s.run 
+                {!!s.run && s.fromForm.search === ''
+                    ? null
+                    : <div className="results">
+                        {!s.run
                             ? <div className="search-page">
                                 <div className="search-heading">
                                     <h1>What are you up to this weekend?</h1>
@@ -117,7 +119,9 @@ class Search extends React.Component {
                                 onNewSearch={this.onNewSearch}
                                 onBackSearch={this.onBackSearch} />
                         }              
-                    </div>  
+                    </div> 
+                }
+                     
             </div>
             
         )
