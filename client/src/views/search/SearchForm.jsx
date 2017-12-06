@@ -240,7 +240,6 @@ class SearchForm extends React.Component {
                                         <label className="label-inline" htmlFor="brunch">Check/Uncheck All</label>
                                     </span>
                                 </div>
-                        {/* FOOD */}
                                 <div className="cat-groups">
                                     <span className="check-title">Food</span>
                                     <span className="checkbox-short">
@@ -268,7 +267,7 @@ class SearchForm extends React.Component {
                                             value={this.state.forsubmit.vegetarian}
                                             onChange={this.checkbox} 
                                             checked={this.state.forsubmit.vegetarian} />
-                                        <label className="label-inline" htmlFor="vegetarian">Vegan/Vegetarian</label>
+                                        <label className="label-inline" htmlFor="vegetarian">Vegetarian/Vegan</label>
                                     </span>
                                     <span className="checkbox">
                                         <input 
@@ -277,7 +276,7 @@ class SearchForm extends React.Component {
                                             value={this.state.forsubmit.foodstands}
                                             onChange={this.checkbox} 
                                             checked={this.state.forsubmit.foodstands} />
-                                        <label className="label-inline" htmlFor="foodstands">Foodstands</label>
+                                        <label className="label-inline" htmlFor="foodstands">Food Stands</label>
                                     </span>
                                     <span className="checkbox">
                                         <input 
@@ -485,9 +484,6 @@ class SearchForm extends React.Component {
                                         <label className="label-inline" htmlFor="technology">Tech</label>
                                     </span>
                                 </div>
-                                
-                                
-                                
                                 
                                 <span className="dropdown">
                                     <div className="results-title">No. of Results</div>

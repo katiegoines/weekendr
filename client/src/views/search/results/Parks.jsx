@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 
-class Museums extends React.Component {
+class Parks extends React.Component {
     constructor(props) {
         super(props)
 
@@ -27,7 +27,7 @@ class Museums extends React.Component {
     }
 
     request() {
-        axios({method: 'get', url: `/api/search/places?category=museum&lat=${this.props.lat}&lon=${this.props.lon}`})
+        axios({method: 'get', url: `/api/search/places?category=parks&lat=${this.props.lat}&lon=${this.props.lon}`})
         .then((res) => { 
             // console.log(res.data)
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
@@ -37,7 +37,7 @@ class Museums extends React.Component {
                 this.key = res.data.apiKey
                 this.setState({results: {
                         list: res.data.results.results, 
-                        head: "Museums"
+                        head: "Parks"
                 }})
             }
         })
@@ -89,7 +89,7 @@ class Museums extends React.Component {
                             </span>
                             : <span>
                                 <div className="search-category">
-                                    <h3>Museums <br /> Coming Soon</h3>
+                                    <h3>Parks <br /> Coming Soon</h3>
                                 </div>
                             </span>
                         }                
@@ -113,4 +113,4 @@ class Museums extends React.Component {
     }
 }
 
-export default Museums
+export default Parks

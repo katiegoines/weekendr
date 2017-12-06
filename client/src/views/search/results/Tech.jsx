@@ -3,7 +3,7 @@ import axios from 'axios'
 import Moment from 'react-moment'
 
 
-class Events extends React.Component {
+class Tech extends React.Component {
     constructor(props) {
         super(props)
 
@@ -23,12 +23,6 @@ class Events extends React.Component {
             this.setState({tileView: this.props.tileView})
         }
     }
-    
-    // componentWillReceiveProps() {
-    //     if(this.props.run) {
-    //         this.setState({results:{brunch:{head:'', list: []}}})
-    //     }
-    // }
 
     request() {
         var dates
@@ -37,16 +31,16 @@ class Events extends React.Component {
         } else {
             dates = "This+Weekend"
         }
-        axios({method: 'get', url: `/api/search/eventful?location=${this.props.search}&category=music&dateRange=${dates}`})
+        axios({method: 'get', url: `/api/search/eventful?location=${this.props.search}&category=technology&dateRange=${dates}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
-                console.log(res.data.events.event)
+                console.log(res.data.tech.event)
                 this.setState({
                     results: {
-                        list: res.data.events.event, 
-                        head: "Concerts"
+                        list: res.data.tech.event, 
+                        head: "Tech"
                     }
                 })
             }
@@ -117,7 +111,7 @@ class Events extends React.Component {
                             </span>
                             : <span>
                                 <div className="search-category">
-                                    <h3>Concerts <br /> Coming Soon</h3>
+                                    <h3>Tech<br /> Coming Soon</h3>
                                 </div>
                             </span>
                         }
@@ -172,4 +166,4 @@ class Events extends React.Component {
     }
 }
 
-export default Events
+export default Tech
