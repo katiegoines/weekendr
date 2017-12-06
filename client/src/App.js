@@ -20,6 +20,9 @@ class App extends Component {
     })
   }
 
+  componentDidUpdate() {
+  }
+
   onLoginSuccess(user) {
     this.setState({
       currentUser: clientAuth.getCurrentUser()
@@ -63,7 +66,7 @@ class App extends Component {
               return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
             }} />
 
-            <Route path="/search" render={(props) => {
+            <Route path="/" render={(props) => {
               return <Search {...props} currentUser={clientAuth.getCurrentUser()} />
             }} />
 
