@@ -39,11 +39,14 @@ apiRoutes.route('/yelp')
 apiRoutes.route('/eventful')
     .get((req, res) => {
         // console.log(req.query.dateRange)
-        var apiUrl = `https://api.eventful.com/json/events/search?app_key=${eventfulID}&location=${req.query.location}&category=${req.query.category}&date=${req.query.dateRange}&sort_order=popularity&within=15`        
+        var apiUrl = `https://api.eventful.com/json/events/search?app_key=${eventfulID}&location=${req.query.location}&category=${req.query.category}&date=${req.query.dateRange}&sort_order=popularity&within=15&scheme=https`        
         httpClient.get(apiUrl, (err, response, body) => {
-            var results = JSON.parse(response.body)
+            // var results = JSON.parse(response.body)
             // console.log(results)
-            res.json(results)
+            // res.json(results)
+            // console.log(JSON.parse(response.body))
+            // res.json(JSON.parse(response.body))
+            res.json(response.body)
         })
     })
 

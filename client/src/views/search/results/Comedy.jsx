@@ -33,17 +33,26 @@ class Comedy extends React.Component {
         }
         axios({method: 'get', url: `/api/search/eventful?location=${this.props.search}&category=comedy&dateRange=${dates}`})
         .then((res) => { 
-            if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
-                throw new Error("error")
-            } else {
-                // console.log(res.data.events.event)
-                this.setState({
-                    results: {
-                        list: res.data.events.event, 
-                        head: "Comedy"
-                    }
-                })
-            }
+            console.log(JSON.parse(res.data))
+            var b = JSON.parse(res.data)
+            this.setState({
+                results: {
+                    list: b.events.event,
+                    head: "Comedy"
+                }
+            })
+
+            // if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
+            //     throw new Error("error")
+            // } else {
+            //     // console.log(res.data.events.event)
+            //     this.setState({
+            //         results: {
+            //             list: res.data.events.event, 
+            //             head: "Comedy"
+            //         }
+            //     })
+            // }
         })
         .then(res => {
             this.randomizeColor()
@@ -146,21 +155,6 @@ class Comedy extends React.Component {
                     </div>
                 }
         </span>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             
         )
     }

@@ -37,10 +37,18 @@ class Tech extends React.Component {
                 throw new Error("error")
             } else {
                 // console.log(res.data.events.event)
+                // this.setState({
+                //     results: {
+                //         list: res.data.events.event, 
+                //         head: "Tech"
+                //     }
+                // })
+
+                var b = JSON.parse(res.data)
                 this.setState({
                     results: {
-                        list: res.data.events.event, 
-                        head: "Tech"
+                        list: b.events.event,
+                        head: "Tech Events"
                     }
                 })
             }

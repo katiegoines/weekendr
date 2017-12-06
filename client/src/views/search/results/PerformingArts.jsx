@@ -37,9 +37,17 @@ class PerformingArts extends React.Component {
                 throw new Error("error")
             } else {
                 // console.log(res.data.events.event)
+                // this.setState({
+                //     results: {
+                //         list: res.data.events.event, 
+                //         head: "Performing Arts"
+                //     }
+                // })
+
+                var b = JSON.parse(res.data)
                 this.setState({
                     results: {
-                        list: res.data.events.event, 
+                        list: b.events.event,
                         head: "Performing Arts"
                     }
                 })

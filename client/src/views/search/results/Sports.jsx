@@ -37,10 +37,18 @@ class Sports extends React.Component {
                 throw new Error("error")
             } else {
                 // console.log(res.data.events.event)
+                // this.setState({
+                //     results: {
+                //         list: res.data.events.event, 
+                //         head: "Sports"
+                //     }
+                // })
+
+                var b = JSON.parse(res.data)
                 this.setState({
                     results: {
-                        list: res.data.events.event, 
-                        head: "Sports"
+                        list: b.events.event,
+                        head: "Sporting Events"
                     }
                 })
             }

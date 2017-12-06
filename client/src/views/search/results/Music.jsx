@@ -37,9 +37,17 @@ class Events extends React.Component {
                 throw new Error("error")
             } else {
                 // console.log(res.data.events.event)
+                // this.setState({
+                //     results: {
+                //         list: res.data.events.event, 
+                //         head: "Concerts"
+                //     }
+                // })
+
+                var b = JSON.parse(res.data)
                 this.setState({
                     results: {
-                        list: res.data.events.event, 
+                        list: b.events.event,
                         head: "Concerts"
                     }
                 })
