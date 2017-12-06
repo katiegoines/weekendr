@@ -139,6 +139,7 @@
 
     .adv {
       float: right;
+      text-align: right;
       margin-bottom: 10px;
     }
 
