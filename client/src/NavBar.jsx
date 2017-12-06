@@ -16,6 +16,7 @@ const NavBar = (props) => {
 					<span>
 						<span className="account">
 							{/* <span className="name">Hi, {props.currentUser.name}:</span> */}
+							<Link to="/">Search</Link>
 							<Link to="/profile">Account</Link>
 							<Link to="/logout">Log Out</Link>
 						</span>
