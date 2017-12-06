@@ -23,12 +23,6 @@ class Antiques extends React.Component {
         }
     }
     
-    componentWillReceiveProps() {
-        // if(this.props.run) {
-        //     this.setState({results:{head:'', list: []}})
-        // }
-    }
-
     request() {
         axios({method: 'get', url: `/api/search/yelp?categories=antiques&location=${this.props.search}`})
         .then((res) => { 
@@ -42,7 +36,7 @@ class Antiques extends React.Component {
             }
         })
         .then(res => {
-            console.log(this.state.results.list)
+            // console.log(this.state.results.list)
             this.randomizeColor()
         })
         .catch(e => {

@@ -6,7 +6,7 @@ const NavBar = (props) => {
 	return (
 		<div className='NavBar'>
 			<span className="standard">
-				<Link to="/"><span className="swirly-font">Weekendr</span></Link>
+				<Link to="/"><span className="swirly-font swirly-nav">Weekendr</span></Link>
 				{/* <Link to="/"><img className='logo' src={Logo} alt="logo" /></Link> */}
 				{/* <Link to="/search">Search</Link> */}
 			</span>

@@ -22,12 +22,6 @@ class FoodStands extends React.Component {
             this.setState({tileView: this.props.tileView})
         }
     }
-    
-    componentWillReceiveProps() {
-        // if(this.props.run) {
-        //     this.setState({results:{head:'', list: []}})
-        // }
-    }
 
     request() {
         axios({method: 'get', url: `/api/search/yelp?categories=foodstands&location=${this.props.search}`})
@@ -42,7 +36,7 @@ class FoodStands extends React.Component {
             }
         })
         .then(res => {
-            console.log(this.state.results.list)
+            // console.log(this.state.results.list)
             this.randomizeColor()
         })
         .catch(e => {

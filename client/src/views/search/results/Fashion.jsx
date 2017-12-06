@@ -22,27 +22,21 @@ class Fashion extends React.Component {
             this.setState({tileView: this.props.tileView})
         }
     }
-    
-    componentWillReceiveProps() {
-        // if(this.props.run) {
-        //     this.setState({results:{head:'', list: []}})
-        // }
-    }
 
     request() {
-        axios({method: 'get', url: `/api/search/yelp?categories=Fashion&location=${this.props.search}`})
+        axios({method: 'get', url: `/api/search/yelp?categories=fashion&location=${this.props.search}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
                 this.setState({results: {
                         list: res.data, 
-                        head: "Fashion"
+                        head: "Clothes"
                 }})
             }
         })
         .then(res => {
-            console.log(this.state.results.list)
+            // console.log(this.state.results.list)
             this.randomizeColor()
         })
         .catch(e => {
@@ -66,7 +60,7 @@ class Fashion extends React.Component {
                                 {this.state.results.head !== ''
                                     ? <div className="search-category">
                                         <h3>{this.state.results.head}</h3>
-                                        <a href={`https://www.yelp.com/search?categories=Fashion&location=${this.props.search}&start=0&cflt=Fashion`} target="_blank">See more results from Yelp</a>
+                                        <a href={`https://www.yelp.com/search?categories=fashion&location=${this.props.search}&start=0&cflt=fashion`} target="_blank">See more results from Yelp</a>
                                     </div>
                                     : null
                                 }

@@ -36,10 +36,10 @@ class PerformingArts extends React.Component {
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
-                console.log(res.data.performingarts.event)
+                // console.log(res.data.events.event)
                 this.setState({
                     results: {
-                        list: res.data.performingarts.event, 
+                        list: res.data.events.event, 
                         head: "Performing Arts"
                     }
                 })

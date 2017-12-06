@@ -20,7 +20,6 @@ class Profile extends React.Component {
         })
         axios({method: 'get', url: `/api/users/${id}/searches`})
         .then((res) => {
-            console.log(res.data)
             this.setState({searches: res.data})
         })
     }

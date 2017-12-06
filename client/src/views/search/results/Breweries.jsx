@@ -22,15 +22,9 @@ class Breweries extends React.Component {
             this.setState({tileView: this.props.tileView})
         }
     }
-    
-    componentWillReceiveProps() {
-        // if(this.props.run) {
-        //     this.setState({results:{head:'', list: []}})
-        // }
-    }
 
     request() {
-        axios({method: 'get', url: `/api/search/yelp?categories=Breweries&location=${this.props.search}`})
+        axios({method: 'get', url: `/api/search/yelp?categories=breweries&location=${this.props.search}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
@@ -42,7 +36,7 @@ class Breweries extends React.Component {
             }
         })
         .then(res => {
-            console.log(this.state.results.list)
+            // console.log(this.state.results.list)
             this.randomizeColor()
         })
         .catch(e => {
@@ -66,7 +60,7 @@ class Breweries extends React.Component {
                                 {this.state.results.head !== ''
                                     ? <div className="search-category">
                                         <h3>{this.state.results.head}</h3>
-                                        <a href={`https://www.yelp.com/search?categories=Breweries&location=${this.props.search}&start=0&cflt=Breweries`} target="_blank">See more results from Yelp</a>
+                                        <a href={`https://www.yelp.com/search?categories=breweries&location=${this.props.search}&start=0&cflt=breweries`} target="_blank">See more results from Yelp</a>
                                     </div>
                                     : null
                                 }

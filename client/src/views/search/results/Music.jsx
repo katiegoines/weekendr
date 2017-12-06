@@ -23,12 +23,6 @@ class Events extends React.Component {
             this.setState({tileView: this.props.tileView})
         }
     }
-    
-    // componentWillReceiveProps() {
-    //     if(this.props.run) {
-    //         this.setState({results:{brunch:{head:'', list: []}}})
-    //     }
-    // }
 
     request() {
         var dates
@@ -42,7 +36,7 @@ class Events extends React.Component {
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
-                console.log(res.data.events.event)
+                // console.log(res.data.events.event)
                 this.setState({
                     results: {
                         list: res.data.events.event, 

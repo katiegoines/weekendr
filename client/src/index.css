@@ -38,6 +38,10 @@
       border-color: #04aba8 !important;
     }
 
+    .swirly-font {
+      font-family: 'Clicker Script', cursive;
+    }
+
 /* Navbar */
     .NavBar {
       height: 50px;
@@ -78,11 +82,11 @@
       margin-right: 30px;
     }
 
-    .swirly-font {
-      font-family: 'Clicker Script', cursive;
-      font-size: 24px;
-      letter-spacing: 1px;
+    .swirly-nav {
+      font-size: 24px; 
+      letter-spacing: 1px;      
     }
+
 
     /* .logo {
       width: 90px;
@@ -120,11 +124,13 @@
 
 /* Search */
     .search-heading {
-      margin-top: 10%;
+      margin-top: 3%;
       text-align: center;
     }  
 
-
+    .swirly-heading {
+      font-size: 100px;
+    }
 
 /* Search Form */
     #blank {
@@ -214,6 +220,39 @@
 /* Results */
     .buttons-bar {
       height: 50px;
+    }
+
+    .eventful-badge,
+    .eventful-badge * {
+      margin: 0             !important;
+      padding: 0            !important;
+      border: 0             !important;
+      text-align: center    !important;
+      color: #CCC           !important;
+      font-family: Arial    !important;
+      text-decoration: none !important;
+    }
+    
+    .eventful-large {
+      position: relative    !important;
+      width: 140px          !important;
+      font-size: 15px       !important;
+      line-height: 17px     !important;
+      font-weight: bold     !important;
+    }
+    
+    .eventful-medium {
+      position: relative    !important;
+      width: 100px          !important;
+      font-size: 12px       !important;
+      line-height: 13px     !important;
+    }                     
+                          
+    .eventful-small {     
+      position: relative    !important;
+      width: 100px          !important;
+      font-size: 11px       !important;
+      line-height: 11px     !important;
     }
 
 

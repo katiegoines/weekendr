@@ -49,7 +49,6 @@ class Results extends React.Component {
 
     tileView() {
         this.setState({tileView: !this.state.tileView})
-        console.log(this.state.tileView)
     }
 
     newSearch() {
@@ -91,7 +90,7 @@ class Results extends React.Component {
                         }
                         
                         {!!this.props.currentUser
-                            ? <span><button className="button button-clear"  onClick={this.saveSearch}>Save Search</button></span>
+                            ? <span><button className="button button-clear" onClick={this.saveSearch}>Save Search</button></span>
                             : null
                         }
                         <span><button className="button button-clear"  onClick={this.backSearch}>Back to Search</button></span>

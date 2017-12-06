@@ -508,7 +508,7 @@ class SearchForm extends React.Component {
                                         className="button button-outline">Go
                                     </button>
                                 </span>
-                                <div><small className ="adv">*Adventures not limited to weekends.</small></div>
+                                <div><small className ="adv">*Dates default to this upcoming weekend. Adventures definitely not limited to weekends.</small></div>
                             </div>
                         </form>
                     </div>

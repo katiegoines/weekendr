@@ -90,7 +90,8 @@ class Search extends React.Component {
                         {!s.run
                             ? <div className="search-page">
                                 <div className="search-heading">
-                                    <h1>What are you up to this weekend?</h1>
+                                    <div className="swirly-font swirly-heading">Weekendr</div>
+                                    <h1>What do you wanna do this weekend?</h1>
                                 </div>
                                 <div className="form">
                                     <SearchForm 

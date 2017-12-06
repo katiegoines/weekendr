@@ -22,9 +22,6 @@ class Museums extends React.Component {
             this.setState({tileView: this.props.tileView})
         }
     }
-    
-    componentWillReceiveProps() {
-    }
 
     request() {
         axios({method: 'get', url: `/api/search/places?category=museum&lat=${this.props.lat}&lon=${this.props.lon}`})
@@ -33,7 +30,7 @@ class Museums extends React.Component {
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
-                console.log(res.data.results)
+                // console.log(res.data.results)
                 this.key = res.data.apiKey
                 this.setState({results: {
                         list: res.data.results.results, 

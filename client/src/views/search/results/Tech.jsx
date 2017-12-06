@@ -36,10 +36,10 @@ class Tech extends React.Component {
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
             } else {
-                console.log(res.data.tech.event)
+                // console.log(res.data.events.event)
                 this.setState({
                     results: {
-                        list: res.data.tech.event, 
+                        list: res.data.events.event, 
                         head: "Tech"
                     }
                 })
