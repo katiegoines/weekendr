@@ -8,6 +8,10 @@ The weekend is coming. Do you have plans? If you need some help nailing dwn stuf
 
 
 
+This app is an extension of [Move It!](gomoveit.herokuapp.com), for a total of a 9-day sprint. 
+
+
+
 ![Weekendr Results](https://i.imgur.com/1CEW0F6.jpg?1)
 
 [Check it out](https://weekendr.herokuapp.com/).
