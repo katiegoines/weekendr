@@ -5,36 +5,52 @@ const
 
 const
     yelp = require('yelp-fusion'),
-    yelpID = process.env.YELP_ID,
-    yelpSecret = process.env.YELP_SECRET,
+    // yelpID = process.env.YELP_ID,
+    // yelpSecret = process.env.YELP_SECRET,
     walkScoreID = process.env.WALK_SCORE_ID,
     googleID = process.env.GOOGLE_API_KEY,
     eventfulID = process.env.EVENTFUL_API_KEY
+    yelpKey = process.env.API_KEY
 
 
-//Request for all Yelp Searches
+//Request for all Yelp Searches - prior to Mar 2017
+// apiRoutes.route('/yelp')
+//     .get((req, res) => {
+//         yelp.accessToken(yelpID, yelpSecret)
+//         .then(response => {
+//             const client = yelp.client(response.jsonBody.access_token)
+//             client.search({
+//                 categories: req.query.categories,
+//                 location: req.query.location
+//             })
+//             .then((response) => {
+//                 // console.log(response.body)
+//                 var results = response.jsonBody.businesses
+//                 res.json(results)
+//             })
+//             .catch(e => {
+//                 // console.log(e)
+//                 if(e.name == "RestCallResponseFiltersUnhandledStatusError") {
+//                     res.json(e)
+//                 }
+//             })
+//         });
+//     })
+
+// Request for all Yelp Searches - after March 2017
 apiRoutes.route('/yelp')
-    .get((req, res) => {
-        yelp.accessToken(yelpID, yelpSecret)
-        .then(response => {
-            const client = yelp.client(response.jsonBody.access_token)
-            client.search({
-                categories: req.query.categories,
-                location: req.query.location
-            })
-            .then((response) => {
-                // console.log(response.body)
-                var results = response.jsonBody.businesses
-                res.json(results)
-            })
-            .catch(e => {
-                // console.log(e)
-                if(e.name == "RestCallResponseFiltersUnhandledStatusError") {
-                    res.json(e)
-                }
-            })
-        });
-    })
+.get((req, res) => {
+    const client = yelp.client(yelpKey)
+    client.search({
+        term: req.query.categories,
+        location: req.query.location
+    }).then(response => {
+        // console.log(response.jsonBody.businesses)
+        res.json(response.jsonBody.businesses)
+    }).catch(e => {
+        console.log(e);
+    });
+})
 
 apiRoutes.route('/eventful')
     .get((req, res) => {

@@ -9,7 +9,7 @@ module.exports = {
     },
 
     create: (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         var newSearch = new Search({
             search: req.body.search,
             startDate: req.body.startDate,
