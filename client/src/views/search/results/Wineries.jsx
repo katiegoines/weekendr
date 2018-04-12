@@ -24,7 +24,7 @@ class Wineries extends React.Component {
     }
 
     request() {
-        axios({method: 'get', url: `/api/search/yelp?categories=winetastingroom&location=${this.props.search}`})
+        axios({method: 'get', url: `/api/search/yelp?categories=wineries&location=${this.props.search}`})
         .then((res) => { 
             if(res.data.fullType === "rest-call.response-filters.unhandled-status") {
                 throw new Error("error")
