@@ -10,7 +10,7 @@ const
     walkScoreID = process.env.WALK_SCORE_ID,
     googleID = process.env.GOOGLE_API_KEY,
     eventfulID = process.env.EVENTFUL_API_KEY
-    yelpKey = process.env.API_KEY
+    yelpKey = process.env.YELP_KEY
 
 
 //Request for all Yelp Searches - prior to Mar 2017
